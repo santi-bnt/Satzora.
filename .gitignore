@@ -1,1 +1,11 @@
 .local-tools/
+.env
+.env.*
+!.env.example
+node_modules
+.vercel/
+.supabase/
+supabase/.temp/
+dist/
+data/
+*.tsbuildinfo

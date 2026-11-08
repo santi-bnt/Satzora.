@@ -1,0 +1,49 @@
+import express from 'express';
+import { DatabaseSync } from 'node:sqlite';
+import { mkdirSync, existsSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { lessons, words, gradeLesson, publicLesson } from './content.js';
+import { initializeProfile, readProfile } from './profile.js';
+import { createA2Router } from './a2/router.js';
+import { dictionary } from './a2/dictionary.js';
+import { createCloudFlashcardRouter } from './cloud/flashcards.js';
+import { createCloudStudyRouter } from './cloud/study.js';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+if(existsSync(path.join(root,'.env')))process.loadEnvFile(path.join(root,'.env'));
+if(existsSync(path.join(root,'.env.local')))process.loadEnvFile(path.join(root,'.env.local'));
+export function createApp(db){
+initializeProfile(db);
+db.exec(`CREATE TABLE IF NOT EXISTS completions (lesson TEXT PRIMARY KEY, score INTEGER NOT NULL, completed TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS activity (day TEXT PRIMARY KEY, xp INTEGER NOT NULL DEFAULT 0, minutes INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS reviews (word TEXT PRIMARY KEY, due TEXT NOT NULL, interval INTEGER NOT NULL DEFAULT 0);`);
+const app=express(); app.disable('x-powered-by'); app.use(express.json({limit:'1mb'}));
+if(process.env.VERCEL){app.use('/api',(req,res,next)=>{if(req.path==='/health'||req.path.startsWith('/a2/cloud/')||req.path.startsWith('/a2/cloud-study/'))return next();if(req.method==='GET'&&(/^\/a2\/(lessons\/[^/]+|dictionary)$/.test(req.path)))return next();return res.status(401).json({error:'sign_in_required'});});}
+const day=()=>new Date().toLocaleDateString('en-CA',{timeZone:'America/Mexico_City'});
+function activity(xp,minutes){db.prepare('INSERT INTO activity(day,xp,minutes) VALUES(?,?,?) ON CONFLICT(day) DO UPDATE SET xp=xp+excluded.xp,minutes=minutes+excluded.minutes').run(day(),xp,minutes);}
+function progress(){return {profile:readProfile(db),completions:db.prepare('SELECT * FROM completions').all(),activity:db.prepare('SELECT * FROM activity ORDER BY day').all(),reviews:db.prepare('SELECT * FROM reviews').all(),today:day()};}
+app.get('/api/health',(_req,res)=>res.json({status:'ok'}));
+app.get('/api/bootstrap',(_req,res)=>res.json({lessons:lessons.map(publicLesson),words,...progress()}));
+app.put('/api/profile',(req,res)=>{const {name,goal}=req.body??{};if(typeof name!=='string'||name.trim().length>40||![5,10,15,20,30].includes(goal))return res.status(400).json({error:'El nombre debe tener hasta 40 caracteres. Elige un objetivo válido.'});db.prepare("UPDATE profile SET name=?,goal=?,name_source='user' WHERE id=1").run(name.trim(),goal);res.json(progress());});
+app.post('/api/lessons/:id/complete',(req,res)=>{const lesson=lessons.find(l=>l.id===req.params.id);if(!lesson)return res.status(404).json({error:'Lección no encontrada.'});try {const grade=gradeLesson(lesson,req.body?.answers);const previous=db.prepare('SELECT score FROM completions WHERE lesson=?').get(lesson.id);const passed=grade.score>=2;let xp=0;if(passed){xp=previous?Math.max(0,grade.score-previous.score)*10:grade.score*10;db.prepare('INSERT INTO completions(lesson,score,completed) VALUES(?,?,?) ON CONFLICT(lesson) DO UPDATE SET score=MAX(score,excluded.score)').run(lesson.id,grade.score,day());if(xp>0)activity(xp,lesson.minutes);}res.json({...grade,passed,xp,...progress()});}catch(error){res.status(400).json({error:error.message});}});
+app.post('/api/reviews/:id',(req,res)=>{if(![...words,...dictionary].some(w=>w.id===req.params.id)||typeof req.body?.known!=='boolean')return res.status(400).json({error:'Revisión no válida.'});const prev=db.prepare('SELECT * FROM reviews WHERE word=?').get(req.params.id);if(prev&&prev.due>day())return res.status(409).json({error:'Esta palabra ya fue repasada. Vuelve cuando esté pendiente.'});const interval=req.body.known?Math.min((prev?.interval||0)*2+1,30):0;const date=new Date(`${day()}T12:00:00Z`);date.setUTCDate(date.getUTCDate()+Math.max(1,interval));db.prepare('INSERT INTO reviews(word,due,interval) VALUES(?,?,?) ON CONFLICT(word) DO UPDATE SET due=excluded.due,interval=excluded.interval').run(req.params.id,date.toISOString().slice(0,10),interval);activity(req.body.known?5:2,1);res.json(progress());});
+if(process.env.VITE_SUPABASE_URL&&process.env.VITE_SUPABASE_PUBLISHABLE_KEY){
+}
+if(process.env.VITE_SUPABASE_URL&&process.env.VITE_SUPABASE_PUBLISHABLE_KEY)app.use('/api/a2/cloud',createCloudFlashcardRouter({url:process.env.VITE_SUPABASE_URL,key:process.env.VITE_SUPABASE_PUBLISHABLE_KEY}));
+if(process.env.VITE_SUPABASE_URL&&process.env.VITE_SUPABASE_PUBLISHABLE_KEY)app.use('/api/a2/cloud-study',createCloudStudyRouter({url:process.env.VITE_SUPABASE_URL,key:process.env.VITE_SUPABASE_PUBLISHABLE_KEY}));
+app.use('/api/a2',createA2Router(db,activity,day));
+app.get('/api/a2/local-guest-export',(req,res)=>{if(process.env.VERCEL||!['127.0.0.1','::1','::ffff:127.0.0.1'].includes(req.socket.remoteAddress))return res.status(403).json({error:'local_only'});try{const sessions=db.prepare('SELECT * FROM a2_runs ORDER BY started').all().map(r=>({...r,state:JSON.parse(r.state||'{}')})),savedWords=db.prepare("SELECT w.word_id,COALESCE(s.sentence,'') AS sentence FROM a2_saved_words w LEFT JOIN fc_sources s ON s.word_id=w.word_id").all(),flashcards=db.prepare('SELECT * FROM fc_state').all(),reviews=db.prepare('SELECT id,card_id,rating,created FROM fc_history ORDER BY created').all(),settings=db.prepare('SELECT new_limit,review_limit FROM fc_settings WHERE id=1').get(),recordings=db.prepare('SELECT id,run_id,exercise_id,mime,transcript,created,audio FROM a2_recordings ORDER BY created').all().map(r=>({...r,audio:Buffer.from(r.audio).toString('base64')}));res.set('Cache-Control','private, no-store').json({version:1,created:new Date().toISOString(),sessions,savedWords,flashcards,reviews,settings,recordings});}catch{res.status(503).json({error:'guest_export_unavailable'});}});
+app.use('/api',(_req,res)=>res.status(404).json({error:'Ruta no encontrada.'}));
+app.use(express.static(path.join(root,'dist')));
+app.get('/{*path}',(_req,res)=>res.sendFile(path.join(root,'dist','index.html')));
+app.use((error,_req,res,_next)=>{console.error(error.message);res.status(error.status===400?400:500).json({error:error.status===400?'Solicitud no válida.':'No se pudo guardar. Inténtalo de nuevo.'});});
+return app;
+}
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+const dataDirectory=process.env.DATA_DIR||path.join(root,'data');
+mkdirSync(dataDirectory,{recursive:true});
+const db=new DatabaseSync(path.join(dataDirectory,'deutsch-lernen.sqlite'));
+const app=createApp(db);
+const server=app.listen(Number(process.env.PORT??3001),'127.0.0.1',()=>console.log(`Deutsch Lernen API: http://127.0.0.1:${server.address().port}`));
+for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>server.close(()=>{db.close();process.exit(0);}));
+}

@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {DatabaseSync} from 'node:sqlite';
+import {createClient} from '@supabase/supabase-js';
+import {createApp} from '../server/index.js';
+import {curriculum} from '../server/a2/curriculum.js';
+import {dictionary} from '../server/a2/dictionary.js';
+import {flashcards} from '../server/a2/flashcards.js';
+process.loadEnvFile('../.env.local');
+async function login(name){const c=createClient(process.env.VITE_SUPABASE_URL,process.env.VITE_SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}});const {data,error}=await c.auth.signInWithPassword({email:process.env[`SATZORA_TEST_${name}_EMAIL`],password:process.env[`SATZORA_TEST_${name}_PASSWORD`]});assert.ifError(error);return {c,token:data.session.access_token};}
+const db=new DatabaseSync(':memory:'),server=createApp(db).listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));const base=`http://127.0.0.1:${server.address().port}/api/a2/cloud-study`;
+async function call(token,path,method='GET',body){const r=await fetch(base+path,{method,headers:{Authorization:`Bearer ${token}`,...(body?{'content-type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});return {status:r.status,data:await r.json()};}
+try{const a=await login('A'),b=await login('B'),now=Date.now(),exercise=curriculum[0].exercises[0],sessionId=randomUUID(),session={id:sessionId,kind:'lesson',ref:curriculum[0].id,mode:'practice',focus:'all',started:now-60000,deadline:now+60000,finished:now,state:{ids:[exercise.id],answers:{[exercise.id]:'imported A2 answer'},position:0}};
+ let result=await call(a.token,'/import/sessions','POST',{items:[session]});assert.equal(result.status,200);assert.equal(result.data.imported,1);result=await call(a.token,'/import/sessions','POST',{items:[{...session,state:{...session.state,answers:{[exercise.id]:'changed retry'}}}]});assert.equal(result.data.imported,0);result=await call(a.token,`/runs/${sessionId}`);assert.equal(result.status,200);assert.equal(result.data.state.answers[exercise.id],'imported A2 answer');assert.equal((await call(b.token,`/runs/${sessionId}`)).status,404);
+ const savedIds=(await a.c.from('dl_saved_words').select('word_id')).data.map(x=>x.word_id),word=dictionary.find(w=>!savedIds.includes(w.id));assert(word);const cardRows=(await a.c.from('dl_flashcards').select('card_id')).data,card=flashcards.find(w=>!cardRows.some(x=>x.card_id===w.id));assert(card);const wordRow={word_id:word.id,sentence:'Ich habe diese Wortkarte lokal gespeichert.'},cardRow={card_id:card.id,repetitions:2,interval:4,ease:2.6,lapses:0,due:now+86400000,mastered:false},review={id:Math.floor(now/10),card_id:card.id,rating:'good',created:now};
+ for(const [type,item] of [['saved-words',wordRow],['flashcards',cardRow],['reviews',review]]){result=await call(a.token,`/import/${type}`,'POST',{items:[item]});assert.equal(result.status,200);assert.equal(result.data.imported,1);result=await call(a.token,`/import/${type}`,'POST',{items:[item]});assert.equal(result.data.imported,0);}
+ const own=await a.c.from('dl_flashcards').select('interval_days,due_at').eq('card_id',card.id).single();assert.ifError(own.error);assert.equal(own.data.interval_days,4);const other=await b.c.from('dl_flashcards').select('*').eq('card_id',card.id);assert.ifError(other.error);assert.equal(other.data.length,0);console.log('Import real: sesiones y flashcards permanecen en A, reintentos no duplican y B no accede a los registros importados.');await a.c.auth.signOut();await b.c.auth.signOut();
+}catch(e){console.error('Import real falló:',e.message);process.exitCode=1;}finally{server.closeAllConnections();await new Promise(r=>server.close(r));db.close();}
