@@ -1,0 +1,5 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node scripts/verify-cloud-ready.js && npm run build",
+  "outputDirectory": "dist"
+}

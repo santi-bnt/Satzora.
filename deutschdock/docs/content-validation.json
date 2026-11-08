@@ -1,0 +1,560 @@
+{
+  "target": {
+    "modules": 10,
+    "lessons": 80,
+    "exercises": 1200
+  },
+  "actual": {
+    "modules": 10,
+    "lessons": 80,
+    "exercises": 1200,
+    "documentBackedExercises": 25,
+    "authoredContexts": 400,
+    "referenceExamples": 640
+  },
+  "complete": true,
+  "modules": [
+    {
+      "id": "m01",
+      "title": "Satzbau und Konnektoren",
+      "lessons": [
+        {
+          "id": "m01-verbposition",
+          "title": "Das Verb an zweiter Stelle",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m01-fragen",
+          "title": "Nachfragen statt raten",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m01-negation",
+          "title": "Nicht oder kein?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m01-weil",
+          "title": "Gründe mit weil",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m01-dass",
+          "title": "Informationen mit dass",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m01-wenn",
+          "title": "Bedingungen und Gewohnheiten",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m01-konnektoren",
+          "title": "Aber, denn, deshalb, trotzdem",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m01-textverbinden",
+          "title": "Eine Nachricht klar strukturieren",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    },
+    {
+      "id": "m02",
+      "title": "Vergangenheit",
+      "lessons": [
+        {
+          "id": "m02-perfekt-haben",
+          "title": "Erlebnisse im Perfekt",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m02-perfekt-sein",
+          "title": "Unterwegs gewesen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m02-partizipien",
+          "title": "Unregelmäßige Partizipien",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m02-trennbar-perfekt",
+          "title": "Anrufen, einkaufen, abholen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m02-ohne-ge",
+          "title": "Bezahlt und organisiert",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m02-war-hatte",
+          "title": "War und hatte im Alltag",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m02-modal-past",
+          "title": "Musste, konnte, wollte",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m02-erzaehlen",
+          "title": "Eine Reise erzählen",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    },
+    {
+      "id": "m03",
+      "title": "Die Fälle",
+      "lessons": [
+        {
+          "id": "m03-nominativ",
+          "title": "Wer macht was?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m03-akkusativ",
+          "title": "Was brauchst du?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m03-dativ",
+          "title": "Wem hilfst du?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m03-zwei-objekte",
+          "title": "Jemandem etwas geben",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m03-pronomen-akk",
+          "title": "Ihn, sie oder es?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m03-pronomen-dat",
+          "title": "Mir, dir, ihm, ihr",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m03-artikel-mix",
+          "title": "Artikel im Zusammenhang",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m03-alltag-faelle",
+          "title": "Ein Problem gemeinsam lösen",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    },
+    {
+      "id": "m04",
+      "title": "Präpositionen",
+      "lessons": [
+        {
+          "id": "m04-wo",
+          "title": "Wo ist das?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m04-wohin",
+          "title": "Wohin stellst du das?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m04-wo-wohin",
+          "title": "Liegen oder legen?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m04-zeitpunkte",
+          "title": "Am, um, im",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m04-dauer",
+          "title": "Seit, vor, bis, für",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m04-mit-nach-zu",
+          "title": "Mit, nach, zu, von, aus",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m04-fuer-ohne-gegen",
+          "title": "Für, ohne, gegen, durch",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m04-wege-erklaeren",
+          "title": "Wege und Termine erklären",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    },
+    {
+      "id": "m05",
+      "title": "Verben",
+      "lessons": [
+        {
+          "id": "m05-koennen-duerfen",
+          "title": "Können und dürfen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m05-muessen-sollen",
+          "title": "Müssen, sollen, nicht müssen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m05-wollen-moechten",
+          "title": "Wünsche und höfliche Bitten",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m05-trennbar-praesens",
+          "title": "Der Anruf kommt später",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m05-reflexiv",
+          "title": "Sich freuen, sich kümmern",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m05-imperativ",
+          "title": "Klare und freundliche Anweisungen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m05-verb-praep",
+          "title": "Warten auf, sprechen über",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m05-zu-infinitiv",
+          "title": "Zeit haben und vorhaben",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    },
+    {
+      "id": "m06",
+      "title": "Adjektive und Pronomen",
+      "lessons": [
+        {
+          "id": "m06-komparativ",
+          "title": "Zwei Angebote vergleichen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m06-superlativ",
+          "title": "Die beste Lösung finden",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m06-gleich-vergleichen",
+          "title": "So teuer wie oder billiger als?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m06-possessiv",
+          "title": "Mein, dein, unser im Kontext",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m06-adjektiv-artikel",
+          "title": "Der neue und den neuen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m06-adjektiv-ein",
+          "title": "Eine günstige Wohnung suchen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m06-dieser-welcher",
+          "title": "Welches Angebot meinst du?",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m06-beschreibung",
+          "title": "Menschen und Dinge präzise beschreiben",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    },
+    {
+      "id": "m07",
+      "title": "Arbeit und Kommunikation",
+      "lessons": [
+        {
+          "id": "m07-kurs-anmeldung",
+          "title": "Sich für einen Kurs anmelden",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m07-bewerbung",
+          "title": "Eine kurze Bewerbung formulieren",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m07-termine",
+          "title": "Einen Termin vereinbaren",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m07-absagen",
+          "title": "Absagen und einen Ersatz vorschlagen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m07-telefonieren",
+          "title": "Am Telefon Informationen sichern",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m07-bitten",
+          "title": "Um Hilfe und Informationen bitten",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m07-team",
+          "title": "Im Team etwas organisieren",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m07-formelle-mail",
+          "title": "Eine klare halbformelle E-Mail",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    },
+    {
+      "id": "m08",
+      "title": "Alltag und Reisen",
+      "lessons": [
+        {
+          "id": "m08-einkaufen",
+          "title": "Einkaufen und Angebote prüfen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m08-restaurant",
+          "title": "Im Restaurant nachfragen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m08-gesundheit",
+          "title": "Beschwerden und Arzttermine",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m08-verkehr",
+          "title": "Fahrpläne und Anschlüsse",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m08-unterkunft",
+          "title": "Ein Zimmer buchen und ändern",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m08-reklamation",
+          "title": "Etwas reklamieren",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m08-wohnen",
+          "title": "Probleme in der Wohnung melden",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m08-reiseproblem",
+          "title": "Wenn auf Reisen etwas schiefgeht",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    },
+    {
+      "id": "m09",
+      "title": "Lesen, Hören und Schreiben",
+      "lessons": [
+        {
+          "id": "m09-anzeigen",
+          "title": "Anzeigen gezielt lesen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m09-emails-lesen",
+          "title": "E-Mails zwischen den Zeilen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m09-artikel-lesen",
+          "title": "Kurze Artikel verstehen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m09-durchsagen",
+          "title": "Durchsagen und Änderungen hören",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m09-gespraeche",
+          "title": "Gespräche und Entscheidungen hören",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m09-sms-schreiben",
+          "title": "Eine vollständige SMS schreiben",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m09-email-schreiben",
+          "title": "Eine halbformelle Antwort schreiben",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m09-ueberarbeiten",
+          "title": "Den eigenen Text verbessern",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    },
+    {
+      "id": "m10",
+      "title": "Goethe A2 Intensiv",
+      "lessons": [
+        {
+          "id": "m10-fragen-person",
+          "title": "Sprechen 1: Fragen zur Person",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m10-thema-erzaehlen",
+          "title": "Sprechen 2: Über den Alltag erzählen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m10-gemeinsam-planen",
+          "title": "Sprechen 3: Gemeinsam planen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m10-lesen-strategie",
+          "title": "Lesen: Belege statt Schlüsselwörter",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m10-hoeren-strategie",
+          "title": "Hören: Auf Änderungen achten",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m10-schreiben-check",
+          "title": "Schreiben: Drei Punkte erfüllen",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m10-fertigkeiten-mix",
+          "title": "Vom Text zur eigenen Antwort",
+          "exercises": 15,
+          "status": "complete"
+        },
+        {
+          "id": "m10-fehler-transfer",
+          "title": "Eigene Fehler gezielt verbessern",
+          "exercises": 15,
+          "status": "complete"
+        }
+      ]
+    }
+  ],
+  "pendingModules": [],
+  "errors": []
+}

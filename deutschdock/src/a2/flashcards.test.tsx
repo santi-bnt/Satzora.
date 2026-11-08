@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {JSDOM} from 'jsdom';
+import React from 'react';
+import {translate} from './i18n';
+const dom=new JSDOM('<!doctype html><html><body></body></html>',{url:'http://localhost/'});
+for(const key of ['window','document','navigator','HTMLElement','HTMLInputElement','Event','MouseEvent','MutationObserver'])Object.defineProperty(globalThis,key,{value:dom.window[key],configurable:true,writable:true});
+globalThis.IS_REACT_ACT_ENVIRONMENT=true;
+const {render,screen,fireEvent,cleanup}=await import('@testing-library/react');
+const {Flashcards}=await import('./Flashcards');
+const {AppContext}=await import('./context');
+test('flashcard reveals translation only on flip, records rating and supports English',async()=>{const old=globalThis.fetch;let rating='';const card={id:'fc-test',lemma:'Termin',article:'der',plural:'Termine',es:'cita',en:'appointment',topic:'Termine',examples:['Der Termin ist morgen.','Ich verschiebe den Termin.'],state:null};globalThis.fetch=async(input,options)=>{const url=String(input);if(url.endsWith('/review'))rating=JSON.parse(String(options?.body)).rating;return new Response(JSON.stringify(url.endsWith('/review')?{saved:true}:{cards:[card],settings:{new_limit:10,review_limit:30},stats:{new:1,due:0,mastered:0,newToday:0,reviewedToday:0,history:[]}}),{headers:{'Content-Type':'application/json'}});};try{const context={locale:'en' as const,t:(key:Parameters<typeof translate>[0])=>translate(key,'en'),word:()=>{},dictionaryEnabled:true,capabilities:{feedback:false,transcription:false,conversation:false},refresh:async()=>{}};render(<AppContext.Provider value={context}><Flashcards/></AppContext.Provider>);await screen.findByText(/starter cards/);fireEvent.change(screen.getByLabelText('Mode'),{target:{value:'new'}});fireEvent.click(screen.getByRole('button',{name:'Start'}));assert.ok(screen.getByText('der Termin'));assert.equal(screen.queryByText('appointment'),null);fireEvent.click(screen.getByRole('button',{name:'Flip card'}));assert.ok(screen.getByText('appointment'));fireEvent.click(screen.getByRole('button',{name:'Good'}));await screen.findByText('No more cards in this selection.');assert.equal(rating,'good');}finally{cleanup();globalThis.fetch=old;}});

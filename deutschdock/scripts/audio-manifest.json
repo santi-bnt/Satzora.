@@ -1,0 +1,516 @@
+[
+  {
+    "id": "m09-durchsagen-1",
+    "text": "Der Regionalzug nach Bonn fährt heute von Gleis vier statt Gleis zwei ab."
+  },
+  {
+    "id": "m09-durchsagen-2",
+    "text": "Die Buslinie acht endet heute am Rathaus."
+  },
+  {
+    "id": "m09-gespraeche-1",
+    "text": "Wir gehen nicht ins Kino, sondern treffen uns im Park."
+  },
+  {
+    "id": "m09-gespraeche-2",
+    "text": "Das Restaurant ist voll, deshalb kochen wir zu Hause."
+  },
+  {
+    "id": "m09-durchsagen-3",
+    "text": "Das Schwimmbad bleibt wegen einer Reparatur bis Freitag geschlossen."
+  },
+  {
+    "id": "m09-durchsagen-4",
+    "text": "Die Führung beginnt erst um vierzehn Uhr dreißig."
+  },
+  {
+    "id": "m09-durchsagen-5",
+    "text": "Bitte holen Sie Ihre bestellten Bücher an der Information ab."
+  },
+  {
+    "id": "m09-gespraeche-3",
+    "text": "Am Samstag kann ich nicht, aber am Sonntag habe ich Zeit."
+  },
+  {
+    "id": "m09-gespraeche-4",
+    "text": "Ich nehme lieber den späteren Bus, weil ich noch arbeiten muss."
+  },
+  {
+    "id": "m09-gespraeche-5",
+    "text": "Dann sind wir uns einig und treffen uns um halb sechs."
+  },
+  {
+    "id": "modell-01-h1-0",
+    "text": "Guten Morgen. Der Regionalzug nach Bremen hat heute fünfzehn Minuten Verspätung. Er fährt nicht von Gleis drei, sondern von Gleis sechs. Der Zug nach Kiel fährt wie geplant von Gleis drei. Bitte beachten Sie die Anzeigen.",
+    "questionIds": [
+      "modell-01-Hören-1"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-01-h1-1",
+    "text": "Hallo, hier ist die Fahrradwerkstatt. Ihr Fahrrad ist repariert. Der neue Reifen kostet fünfundzwanzig Euro. Zusammen mit der Arbeit bezahlen Sie vierzig Euro. Sie können das Rad heute bis achtzehn Uhr abholen.",
+    "questionIds": [
+      "modell-01-Hören-2"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-01-h1-2",
+    "text": "Liebe Kursteilnehmer, unser Kochkurs beginnt morgen ausnahmsweise um halb sieben statt um sechs. Bitte bringen Sie eine Schürze mit. Die Zutaten und die Getränke sind bereits da.",
+    "questionIds": [
+      "modell-01-Hören-3"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-01-h1-3",
+    "text": "Guten Tag, hier spricht das Reisebüro. Für Ihre Fahrt am Samstag brauchen Sie keinen neuen Fahrschein. Die alte Karte bleibt gültig. Der Bus fährt aber vor dem Rathaus ab, nicht am Bahnhof.",
+    "questionIds": [
+      "modell-01-Hören-4"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-01-h1-4",
+    "text": "Hier ist der Wetterbericht für das Wochenende. Am Samstag regnet es am Vormittag. Ab dem Nachmittag bleibt es trocken. Am Sonntag scheint den ganzen Tag die Sonne, aber es wird deutlich kälter.",
+    "questionIds": [
+      "modell-01-Hören-5"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-01-h2",
+    "text": "Am Montag fahren wir Fahrrad, das steht schon fest. Dienstag gehen wir ins Kino. Am Mittwoch treffen wir uns zum Schwimmen. Donnerstag möchten wir gemeinsam kochen. Am Freitag besuchen wir ein Konzert. Samstag gehen wir wandern. Für eine Ausstellung haben wir diese Woche leider keine Zeit.",
+    "questionIds": [
+      "modell-01-Hören-6",
+      "modell-01-Hören-7",
+      "modell-01-Hören-8",
+      "modell-01-Hören-9",
+      "modell-01-Hören-10"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-01-h3-0",
+    "text": "Was machen wir nach dem Kurs? Ins Kino möchte ich heute nicht. Dann lass uns ins Schwimmbad gehen. Ja, das finde ich besser.",
+    "questionIds": [
+      "modell-01-Hören-11"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-01-h3-1",
+    "text": "Hast du deinen Schlüssel verloren? Nein, der Schlüssel ist hier. Aber meine Brille fehlt. Hast du sie gesehen? Leider nicht.",
+    "questionIds": [
+      "modell-01-Hören-12"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-01-h3-2",
+    "text": "Was schenken wir unserem Kollegen? Er liest nicht gern. Eine Pflanze wäre gut. Ja, und Schokolade hat er schon genug.",
+    "questionIds": [
+      "modell-01-Hören-13"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-01-h3-3",
+    "text": "Fährst du morgen mit dem Fahrrad? Es regnet stark. Dann nehme ich den Bus. Der Zug hält zu weit weg.",
+    "questionIds": [
+      "modell-01-Hören-14"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-01-h3-4",
+    "text": "Wo sollen wir warten? Vor dem Kino ist eine Baustelle. Ich warte im Café gegenüber. Gut, bis gleich.",
+    "questionIds": [
+      "modell-01-Hören-15"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-01-h4",
+    "text": "Heute sprechen wir mit einem jungen Postboten. Seit wann machen Sie diese Arbeit? Seit zwei Jahren. Vorher habe ich in einem Supermarkt gearbeitet. Wie kommen Sie zur Arbeit? Ich fahre mit dem Bus zum Depot und verteile die Briefe dann mit einem elektrischen Fahrrad. Arbeiten Sie am Wochenende? Samstags ja, sonntags habe ich frei. Was mögen Sie an der Arbeit? Ich bin gern draußen und spreche mit vielen Menschen. Bei Regen ist es natürlich anstrengend. Möchten Sie den Beruf wechseln? Im Moment nicht. Nächstes Jahr möchte ich aber weniger Stunden arbeiten, weil ich einen Abendkurs besuchen will.",
+    "questionIds": [
+      "modell-01-Hören-16",
+      "modell-01-Hören-17",
+      "modell-01-Hören-18",
+      "modell-01-Hören-19",
+      "modell-01-Hören-20"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-02-h1-0",
+    "text": "Guten Tag, hier spricht die Bibliothek. Die Bücher können Sie heute nicht bis neunzehn Uhr zurückgeben. Wir schließen wegen einer Veranstaltung bereits um siebzehn Uhr. Ab morgen gelten wieder die normalen Öffnungszeiten.",
+    "questionIds": [
+      "modell-02-Hören-1"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-02-h1-1",
+    "text": "Hallo, hier ist deine Nachbarin. Dein Paket liegt nicht bei mir. Der Fahrer hat es im Blumenladen an der Ecke abgegeben. Der Laden schließt heute um achtzehn Uhr, bitte hol es vorher ab.",
+    "questionIds": [
+      "modell-02-Hören-2"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-02-h1-2",
+    "text": "Liebe Fahrgäste, der Bus zum Flughafen hält heute nicht am Marktplatz. Bitte gehen Sie zur Haltestelle vor dem Krankenhaus. Von dort fährt der Ersatzbus alle zwanzig Minuten.",
+    "questionIds": [
+      "modell-02-Hören-3"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-02-h1-3",
+    "text": "Guten Morgen, hier die Praxis. Ihr Termin am Dienstag muss leider ausfallen. Wir können Ihnen einen neuen Termin am Donnerstag um zehn anbieten. Bitte rufen Sie uns zurück, wenn das nicht passt.",
+    "questionIds": [
+      "modell-02-Hören-4"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-02-h1-4",
+    "text": "Achtung, liebe Gäste. Das Frühstück wird heute nicht im Restaurant serviert. Wegen einer Reparatur finden Sie das Frühstücksbuffet im Raum neben der Rezeption. Die Terrasse bleibt geschlossen.",
+    "questionIds": [
+      "modell-02-Hören-5"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-02-h2",
+    "text": "Am Montag waren wir im Kino. Am Dienstag möchte ich schwimmen, Radfahren machen wir erst am Mittwoch. Donnerstag kochen wir zusammen bei mir. Am Freitag besuchen wir die neue Ausstellung und malen danach selbst. Samstag gehen wir wandern. Bücher tauschen wir nächste Woche.",
+    "questionIds": [
+      "modell-02-Hören-6",
+      "modell-02-Hören-7",
+      "modell-02-Hören-8",
+      "modell-02-Hören-9",
+      "modell-02-Hören-10"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-02-h3-0",
+    "text": "Was möchtest du am Wochenende machen? Schwimmen ist mir zu teuer. Ich möchte lieber mit dem Rad zum See fahren. Gut, das machen wir.",
+    "questionIds": [
+      "modell-02-Hören-11"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-02-h3-1",
+    "text": "Hast du deine Kamera gefunden? Ja, sie lag nicht im Rucksack, sondern im Auto. Gut, dann musst du kein neues Gerät kaufen.",
+    "questionIds": [
+      "modell-02-Hören-12"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-02-h3-2",
+    "text": "Sollen wir Blumen mitbringen? Sie hat schon so viele. Wie wäre es mit einem Buch? Gute Idee, ich kaufe einen Roman.",
+    "questionIds": [
+      "modell-02-Hören-13"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-02-h3-3",
+    "text": "Fahren wir mit dem Bus? Heute fährt kein Bus. Dann nehmen wir die Straßenbahn. Das Taxi ist viel zu teuer.",
+    "questionIds": [
+      "modell-02-Hören-14"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-02-h3-4",
+    "text": "Wo treffen wir uns? Im Café ist es zu laut. Ich warte lieber am Eingang der Bibliothek. Einverstanden.",
+    "questionIds": [
+      "modell-02-Hören-15"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-02-h4",
+    "text": "Heute sprechen wir mit einer Köchin über ihren Alltag. Wie sind Sie Köchin geworden? Nach der Schule habe ich zuerst in einem Büro gearbeitet. Das hat mir nicht gefallen. Deshalb habe ich eine Ausbildung im Restaurant gemacht. Arbeiten Sie auch sonntags? Früher ja, aber seit diesem Jahr ist unser Restaurant sonntags geschlossen. Wer kocht bei Ihnen zu Hause? Meistens mein Mann. Ich koche bei der Arbeit genug. Haben Sie Kinder? Ja, zwei. Sie helfen mir manchmal beim Backen. Möchten Sie ein eigenes Restaurant eröffnen? Nein, ich möchte lieber Kochkurse für Erwachsene anbieten. Der erste Kurs beginnt im November.",
+    "questionIds": [
+      "modell-02-Hören-16",
+      "modell-02-Hören-17",
+      "modell-02-Hören-18",
+      "modell-02-Hören-19",
+      "modell-02-Hören-20"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-03-h1-0",
+    "text": "Liebe Fahrgäste, die Straßenbahnlinie vier fährt heute nur bis zum Theater. Zum Hauptbahnhof benutzen Sie bitte den Ersatzbus. Er hält auf der anderen Straßenseite vor der Post, nicht direkt vor dem Theater.",
+    "questionIds": [
+      "modell-03-Hören-1"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-03-h1-1",
+    "text": "Hallo, hier ist die Buchhandlung. Ihr Buch ist da. Sie können es heute noch bis achtzehn Uhr abholen. Morgen schließen wir schon um vierzehn Uhr. Der Preis ist unverändert, neunzehn Euro fünfzig.",
+    "questionIds": [
+      "modell-03-Hören-2"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-03-h1-2",
+    "text": "Hier ist die Sprachschule. Ihr Kurs beginnt am Montag wie geplant, aber in einem anderen Raum. Bitte gehen Sie nicht in Raum zwölf im ersten Stock, sondern in Raum vierundzwanzig im zweiten Stock.",
+    "questionIds": [
+      "modell-03-Hören-3"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-03-h1-3",
+    "text": "Guten Tag, hier das Hotel. Wir haben Ihre Jacke gefunden. Sie lag nicht im Zimmer, sondern im Frühstücksraum. Wir können sie Ihnen schicken. Bitte senden Sie uns dafür Ihre vollständige Adresse per E-Mail.",
+    "questionIds": [
+      "modell-03-Hören-4"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-03-h1-4",
+    "text": "Guten Abend, wegen des starken Windes findet das Konzert heute nicht im Stadtpark statt. Die Musiker spielen in der Sporthalle. Ihre Eintrittskarten bleiben gültig. Der Beginn ist weiterhin um zwanzig Uhr.",
+    "questionIds": [
+      "modell-03-Hören-5"
+    ],
+    "plays": 2
+  },
+  {
+    "id": "modell-03-h2",
+    "segments": [
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Lass uns unsere freie Woche planen. Am Montag haben wir schon den Schwimmbadbesuch gebucht. Was machen wir am Dienstag?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Ich würde gern ins Kino gehen. Der neue Film läuft aber erst am Donnerstag. Wollen wir am Dienstag stattdessen Fahrräder ausleihen?"
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Ja, die Fahrt am Fluss entlang wäre schön. Für Mittwoch habe ich Karten für das Konzert im Rathaus. Es beginnt schon um sieben."
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Gut. Donnerstag passt dann der Film. Ich muss bis fünf arbeiten, danach kann ich direkt zum Kino kommen. Wir können vorher dort etwas essen."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Und Freitag? Die Ausstellung, die wir sehen wollten, ist leider schon geschlossen. Wir könnten zusammen bei mir kochen. Ich habe ein neues Rezept."
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Einverstanden. Am Samstag möchte ich gern einen Ausflug zu Fuß machen. Die Wandergruppe trifft sich um neun. Einkaufen müssen wir dafür schon am Freitag."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Dann machen wir das so. Für die Bibliothek und die Ausstellung bleibt diese Woche keine Zeit. Unsere Räder bringen wir am Dienstagabend zurück."
+      }
+    ],
+    "text": "Lass uns unsere freie Woche planen. Am Montag haben wir schon den Schwimmbadbesuch gebucht. Was machen wir am Dienstag? Ich würde gern ins Kino gehen. Der neue Film läuft aber erst am Donnerstag. Wollen wir am Dienstag stattdessen Fahrräder ausleihen? Ja, die Fahrt am Fluss entlang wäre schön. Für Mittwoch habe ich Karten für das Konzert im Rathaus. Es beginnt schon um sieben. Gut. Donnerstag passt dann der Film. Ich muss bis fünf arbeiten, danach kann ich direkt zum Kino kommen. Wir können vorher dort etwas essen. Und Freitag? Die Ausstellung, die wir sehen wollten, ist leider schon geschlossen. Wir könnten zusammen bei mir kochen. Ich habe ein neues Rezept. Einverstanden. Am Samstag möchte ich gern einen Ausflug zu Fuß machen. Die Wandergruppe trifft sich um neun. Einkaufen müssen wir dafür schon am Freitag. Dann machen wir das so. Für die Bibliothek und die Ausstellung bleibt diese Woche keine Zeit. Unsere Räder bringen wir am Dienstagabend zurück.",
+    "questionIds": [
+      "modell-03-Hören-6",
+      "modell-03-Hören-7",
+      "modell-03-Hören-8",
+      "modell-03-Hören-9",
+      "modell-03-Hören-10"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-03-h3-0",
+    "segments": [
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Was fehlt noch für den Ausflug? Ich habe die Fahrkarten und den Stadtplan schon eingepackt."
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Die Sonnenbrille ist auch da. Aber wir sollten noch Getränke kaufen. Zwei Flaschen Wasser reichen nicht für alle."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Dann gehe ich zum Supermarkt. Nimmst du einen Einkaufskorb mit?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Ja, ich bringe ihn gleich."
+      }
+    ],
+    "text": "Was fehlt noch für den Ausflug? Ich habe die Fahrkarten und den Stadtplan schon eingepackt. Die Sonnenbrille ist auch da. Aber wir sollten noch Getränke kaufen. Zwei Flaschen Wasser reichen nicht für alle. Dann gehe ich zum Supermarkt. Nimmst du einen Einkaufskorb mit? Ja, ich bringe ihn gleich.",
+    "questionIds": [
+      "modell-03-Hören-11"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-03-h3-1",
+    "segments": [
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Ich suche ein Geschenk für meine Schwester. Blumen hat sie gerade erst bekommen."
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Wie wäre es mit einem Buch?"
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Sie hört lieber Musik. Ich möchte ihr Karten für ein Konzert schenken."
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Gute Idee. Dann frage ich nach dem Termin."
+      }
+    ],
+    "text": "Ich suche ein Geschenk für meine Schwester. Blumen hat sie gerade erst bekommen. Wie wäre es mit einem Buch? Sie hört lieber Musik. Ich möchte ihr Karten für ein Konzert schenken. Gute Idee. Dann frage ich nach dem Termin.",
+    "questionIds": [
+      "modell-03-Hören-12"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-03-h3-2",
+    "segments": [
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Ist der Zug die beste Verbindung?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Wir müssten zweimal umsteigen. Mit dem Bus fahren wir direkt, und er ist billiger."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Aber dauert das nicht viel länger?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Nur zehn Minuten. Dann nehmen wir den Bus."
+      }
+    ],
+    "text": "Ist der Zug die beste Verbindung? Wir müssten zweimal umsteigen. Mit dem Bus fahren wir direkt, und er ist billiger. Aber dauert das nicht viel länger? Nur zehn Minuten. Dann nehmen wir den Bus.",
+    "questionIds": [
+      "modell-03-Hören-13"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-03-h3-3",
+    "segments": [
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Wo hast du deine Tasche gelassen? Im Auto habe ich sie nicht gesehen."
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Ich glaube, sie ist noch zu Hause."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Brauchst du etwas daraus?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Nur mein Handy. Das habe ich zum Glück in der Jackentasche."
+      }
+    ],
+    "text": "Wo hast du deine Tasche gelassen? Im Auto habe ich sie nicht gesehen. Ich glaube, sie ist noch zu Hause. Brauchst du etwas daraus? Nur mein Handy. Das habe ich zum Glück in der Jackentasche.",
+    "questionIds": [
+      "modell-03-Hören-14"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-03-h3-4",
+    "segments": [
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Wir haben am Sonntag Gäste. Sollen wir ins Restaurant gehen?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Lieber nicht, das wäre für alle zu teuer."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Dann kochen wir gemeinsam bei uns."
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Ja. Ich kaufe ein und du bereitest die Küche vor."
+      }
+    ],
+    "text": "Wir haben am Sonntag Gäste. Sollen wir ins Restaurant gehen? Lieber nicht, das wäre für alle zu teuer. Dann kochen wir gemeinsam bei uns. Ja. Ich kaufe ein und du bereitest die Küche vor.",
+    "questionIds": [
+      "modell-03-Hören-15"
+    ],
+    "plays": 1
+  },
+  {
+    "id": "modell-03-h4",
+    "segments": [
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Heute sprechen wir mit Herrn Klee. Sie arbeiten in einer Bibliothek. Haben Sie dort schon immer gearbeitet?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Nein, nach der Schule habe ich zuerst eine Ausbildung in einem Hotel gemacht. In die Bibliothek bin ich vor drei Jahren gekommen."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Was gefällt Ihnen an Ihrer Arbeit?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Vor allem der Kontakt zu den Besuchern. Ich empfehle gern Bücher. Am Computer sitze ich nur einen Teil des Tages."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Ist die Bibliothek auch am Wochenende offen?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Samstags ja, aber ich arbeite nur jeden zweiten Samstag. Sonntags ist immer geschlossen."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Sie organisieren auch Veranstaltungen für Kinder, stimmt das?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Ja, einmal im Monat lesen wir Geschichten vor. Die Eltern müssen nichts bezahlen. Man muss sich aber vorher anmelden."
+      },
+      {
+        "voice": "de-DE-KatjaNeural",
+        "text": "Was möchten Sie in Zukunft ändern?"
+      },
+      {
+        "voice": "de-DE-ConradNeural",
+        "text": "Wir brauchen mehr ruhige Plätze zum Lernen. Einen größeren Raum haben wir schon gefunden. Nächstes Jahr wollen wir ihn eröffnen."
+      }
+    ],
+    "text": "Heute sprechen wir mit Herrn Klee. Sie arbeiten in einer Bibliothek. Haben Sie dort schon immer gearbeitet? Nein, nach der Schule habe ich zuerst eine Ausbildung in einem Hotel gemacht. In die Bibliothek bin ich vor drei Jahren gekommen. Was gefällt Ihnen an Ihrer Arbeit? Vor allem der Kontakt zu den Besuchern. Ich empfehle gern Bücher. Am Computer sitze ich nur einen Teil des Tages. Ist die Bibliothek auch am Wochenende offen? Samstags ja, aber ich arbeite nur jeden zweiten Samstag. Sonntags ist immer geschlossen. Sie organisieren auch Veranstaltungen für Kinder, stimmt das? Ja, einmal im Monat lesen wir Geschichten vor. Die Eltern müssen nichts bezahlen. Man muss sich aber vorher anmelden. Was möchten Sie in Zukunft ändern? Wir brauchen mehr ruhige Plätze zum Lernen. Einen größeren Raum haben wir schon gefunden. Nächstes Jahr wollen wir ihn eröffnen.",
+    "questionIds": [
+      "modell-03-Hören-16",
+      "modell-03-Hören-17",
+      "modell-03-Hören-18",
+      "modell-03-Hören-19",
+      "modell-03-Hören-20"
+    ],
+    "plays": 2
+  }
+]

@@ -1,0 +1,23 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import express from 'express';
+import {DatabaseSync} from 'node:sqlite';
+import {createA2Router} from './router.js';
+test('configured AI adapters evaluate the actual writing, persist three-point coverage and conduct stateful oral turns',async()=>{
+ const originalFetch=globalThis.fetch,previous=Object.fromEntries(['OPENAI_API_KEY','OPENAI_TEXT_MODEL','OPENAI_SPEECH_MODEL'].map(k=>[k,process.env[k]]));
+ process.env.OPENAI_API_KEY='test-only-not-real';process.env.OPENAI_TEXT_MODEL='test-configured-model';process.env.OPENAI_SPEECH_MODEL='';
+ const calls=[];globalThis.fetch=async(url,options)=>{if(!String(url).startsWith('https://api.openai.com/'))return originalFetch(url,options);const payload=JSON.parse(options.body);const input=JSON.parse(payload.input);calls.push(input);let text;
+ if(input.studentResponse){text=JSON.stringify({task:'Los tres puntos están cubiertos.',grammar:'Revisa la posición del verbo.',vocabulary:'Vocabulario A2.',coherence:'Las ideas se conectan.',register:'El registro es adecuado.',suggestion:'Mantén frases claras.',corrected:input.studentResponse,coverage:input.requiredPoints.map(point=>({point,status:'fulfilled',evidence:input.studentResponse.slice(0,30),explanation:'Dato presente en la respuesta.'})),assessment:{taskBand:'B',languageBand:'A'},errors:[{topic:'word-order',explanation:'Comprueba la segunda posición.',example:'Morgen komme ich.'}]});}
+ else{text=`Danke für Ihre Antwort: ${input.turns.at(-1).content} Haben Sie noch einen Vorschlag?`;}
+ return new Response(JSON.stringify({output:[{content:[{type:'output_text',text}]}]}),{status:200,headers:{'Content-Type':'application/json'}});};
+ const db=new DatabaseSync(':memory:'),app=express();app.use(express.json());app.use('/api/a2',createA2Router(db,()=>{},()=>new Date().toISOString().slice(0,10)));const server=app.listen(0,'127.0.0.1');await new Promise(resolve=>server.once('listening',resolve));const base=`http://127.0.0.1:${server.address().port}/api/a2`;
+ const req=async(route,body,method='POST')=>{const response=await originalFetch(base+route,body!==undefined?{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:undefined);assert.ok(response.ok,`${route}: ${response.status}`);return response.json();};
+ try{
+ const run=await req('/runs',{kind:'exam',ref:'modell-01',focus:'Schreiben',mode:'practice'});const answers=Object.fromEntries(run.exercises.map((e,i)=>[e.id,i?'Guten Tag, vielen Dank für Ihre Einladung. Ich komme gern und bringe meinen Bruder mit. Können Sie mir bitte sagen, ob ich einen Salat mitbringen soll? Vielen Dank und freundliche Grüße':'Entschuldige bitte, mein Fahrrad ist leider kaputt. Deshalb komme ich später. Treffen wir uns um sechs vor dem Museum? Bitte antworte mir kurz.']));await req(`/runs/${run.id}`,{answers,position:0},'PUT');await req(`/runs/${run.id}/finish`,{});
+ for(const exercise of run.exercises){const feedback=await req(`/runs/${run.id}/coach`,{exerciseId:exercise.id,answer:answers[exercise.id],locale:'es'});assert.equal(feedback.coverage.length,3);assert.equal(feedback.evaluatedAnswer,answers[exercise.id]);assert.equal(feedback.orientative,true);}
+ const restored=await req(`/runs/${run.id}`);assert.equal(restored.result.scores.skills.Schreiben.points,21.25);assert.equal(restored.result.scores.skills.Schreiben.source,'ai-estimate');assert.equal(restored.result.scores.total,null);assert.equal(calls[0].studentResponse,answers[run.exercises[0].id]);
+ const oral=await req('/runs',{kind:'exam',ref:'modell-03',focus:'Sprechen',mode:'practice'}),plan=oral.exercises[2];assert.ok(!plan.oral.partner);
+ await req(`/runs/${oral.id}/dialogue`,{exerciseId:plan.id,message:'Hast du am Freitag um sieben Zeit?'});const second=await req(`/runs/${oral.id}/dialogue`,{exerciseId:plan.id,message:'Dann können wir uns am Samstag treffen.'});assert.equal(second.stage,2);assert.equal(second.turns.length,4);assert.ok(second.turns[3].content.includes('Samstag'));assert.equal(calls.at(-1).turns[0].content,'Hast du am Freitag um sieben Zeit?');assert.equal(calls.at(-1).task.stage,1);assert.ok(calls.at(-1).task.oral.partner.facts.some(f=>f.includes('Freitag')));
+ const oralStored=await req(`/runs/${oral.id}`);assert.ok(oralStored.state.answers[plan.id].includes('Samstag'));assert.equal(oralStored.state.dialogues[plan.id].length,4);
+ }finally{await new Promise(resolve=>server.close(resolve));db.close();globalThis.fetch=originalFetch;for(const [key,value] of Object.entries(previous)){if(value===undefined)delete process.env[key];else process.env[key]=value;}}
+});

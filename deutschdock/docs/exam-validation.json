@@ -1,0 +1,28 @@
+{
+  "models": [
+    {
+      "id": "modell-01",
+      "available": true,
+      "errors": []
+    },
+    {
+      "id": "modell-02",
+      "available": true,
+      "errors": []
+    },
+    {
+      "id": "modell-03",
+      "available": true,
+      "errors": []
+    }
+  ],
+  "counts": {
+    "models": 3,
+    "reading": 60,
+    "listening": 60,
+    "writing": 6,
+    "speaking": 9,
+    "audioFiles": 36
+  },
+  "valid": true
+}

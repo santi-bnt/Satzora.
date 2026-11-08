@@ -1,0 +1,44 @@
+{
+  "targets": {
+    "Lesen": 100,
+    "Hören": 100,
+    "Schreiben": 150,
+    "Sprechen": 200,
+    "lessons": 80,
+    "lessonExercises": 1200,
+    "examModels": 10
+  },
+  "available": {
+    "Lesen": 20,
+    "Hören": 12,
+    "Schreiben": 28,
+    "Sprechen": 86,
+    "examModels": 3,
+    "lessons": 80,
+    "lessonExercises": 1200
+  },
+  "speakingActivities": 41,
+  "remaining": {
+    "Lesen": 80,
+    "Hören": 88,
+    "Schreiben": 122,
+    "Sprechen": 114,
+    "examModels": 7,
+    "lessons": 0,
+    "lessonExercises": 0
+  },
+  "questionCount": 229,
+  "invalid": [],
+  "note": "Sprechen counts individual keyword cards, central-topic cards and planning scenarios; speakingActivities counts complete tasks. Grammar drills are not counted as reading/listening materials. Structural checks do not establish linguistic quality, unique meanings, or correspondence of audio to questions; editorial and device review remain necessary.",
+  "referenceExamples": 640,
+  "examItems": {
+    "models": 3,
+    "reading": 60,
+    "listening": 60,
+    "writing": 6,
+    "speaking": 9,
+    "audioFiles": 36
+  },
+  "errors": [],
+  "automaticChecksCannotProveSemanticAccuracy": true
+}

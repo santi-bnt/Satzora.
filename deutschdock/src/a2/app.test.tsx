@@ -1,0 +1,42 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {JSDOM} from 'jsdom';
+import {spawn} from 'node:child_process';
+import {mkdtemp,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import React from 'react';
+const dom=new JSDOM('<!doctype html><html lang="es"><body></body></html>',{url:'http://localhost/'});
+for(const key of ['window','document','navigator','HTMLElement','HTMLInputElement','Event','MouseEvent','KeyboardEvent','MutationObserver','localStorage','location'])Object.defineProperty(globalThis,key,{value:dom.window[key],configurable:true,writable:true});
+globalThis.IS_REACT_ACT_ENVIRONMENT=true;
+const {render,screen,fireEvent,waitFor,cleanup}=await import('@testing-library/react');
+const {default:A2App}=await import('./A2App');
+test('real API component flow: bilingual navigation, dictionary, lesson autosave/resume, theme and profile safety',async()=>{
+ const directory=await mkdtemp(path.join(tmpdir(),'deutsch-a2-ui-'));
+ const child=spawn(process.execPath,[fileURLToPath(new URL('../../server/index.js',import.meta.url))],{env:{...process.env,DATA_DIR:directory,PORT:'0',OPENAI_API_KEY:'',OPENAI_TEXT_MODEL:''},stdio:['ignore','pipe','pipe']});
+ const originalFetch=globalThis.fetch;
+ try{
+ const url=await new Promise<string>((resolve,reject)=>{const timer=setTimeout(()=>reject(new Error('Server timeout')),10000);child.once('error',reject);child.stdout.on('data',chunk=>{const match=String(chunk).match(/http:\/\/127\.0\.0\.1:\d+/);if(match){clearTimeout(timer);resolve(match[0]);}});});
+ globalThis.fetch=(input,options)=>originalFetch(typeof input==='string'&&input.startsWith('/')?`${url}${input}`:input,options);
+ let view=render(<A2App/>);await screen.findByRole('heading',{name:'¡Hola!'});assert.equal(screen.queryByText(/Hallo, Alex/),null);
+ fireEvent.click(screen.getAllByRole('button',{name:'Lecciones A2'})[0]);await screen.findByRole('heading',{name:'Satzbau und Konnektoren'});
+ fireEvent.click(screen.getByRole('button',{name:/Das Verb an zweiter Stelle/}));await screen.findByRole('dialog',{name:'Das Verb an zweiter Stelle'});
+ fireEvent.click(screen.getAllByRole('button',{name:'arbeiten',exact:true})[0]);await screen.findByRole('dialog',{name:'Diccionario'});await screen.findByText('trabajar');
+ fireEvent.click(screen.getByRole('button',{name:'Guardar para repasar'}));await screen.findByRole('button',{name:'Palabra guardada'});
+ fireEvent.keyDown(document,{key:'Escape'});assert.equal(screen.queryByRole('dialog',{name:'Diccionario'}),null);assert.ok(screen.getByRole('dialog',{name:'Das Verb an zweiter Stelle'}));
+ fireEvent.click(screen.getByRole('button',{name:/Estudiar y practicar/}));await screen.findByLabelText('Tu respuesta en alemán');
+ fireEvent.change(screen.getByLabelText('Tu respuesta en alemán'),{target:{value:'beginnt mein'}});
+ await waitFor(async()=>{const state=await (await originalFetch(`${url}/api/a2/bootstrap`)).json();const run=await (await originalFetch(`${url}/api/a2/runs/${state.runs[0].id}`)).json();assert.equal(Object.values(run.state.answers)[0],'beginnt mein');},{timeout:4000});
+ fireEvent.click(screen.getByRole('button',{name:'Siguiente'}));await waitFor(()=>assert.match(screen.getByRole('heading',{name:/Am \/ Montag/}).textContent||'',/Am/));
+ fireEvent.click(screen.getByRole('button',{name:'Volver'}));await screen.findByRole('heading',{name:'Lecciones A2'});
+ location.hash='#dashboard';view.unmount();view=render(<A2App/>);await screen.findByRole('heading',{name:'¡Hola!'});fireEvent.click(screen.getByRole('button',{name:/Das Verb an zweiter Stelle.*Reanudar/}));await screen.findByRole('heading',{name:/Am \/ Montag/});
+ fireEvent.click(screen.getByRole('button',{name:'Anterior'}));await waitFor(()=>assert.equal((screen.getByLabelText('Tu respuesta en alemán') as HTMLTextAreaElement).value,'beginnt mein'));
+ fireEvent.click(screen.getByRole('button',{name:'Volver'}));await screen.findByRole('heading',{name:'¡Hola!'});
+ fireEvent.change(screen.getByRole('combobox',{name:'Idioma de la interfaz'}),{target:{value:'en'}});await screen.findByRole('heading',{name:'Hello!'});assert.ok(screen.getAllByRole('button',{name:'A2 lessons'})[0]);assert.equal(screen.queryByRole('button',{name:'Lecciones A2'}),null);
+ fireEvent.click(screen.getByRole('button',{name:'Dark'}));await waitFor(()=>assert.equal(document.documentElement.dataset.theme,'dark'));assert.equal(document.documentElement.lang,'en');
+ view.unmount();view=render(<A2App/>);await screen.findByRole('heading',{name:'Hello!'});assert.equal(document.documentElement.dataset.theme,'dark');
+ fireEvent.click(screen.getAllByRole('button',{name:'Goethe Exam Simulator'})[0]);await screen.findByRole('heading',{name:'Modell 01 · Stadt und Alltag'});assert.ok(screen.getByRole('button',{name:'Exam Mode · timed, no support'}));
+ view.unmount();
+ }finally{cleanup();globalThis.fetch=originalFetch;if(child.exitCode===null)await new Promise<void>(resolve=>{child.once('exit',()=>resolve());child.kill();});await rm(directory,{recursive:true,force:true});dom.window.close();}
+});

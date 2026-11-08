@@ -1,0 +1,7 @@
+import {createContext,useContext} from 'react';
+import type {AppContextType} from './types';
+export const AppContext=createContext<AppContextType>(null!);
+export const useA2=()=>useContext(AppContext);
+export async function request<T>(path:string,body?:unknown,method='POST'):Promise<T>{const response=await fetch(`/api${path}`,body!==undefined?{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:undefined);const data=await response.json();if(!response.ok)throw new Error(data.error||'service_failed');return data;}
+export function German({text,className=''}:{text:string;className?:string}){const {word,dictionaryEnabled}=useA2();return <span className={`german-text ${className}`} lang="de">{text.split(/(\p{L}[\p{L}ßäöüÄÖÜ-]*)/u).map((part,i)=>/\p{L}/u.test(part)&&dictionaryEnabled?<button type="button" className="german-word" key={i} onClick={()=>word(part,text)}>{part}</button>:<span key={i}>{part}</span>)}</span>;}
+export function pronounce(text:string,onError:()=>void){if(!('speechSynthesis'in window)){onError();return;}const voices=window.speechSynthesis.getVoices();const voice=voices.find(v=>v.lang.startsWith('de'));if(!voice){onError();return;}window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.voice=voice;utterance.lang='de-DE';utterance.rate=.85;utterance.onerror=onError;window.speechSynthesis.speak(utterance);}

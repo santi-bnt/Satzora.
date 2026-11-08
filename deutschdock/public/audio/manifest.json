@@ -1,0 +1,462 @@
+[
+  {
+    "id": "m09-durchsagen-1",
+    "seconds": 5.69,
+    "bytes": 34128,
+    "voice": "synthetic German speech",
+    "sha256": "a8d6e32fdb7caa91c5597f30e0d8ba7452073e824d89a17d5fa91e0289a7bf69",
+    "rms": 0.082771,
+    "peak": 0.530975,
+    "decoded": true
+  },
+  {
+    "id": "m09-durchsagen-2",
+    "seconds": 3.58,
+    "bytes": 21456,
+    "voice": "synthetic German speech",
+    "sha256": "06289d362515be4d107b11550ac41bff681ea3d254f556eb18c65fb01cb8e009",
+    "rms": 0.086332,
+    "peak": 0.722137,
+    "decoded": true
+  },
+  {
+    "id": "m09-durchsagen-3",
+    "seconds": 5.14,
+    "bytes": 30816,
+    "voice": "synthetic German speech",
+    "sha256": "b3db654d8c835a6795fc81d9faa7a3f229b9412ead4b19a6f860fa00cfa5196d",
+    "rms": 0.080009,
+    "peak": 0.585876,
+    "decoded": true
+  },
+  {
+    "id": "m09-durchsagen-4",
+    "seconds": 3.74,
+    "bytes": 22464,
+    "voice": "synthetic German speech",
+    "sha256": "76a742c6d95ec2a31520517c280e04ebb48a507e38635e3dd03188565f297723",
+    "rms": 0.087026,
+    "peak": 0.682159,
+    "decoded": true
+  },
+  {
+    "id": "m09-durchsagen-5",
+    "seconds": 4.7,
+    "bytes": 28224,
+    "voice": "synthetic German speech",
+    "sha256": "fa9ce6aa9ea2d0e7bf1be306de86df6ac6321d15b369ca89d1704e587b561e73",
+    "rms": 0.091496,
+    "peak": 0.476105,
+    "decoded": true
+  },
+  {
+    "id": "m09-gespraeche-1",
+    "seconds": 4.46,
+    "bytes": 26784,
+    "voice": "synthetic German speech",
+    "sha256": "ace494179fda21d89eb594cf1d94b62ce48e18577d0b99a0a1ef22fb811c82b0",
+    "rms": 0.09079,
+    "peak": 0.520905,
+    "decoded": true
+  },
+  {
+    "id": "m09-gespraeche-2",
+    "seconds": 4.46,
+    "bytes": 26784,
+    "voice": "synthetic German speech",
+    "sha256": "d8e467df09f9aa89e5eb35643cdfe631a792ab5b31a846d990c074f4210f872c",
+    "rms": 0.084445,
+    "peak": 0.532745,
+    "decoded": true
+  },
+  {
+    "id": "m09-gespraeche-3",
+    "seconds": 4.54,
+    "bytes": 27216,
+    "voice": "synthetic German speech",
+    "sha256": "8761be2d0a37b9b55907e47e8b71d918a8aba75b01ef59b4aa9462c54eeaf04a",
+    "rms": 0.083233,
+    "peak": 0.741333,
+    "decoded": true
+  },
+  {
+    "id": "m09-gespraeche-4",
+    "seconds": 4.82,
+    "bytes": 28944,
+    "voice": "synthetic German speech",
+    "sha256": "3a23d355d75b99d9e22eaa6598bf46a5f4f6b9381028dc079262d2c54582f36e",
+    "rms": 0.074552,
+    "peak": 0.411743,
+    "decoded": true
+  },
+  {
+    "id": "m09-gespraeche-5",
+    "seconds": 4.15,
+    "bytes": 24912,
+    "voice": "synthetic German speech",
+    "sha256": "5b95ffb082bd13d8e370311d3a740e735a5296f7c717b01c6a496d5ffca8bccb",
+    "rms": 0.085325,
+    "peak": 0.575073,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h1-0",
+    "seconds": 19.25,
+    "bytes": 115488,
+    "voice": "synthetic German speech",
+    "sha256": "43c8a3b337553f32aa23b98d7cd9e61d5e615ed2a57c3ca8567ed5c32bd766e3",
+    "rms": 0.082457,
+    "peak": 0.664917,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h1-1",
+    "seconds": 17.38,
+    "bytes": 104256,
+    "voice": "synthetic German speech",
+    "sha256": "048b5ecaa59bc0e172cdc34ffae9f214c66f3be1c9d3c098fbbb97ede285719c",
+    "rms": 0.086507,
+    "peak": 0.770203,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h1-2",
+    "seconds": 14.5,
+    "bytes": 86976,
+    "voice": "synthetic German speech",
+    "sha256": "b3ca1f8a9797dec7d1b0474836d38d9f71b069645a564d26a503bef6ca30938c",
+    "rms": 0.084968,
+    "peak": 0.5737,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h1-3",
+    "seconds": 15.5,
+    "bytes": 93024,
+    "voice": "synthetic German speech",
+    "sha256": "f7415523b622f3a681379c82f6c1b2cd2451ac85c6712d14e791c94b4bebe233",
+    "rms": 0.085809,
+    "peak": 0.703003,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h1-4",
+    "seconds": 15.94,
+    "bytes": 95616,
+    "voice": "synthetic German speech",
+    "sha256": "3eb865f4abd0e92d123eefbdfa405b007b177142fe0929fa1925b9a1cca51996",
+    "rms": 0.084459,
+    "peak": 0.700256,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h2",
+    "seconds": 23.45,
+    "bytes": 140688,
+    "voice": "synthetic German speech",
+    "sha256": "872dd3617f63fc853d402e04570f0295d1c7d808b777bb6604cfa19f506d72f2",
+    "rms": 0.08431,
+    "peak": 0.728241,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h3-0",
+    "seconds": 11.54,
+    "bytes": 69264,
+    "voice": "synthetic German speech",
+    "sha256": "ed8a06abd89fa3ba0da4af82ab0e40a961fb3bfd0e68f0491a1a5b4b2e53fda3",
+    "rms": 0.076995,
+    "peak": 0.562866,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h3-1",
+    "seconds": 12.14,
+    "bytes": 72864,
+    "voice": "synthetic German speech",
+    "sha256": "837fe79fcefab27a00233e2a002cebbe3faf6fc0c0d5364c841ed4add84dbe8e",
+    "rms": 0.080225,
+    "peak": 0.627899,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h3-2",
+    "seconds": 11.38,
+    "bytes": 68256,
+    "voice": "synthetic German speech",
+    "sha256": "78befec93f770e10b30bccb0f445ccc9f559fc278f29d1eaf5f3f35865acfa79",
+    "rms": 0.075585,
+    "peak": 0.592224,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h3-3",
+    "seconds": 9.7,
+    "bytes": 58176,
+    "voice": "synthetic German speech",
+    "sha256": "19a2df359fcedac50dd4d7c55221013ef8b0594ce26331094e04e306b1dc0f5c",
+    "rms": 0.079874,
+    "peak": 0.678406,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h3-4",
+    "seconds": 10.82,
+    "bytes": 64944,
+    "voice": "synthetic German speech",
+    "sha256": "a2b67f08eff9f32c89583a80747add865cf256ccc13f139b4001757e64aad60a",
+    "rms": 0.07214,
+    "peak": 0.588135,
+    "decoded": true
+  },
+  {
+    "id": "modell-01-h4",
+    "seconds": 48.34,
+    "bytes": 290016,
+    "voice": "synthetic German speech",
+    "sha256": "f45d7723c8aaadae0316902d53838b55034da864ffc0f5a72e69709e7706f4ec",
+    "rms": 0.088332,
+    "peak": 0.698547,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h1-0",
+    "seconds": 17.59,
+    "bytes": 105552,
+    "voice": "synthetic German speech",
+    "sha256": "d5cf295351c41be70a3c9c11d82a741c922cdfa840dd09ed930cf19d3f3d6f61",
+    "rms": 0.082285,
+    "peak": 0.569855,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h1-1",
+    "seconds": 14.83,
+    "bytes": 88992,
+    "voice": "synthetic German speech",
+    "sha256": "c6ca92dd7cbb597693e848681966087a48f5831450b44d0c763766041ec35f50",
+    "rms": 0.088619,
+    "peak": 0.762329,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h1-2",
+    "seconds": 14.42,
+    "bytes": 86544,
+    "voice": "synthetic German speech",
+    "sha256": "79a5f765ee3e5a50ab7364d392806948307aab7d088b7324c049fb8c19f742c4",
+    "rms": 0.076994,
+    "peak": 0.6427,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h1-3",
+    "seconds": 15.48,
+    "bytes": 92880,
+    "voice": "synthetic German speech",
+    "sha256": "627bdcff748af5786f2b295d9987d76d3011bd0b42078d2efa9070f677232026",
+    "rms": 0.092893,
+    "peak": 0.658447,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h1-4",
+    "seconds": 15.79,
+    "bytes": 94752,
+    "voice": "synthetic German speech",
+    "sha256": "fb87c596a71bc902b608f0e104056ad273d82376e54d0773c9acb3c38114fdcc",
+    "rms": 0.07274,
+    "peak": 0.62674,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h2",
+    "seconds": 20.02,
+    "bytes": 120096,
+    "voice": "synthetic German speech",
+    "sha256": "f3016365290a8d926d4ee38fe61573976450b7c25018425c46956708ede98b56",
+    "rms": 0.092333,
+    "peak": 0.724884,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h3-0",
+    "seconds": 11.81,
+    "bytes": 70848,
+    "voice": "synthetic German speech",
+    "sha256": "fa4e65c5d8c40e355a3c8ed6c9589daaf57a7d6c95b4fdfe4fd9b3a5791596d9",
+    "rms": 0.081055,
+    "peak": 0.596802,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h3-1",
+    "seconds": 10.9,
+    "bytes": 65376,
+    "voice": "synthetic German speech",
+    "sha256": "325640234982df93d84e36cae1e2eaac5b155081269ddc57e3028316cf87b299",
+    "rms": 0.081169,
+    "peak": 0.65802,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h3-2",
+    "seconds": 11.33,
+    "bytes": 67968,
+    "voice": "synthetic German speech",
+    "sha256": "8dddc2426cb6760fc145162aa3d6adca691d27a0af6587eea1db21a03dcf5c5b",
+    "rms": 0.082144,
+    "peak": 0.613861,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h3-3",
+    "seconds": 10.3,
+    "bytes": 61776,
+    "voice": "synthetic German speech",
+    "sha256": "be71b9613568eacc7c2d28235686273c986d2bc9a825366afe9793fd84abf116",
+    "rms": 0.075474,
+    "peak": 0.689728,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h3-4",
+    "seconds": 10.61,
+    "bytes": 63648,
+    "voice": "synthetic German speech",
+    "sha256": "23dbded978c57d600faf5d68e28d8a2ed721d5c3fc5d391e2fddcbe69c2a6d39",
+    "rms": 0.076375,
+    "peak": 0.58905,
+    "decoded": true
+  },
+  {
+    "id": "modell-02-h4",
+    "seconds": 51.24,
+    "bytes": 307440,
+    "voice": "synthetic German speech",
+    "sha256": "5b5f01fee1963c568ce2d1fb35d727ebdc41345fee579619fa9d85884b734d5c",
+    "rms": 0.087273,
+    "peak": 0.722778,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h1-0",
+    "seconds": 15.82,
+    "bytes": 94896,
+    "voice": "synthetic German speech",
+    "sha256": "662e9fdfc17a7dcc52867fb353ae9c82c4c6a097b402e66c0872e9c750f4bd9d",
+    "rms": 0.084777,
+    "peak": 0.677002,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h1-1",
+    "seconds": 15.62,
+    "bytes": 93744,
+    "voice": "synthetic German speech",
+    "sha256": "e20e38f6d06af5664ca4b9f3e5593a3e6b4a231be78c4770b6d73e50b8ecd8aa",
+    "rms": 0.085899,
+    "peak": 0.669128,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h1-2",
+    "seconds": 14.64,
+    "bytes": 87840,
+    "voice": "synthetic German speech",
+    "sha256": "6463409c4047d0c20404fd769cde593715da486373c805f76475c2cbb7136a5b",
+    "rms": 0.087423,
+    "peak": 0.621765,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h1-3",
+    "seconds": 16.44,
+    "bytes": 98640,
+    "voice": "synthetic German speech",
+    "sha256": "28e550eafb855d3da86bf9005c580e22c7d06d4d3bd0338a55c0957384f6b236",
+    "rms": 0.089164,
+    "peak": 0.697021,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h1-4",
+    "seconds": 16.13,
+    "bytes": 96768,
+    "voice": "synthetic German speech",
+    "sha256": "ea1d30ef6a8822625603121831a3b5f173a98eb8e1f0e6455a67d7ca45f5e12b",
+    "rms": 0.083251,
+    "peak": 0.639526,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h2",
+    "seconds": 77.14,
+    "bytes": 462816,
+    "voice": "synthetic German speech",
+    "sha256": "f7bdc6e96aa6b44b75f3995111a3408c721c4d432512ee29b9bf55c77051e51d",
+    "rms": 0.08313,
+    "peak": 0.694,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h3-0",
+    "seconds": 23.81,
+    "bytes": 142848,
+    "voice": "synthetic German speech",
+    "sha256": "97d2a86c32eb2848086b7d26df0ec6dbddc03efb7859f577586a35f3293bbcdf",
+    "rms": 0.080301,
+    "peak": 0.783966,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h3-1",
+    "seconds": 18.98,
+    "bytes": 113904,
+    "voice": "synthetic German speech",
+    "sha256": "9abb864252508252ae81baf69c90f612e054cb4fd4c12b2bdadd206947388026",
+    "rms": 0.078156,
+    "peak": 0.667419,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h3-2",
+    "seconds": 16.8,
+    "bytes": 100800,
+    "voice": "synthetic German speech",
+    "sha256": "29e2922b083d70f7e5ea57596ea4b01cc44cfe6d56b7a3c376609f85f82a8377",
+    "rms": 0.086145,
+    "peak": 0.684235,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h3-3",
+    "seconds": 16.2,
+    "bytes": 97200,
+    "voice": "synthetic German speech",
+    "sha256": "236aec0a7cf20361f01c5e1c68a3ede1488501df231c04767c3caacb1b0ba06b",
+    "rms": 0.080186,
+    "peak": 0.601013,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h3-4",
+    "seconds": 16.44,
+    "bytes": 98640,
+    "voice": "synthetic German speech",
+    "sha256": "71779c5c0bf742ac4801d724cdd4efb7b1a2e37ae775c118c5933d108683958e",
+    "rms": 0.081294,
+    "peak": 0.697205,
+    "decoded": true
+  },
+  {
+    "id": "modell-03-h4",
+    "seconds": 68.02,
+    "bytes": 408096,
+    "voice": "synthetic German speech",
+    "sha256": "d6b449974b7754f008e818cd9dbb874b17d13ced5706d7f710045a33c8e559e1",
+    "rms": 0.085715,
+    "peak": 0.773834,
+    "decoded": true
+  }
+]
