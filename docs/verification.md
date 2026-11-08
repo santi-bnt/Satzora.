@@ -1,23 +1,32 @@
-# Verificación de la ampliación A2
+# Verification report
 
-Fecha del entorno: 7 de noviembre de 2026. Node.js 26.13.0.
+## Latest verification — 8 November 2026
 
-| Comprobación ejecutada | Resultado |
+| Check | Result |
 | --- | --- |
-| `npm run validate:content` | 10 módulos, 80 lecciones, 1.200 actividades, 400 contextos; cero errores estructurales |
-| `npm test` | 36 pruebas correctas |
-| `npm run test:ui` | Una prueba integrada correcta, React + JSDOM contra una API real en base temporal |
-| `npm run build` | TypeScript y Vite correctos |
-| `npm audit --json` | Cero vulnerabilidades informadas |
-| HTTP de la aplicación local | 200; título A2 correcto |
-| Inventario de la API local | 80 lecciones, 1.200 actividades y dos modelos |
-| MP3 servido por HTTP | 200; archivo de prueba de 115.488 bytes |
-| Inventario de audio | 34 MP3; duración, tamaño y frecuencia verificados con Mutagen |
+| `npm test` | 66 server/content tests passed |
+| `npm run test:ui` | 4 UI tests passed |
+| `npm run build` | TypeScript and Vite build passed |
+| Vercel Preview | Deployment reached `READY`; page and health endpoint returned HTTP 200 |
+| Vercel nested study route | Anonymous request returned 401; authenticated test request reached the study API |
+| Vercel session persistence | Test session create returned HTTP 201; readback returned HTTP 200 from Supabase |
+| Vercel flashcard route | Authenticated test request returned HTTP 200 |
+| Vercel Production | Public page and `/api/health` returned HTTP 200; anonymous cloud-study request returned 401; authenticated study API returned HTTP 200 |
+| Supabase real-account tests | Test accounts A/B verified import, persistence, idempotency, and cross-account isolation |
+| Git status | Clean after push to `main` |
 
-La comprobación de contenido incluye cada uno de los diez módulos de ocho lecciones: formatos, objetivos, explicaciones en ambos idiomas, referencias de audio y soluciones. Los recuentos se generan desde el contenido, no desde cifras de demostración. Cada contexto origina tres actividades de formatos distintos; no hay 1.200 textos independientes.
+The live integration checks used dedicated test accounts, not student accounts. No service-role key was used for ordinary reads or writes. Supabase user requests carried verified user access tokens and were subject to RLS.
 
-La integración de servidor comprueba datos anteriores conservados, respuestas recuperadas tras reinicio, finalización idempotente, errores por tema, sesiones de cuatro duraciones, combinación de habilidades, cronómetro persistido, cierre al caducar, rechazo de edición fuera de sección, límites de escucha y guardado/recuperación de grabaciones. Los servicios opcionales se prueban con respuestas controladas y sin llamadas externas facturables.
+The curriculum validator reports 10 modules, 80 lessons, and 1,200 structurally valid activities. These activities are generated from 400 base contexts and are not 1,200 independent passages. The practice-bank inventory separately counts complete reading, listening, writing, and speaking materials in `docs/bank-validation.json`.
 
-La prueba de componentes comprueba catálogo, diccionario, modales anidados, guardado, navegación de actividades, reanudación, español/inglés y persistencia de tema. JSDOM no reproduce sonido, permisos de micrófono ni medidas de diseño reales.
+## Checks and limitations
 
-Pendiente de comprobación manual: reproducción mediante altavoces, grabación con un micrófono físico, inspección visual y desbordamientos en móvil, una sesión con proveedor externo configurado y revisión lingüística independiente. El acceso a navegador y aplicaciones nativas no está disponible en esta sesión. No se presentan esas verificaciones como completadas ni se atribuyen notas oficiales a los resultados orientativos.
+The UI component tests cover bilingual navigation, the dictionary, lesson autosave/resume, theme, profile safety, writing, and flashcards. JSDOM does not reproduce physical audio output, microphone permissions, or real device dimensions.
+
+Still requiring manual device/editorial review: iOS and Android layout and microphone behavior, listening through physical speakers, and independent linguistic review. The app's feedback is indicative and is not an official Goethe score. These checks are not reported as complete.
+
+Supabase Keep-Alive has not been configured or run in GitHub Actions. It requires a dedicated least-privilege PostgreSQL role and the variables documented in [supabase-keepalive.md](supabase-keepalive.md).
+
+## Earlier baseline
+
+Before cloud integration, on 7 November 2026, the content expansion had 36 automated tests, one JSDOM integration test, and a passing build. Those are historical baseline counts; the latest counts are in the table above.

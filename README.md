@@ -1,107 +1,107 @@
 # Satzora · Goethe A2 Intensiv
 
-Preparación intensiva para el **Goethe-Zertifikat A2 para adultos**. Satzora conserva el currículo A2, los simulacros, las cuatro habilidades, el diccionario y las flashcards. Es una herramienta independiente, sin afiliación con el Goethe-Institut.
+An intensive, independent preparation platform for the **Goethe-Zertifikat A2 for adults**. Satzora includes Lesen, Hören, Schreiben, Sprechen, an A2 curriculum, exam simulations, an interactive dictionary, and spaced-repetition flashcards. Satzora is not affiliated with the Goethe-Institut.
 
-**Aplicación pública:** https://satzora-green.vercel.app. Production y la API se verificaron con HTTP 200; el acceso anónimo a datos de estudio devuelve 401. Las cuentas autenticadas usan Supabase para sincronizar progreso. En Vercel se requiere iniciar sesión; el modo invitado SQLite funciona localmente y puede importarse de forma explícita.
+**Public app:** [satzora-green.vercel.app](https://satzora-green.vercel.app). `satzora.vercel.app` is already in use by another project. Production was deployed from GitHub `main`; the page and `/api/health` return HTTP 200. Authenticated study data is stored in Supabase. Online study requires an account; SQLite guest mode remains local and can be explicitly imported into an account.
 
-El nombre solicitado `satzora.vercel.app` ya está en uso por otro proyecto; el enlace público asignado a Satzora es el anterior. El workflow de Supabase Keep-Alive está documentado en [Keep-alive de Supabase](docs/supabase-keepalive.md), pero aún requiere configurar las credenciales de mínimo privilegio y los secretos de GitHub/Vercel.
+## Run locally
 
-## Ejecutar
-
-Node.js 26 y npm; verificado con Node.js 26.13. TambiÃ©n se admiten las ramas Node.js 22 desde 22.22.2 y Node.js 24 desde 24.15.0, segÃºn los requisitos de las dependencias de pruebas.
+Requirements: Node.js 26 and npm. The project was verified with Node.js 26.13.
 
 ```powershell
 npm ci
 npm run dev
 ```
 
-Vite muestra la direcciÃ³n de desarrollo (normalmente http://127.0.0.1:5173); el mismo comando inicia la API en http://127.0.0.1:3001.
+Vite normally runs at `http://127.0.0.1:5173`; the same command starts the Express API at `http://127.0.0.1:3001`.
 
 ```powershell
 npm run build
 npm start
 ```
 
-La compilaciÃ³n completa se sirve en http://127.0.0.1:3001. `PORT` permite cambiar el puerto; en desarrollo ajusta tambiÃ©n el proxy de `vite.config.ts`.
+The production build is served at `http://127.0.0.1:3001`. Set `PORT` to change the port. In development, update the Vite proxy in `vite.config.ts` as needed.
 
-## Inventario comprobado
+## Verified learning content
 
-| MÃ³dulo | Lecciones | Actividades |
+| Module | Lessons | Activities |
 | --- | ---: | ---: |
 | Satzbau und Konnektoren | 8 | 120 |
 | Vergangenheit | 8 | 120 |
-| Die FÃ¤lle | 8 | 120 |
-| PrÃ¤positionen | 8 | 120 |
+| Die Fälle | 8 | 120 |
+| Präpositionen | 8 | 120 |
 | Verben | 8 | 120 |
 | Adjektive und Pronomen | 8 | 120 |
 | Arbeit und Kommunikation | 8 | 120 |
 | Alltag und Reisen | 8 | 120 |
-| Lesen, HÃ¶ren und Schreiben | 8 | 120 |
+| Lesen, Hören und Schreiben | 8 | 120 |
 | Goethe A2 Intensiv | 8 | 120 |
-| **Total** | **80** | **1.200** |
+| **Total** | **80** | **1,200** |
 
-Cada lecciÃ³n contiene objetivo, explicaciÃ³n espaÃ±ola e inglesa, ocho ejemplos alemanes con anotaciones bilingÃ¼es, un ejemplo de error frecuente, expresiones contextuales y quince actividades: elecciÃ³n, huecos, ordenaciÃ³n, transformaciÃ³n, correcciÃ³n y producciÃ³n escrita. Las primeras lecciones de preparaciÃ³n oral incluyen grabaciÃ³n. Las producciones escritas practican SMS de 20â€“30 palabras y correo de 30â€“40.
+Each lesson has an objective, Spanish and English explanations, eight annotated German examples, a common-error example, contextual vocabulary, and 15 activities across multiple formats. The curriculum validator checks the lesson structure and answer data; this is not an independent editorial review or a guarantee that every valid free response is accepted.
 
-**Criterio de recuento:** las 1.200 actividades no son 1.200 textos independientes: el currÃ­culo usa 400 contextos base, reutilizados en distintos tipos de actividad; 25 ejercicios se sustituyeron por comprensiÃ³n vinculada a documentos y grabaciones. Un constructor reutilizable utiliza frases, focos y distractores explÃ­citos. El informe [docs/content-validation.json](docs/content-validation.json) enumera las 80 lecciones y cantidades; no quedan mÃ³dulos vacÃ­os segÃºn la validaciÃ³n estructural. Esta validaciÃ³n no equivale a una certificaciÃ³n lingÃ¼Ã­stica externa ni demuestra que todas las soluciones posibles estÃ©n reconocidas.
+The 1,200 activities use 400 base contexts in different activity formats; they are not 1,200 independent passages. The structural inventory is in [docs/content-validation.json](docs/content-validation.json).
 
-Hay **tres modelos originales**, con 45 tareas cada uno (20 Lesen, 20 HÃ¶ren, dos Schreiben y tres Sprechen) y 36 archivos de audio de examen. El banco de prÃ¡ctica reutiliza sus materiales y aÃ±ade contenido independiente. Las tareas del simulador no se suman a las 1.200 actividades de lecciÃ³n. No se han copiado textos ni audios de Goethe.
+There are three original exam models and 36 exam audio files. Each model has 45 tasks: 20 Lesen questions, 20 Hören questions, two Schreiben tasks, and three Sprechen activities. Exam-model tasks are not counted toward the lesson total.
 
-El inventario reproducible [docs/bank-validation.json](docs/bank-validation.json) cuenta **20 materiales de lectura, 12 actividades de audiciÃ³n, 28 consignas de escritura y 86 tarjetas orales** agrupadas en 41 actividades. Incluye los materiales de los tres simulacros, sin volver a sumarlos como contenido independiente. Faltan 80 materiales de lectura, 88 actividades de audiciÃ³n, 122 consignas de escritura, 114 tarjetas orales y siete simulacros respecto a los objetivos solicitados. Las cifras representan materiales que superan controles estructurales, no una revisiÃ³n editorial o una garantÃ­a de ausencia de ambigÃ¼edades.
+The practice-bank validator currently counts 20 reading materials, 12 listening activities, 28 writing prompts, and 86 oral cards grouped into 41 activities. The bank includes materials used by the three exam models and does not count those materials again as independent items. These validated counts remain below the larger requested goals: 100 reading materials, 100 listening activities, 150 writing prompts, 200 speaking cards, and 10 full exam models. See [docs/bank-validation.json](docs/bank-validation.json).
 
-## Funciones
+## Features
 
-### Wortschatz â€“ Flashcards
+### Wortschatz – Flashcards
 
-La secciÃ³n nueva incluye **20 tarjetas iniciales** con traducciÃ³n espaÃ±ola e inglesa y dos ejemplos originales; faltan 480 para el objetivo inicial de 500. Las palabras guardadas desde el diccionario tambiÃ©n aparecen como tarjetas personales, con la oraciÃ³n de origen cuando se seleccionan desde un texto. Estas entradas anteriores no se cuentan como parte del lote de dos ejemplos. El diccionario permanece desactivado durante un examen activo.
+The initial curated vocabulary set contains 20 cards, with Spanish and English meanings and two original examples per entry. This is below the initial 500-card target. Users can also save words from the dictionary and exercises as personal cards. Cards include noun articles and plurals, relevant verb forms, pronunciation when a German browser voice is available, and examples in context.
 
-El algoritmo es una adaptaciÃ³n documentada de SM-2, no una implementaciÃ³n idÃ©ntica: Â«otra vezÂ» programa 10 minutos y reinicia la racha; en los aciertos iniciales se usan intervalos de 1 y 6 dÃ­as para Â«bienÂ», 1 y 3 para Â«difÃ­cilÂ», y 4 y 8 para Â«fÃ¡cilÂ». DespuÃ©s, se multiplican por un factor mÃ­nimo de facilidad de 1,3 (difÃ­cil usa 1,2; fÃ¡cil, facilidad Ã— 1,3). Se marca dominio tras al menos tres aciertos consecutivos y un intervalo de 21 dÃ­as. Las opciones de nuevas y repasos diarios empiezan en 10 y 30 y se pueden modificar. En sentido inverso, los sustantivos aceptan su artÃ­culo correcto u omitirlo; se normalizan mayÃºsculas, espacios y Unicode, pero no se sustituyen diÃ©resis ni ÃŸ.
+The scheduling algorithm is a documented adaptation of SM-2, not an identical implementation. “Again” schedules a review in 10 minutes and resets the streak. Initial successful intervals vary by rating; mastery requires at least three consecutive successes and a 21-day interval. Daily limits start at 10 new cards and 30 reviews and are customizable. Reverse cards accept a correct noun article or no article; spelling normalization preserves umlauts and ß.
 
-Los repasos e historial usan Supabase al iniciar sesiÃ³n y SQLite en el modo invitado local. La pronunciaciÃ³n necesita una voz alemana disponible en el navegador. La validaciÃ³n automÃ¡tica comprueba campos y ejemplos; no sustituye una revisiÃ³n lingÃ¼Ã­stica externa.
+Authenticated review history and scheduling use Supabase. Local guest progress uses SQLite. Dictionary help is disabled during an active exam.
 
-- CatÃ¡logo con bÃºsqueda, filtros de tema/dificultad/habilidad/estado, acceso libre, repeticiÃ³n, reanudaciÃ³n y pruebas de repaso por mÃ³dulo.
-- Banco de prÃ¡ctica con filtros por habilidad, parte y tema, selecciÃ³n que evita actividades recientes, repeticiÃ³n de errores e historial persistido. Las respuestas modelo de producciÃ³n se muestran despuÃ©s de un intento.
-- A2 Intensiv: 15, 30, 45 o 60 minutos, entrenamiento general o por habilidad/gramÃ¡tica. Se priorizan temas dÃ©biles, preguntas no vistas y dificultad segÃºn los Ãºltimos tres resultados objetivos. Es una heurÃ­stica de estudio, no una predicciÃ³n de aprobado.
-- Meine Fehler: errores de la Ãºltima respuesta objetiva por actividad, clasificados por tema, con explicaciones y entrenamiento relacionado. Las producciones libres no se marcan incorrectas por no coincidir con un modelo.
-- EstadÃ­sticas basadas en intentos persistidos. Completada significa finalizada con todas las respuestas; dominio refleja aciertos de referencia en ejercicios cerrados. Los ordenamientos alternativos no reconocidos quedan por revisar.
-- Diccionario al tocar palabras, lemas e inflexiones conocidas (`gefahren â†’ fahren`, `Terminen â†’ Termin`), traducciÃ³n espaÃ±ola/inglesa, ejemplo, pronunciaciÃ³n y guardado. Es local y curado, no universal: una palabra desconocida se indica como tal.
-- Vocabulario anterior conservado y repaso espaciado: 1, 3, 7, 15 y hasta 30 dÃ­as para palabras recordadas; las difÃ­ciles vuelven al dÃ­a siguiente.
-- Idioma y tema claro/oscuro persistidos. Los textos de aprendizaje, tÃ­tulos de mÃ³dulos y nombres de habilidades permanecen intencionalmente en alemÃ¡n.
-- GrabaciÃ³n con MediaRecorder, almacenamiento y reproducciÃ³n local. Requiere navegador compatible y HTTPS o localhost; siempre se puede escribir una respuesta.
+### Lessons and daily practice
 
-## Simulador y evaluaciÃ³n
+- Searchable, filterable lesson catalog with open access, progress, resume, repeat, and module review.
+- Practice bank filters by skill, exam part, and topic; it avoids recent activities, supports error review, and records history.
+- **A2 Intensiv** sessions of 15, 30, 45, or 60 minutes, for all skills or a selected skill/topic. The heuristic prioritizes weak topics, unseen questions, and recent objective results; it does not predict an exam outcome.
+- **Meine Fehler** groups objectively incorrect answers by topic and offers related practice. Free writing is not marked wrong merely because it differs from one model answer.
+- Statistics are based on persisted attempts. A completed activity means it was finished with answers submitted; mastery reflects reference answers in closed-response exercises.
+- Tap German words to open the curated dictionary. It resolves known inflections (for example, `gefahren → fahren`, `Terminen → Termin`), and offers definitions, examples, pronunciation, and saving. It is not a universal dictionary.
+- Light/dark themes and the Spanish/English interface preference persist. German lesson titles, module names, and skill names remain in German.
+- Speaking practice supports recording through `MediaRecorder` where supported; HTTPS or localhost is required. Text entry remains available.
 
-Referencia estructural del modelo pÃºblico para adultos:
+### Goethe A2 exam simulator
 
-- Lesen: 30 minutos, cuatro partes de cinco preguntas (artÃ­culo, informaciÃ³n, correo y anuncios; una correspondencia sin soluciÃ³n).
-- HÃ¶ren: 30 minutos, cuatro partes de cinco preguntas, lÃ­mites de reproducciÃ³n 2 / 1 / 1 / 2. La segunda parte utiliza nueve pictogramas y la tercera elecciÃ³n de imÃ¡genes. Los pictogramas son emojis originales; su aspecto depende del dispositivo.
-- Schreiben: 30 minutos, SMS de 20â€“30 y correo de 30â€“40 palabras; tres puntos comunicativos por tarea.
-- Sprechen: unos 15 minutos para dos participantes, preguntas personales, tema cotidiano y planificaciÃ³n compartida.
+The simulator follows the public adult-exam structure without copying Goethe content or identity graphics:
 
-Practice Mode permite ayudas, diccionario y repeticiones. Exam Mode conserva fechas lÃ­mite en el servidor, bloquea ediciÃ³n de secciones fuera de su horario y oculta diccionario, transcripciones y correcciones hasta terminar. Un simulacro completo usa ventanas consecutivas de 30 + 30 + 30 + 15 minutos; al caducar se evalÃºan respuestas guardadas. Los clips se inician manualmente y no reproducen la duraciÃ³n ni el ritmo completo de una sesiÃ³n oficial: el resto del tiempo es para lectura y respuesta. El navegador no es un sistema inviolable contra trampas.
+- **Lesen:** 30 minutes; four parts with five questions each (article, information, email, and advertisements). One matching item allows “X” when no advertisement fits.
+- **Hören:** about 30 minutes; four parts with five questions each and playback limits of 2 / 1 / 1 / 2. Part 2 uses nine pictograms; Part 3 includes image choices. The pictograms are original emoji and can look different across devices.
+- **Schreiben:** 30 minutes; one 20–30-word SMS and one 30–40-word email, each with three required points.
+- **Sprechen:** about 15 minutes for two participants: personal questions, a daily-life topic, and shared planning.
 
-La correcciÃ³n cerrada tolera puntuaciÃ³n, mayÃºsculas y espacios. Las transformaciones/correcciones piden conservar el resto de la frase. En ordenaciÃ³n, una alternativa no reconocida queda pendiente en lugar de marcarse mal automÃ¡ticamente. Escritura y habla se guardan; sin servicios externos solo reciben una **lista de comprobaciÃ³n local orientativa**. Contar palabras y conectores **no evalÃºa por sÃ­ mismo** gramÃ¡tica, cumplimiento, coherencia o pronunciaciÃ³n. No se inventan notas Goethe ni certificados.
+Practice Mode provides dictionary help, explanations, and replay. Exam Mode uses server-held deadlines, disables hints and transcripts until completion, and limits audio plays. A full simulation schedules consecutive 30 + 30 + 30 + 15-minute sections. Audio clips start manually; the simulator does not reproduce the full official room timing or playback cadence. A browser exam is not cheat-proof.
 
-## Voz y correcciÃ³n avanzada opcionales
+Closed-response grading tolerates punctuation, capitalization, and spacing. Alternative word orders not recognized by the validator remain pending rather than being marked automatically wrong. Written and spoken responses are saved. Without an external service, feedback is an indicative checklist; word and connector counts alone do not assess grammar, task completion, coherence, or pronunciation. No official Goethe scores or certificates are generated.
 
-Copia `.env.example` a `.env` y configura una clave propia en `OPENAI_API_KEY`. Para correcciÃ³n y conversaciÃ³n, configura tambiÃ©n un modelo de texto disponible en tu cuenta en `OPENAI_TEXT_MODEL`. Reinicia el servidor. Nunca pongas claves en variables `VITE_`.
+### Optional AI feedback and transcription
 
-- `OPENAI_API_KEY`: transcripciÃ³n mediante la API de audio.
-- `OPENAI_TEXT_MODEL`: con la clave activa feedback de consigna, gramÃ¡tica, vocabulario, coherencia y registro, y diÃ¡logo con el interlocutor.
-- `OPENAI_TRANSCRIBE_MODEL`: modelo de transcripciÃ³n; el ejemplo usa `gpt-4o-mini-transcribe`.
+Copy `.env.example` to `.env` and configure a server-side `OPENAI_API_KEY`. For writing feedback and dialogue, also configure an available `OPENAI_TEXT_MODEL`, then restart the server. Never put private keys in `VITE_` variables.
 
-Solo se envÃ­a contenido al pulsar la acciÃ³n correspondiente. El feedback se conserva en la sesiÃ³n; las transcripciones, con la grabaciÃ³n. La transcripciÃ³n textual no permite juzgar pronunciaciÃ³n. La conversaciÃ³n es por turnos explÃ­citos, no una llamada simultÃ¡nea; la pronunciaciÃ³n del interlocutor usa las voces del navegador. Sin servicio, se puede grabar, escuchar y practicar con otra persona sin fingir un interlocutor inteligente.
+- `OPENAI_API_KEY`: enables transcription and optional AI features.
+- `OPENAI_TEXT_MODEL`: writing feedback and turn-based dialogue.
+- `OPENAI_TRANSCRIBE_MODEL`: transcription model; the example uses `gpt-4o-mini-transcribe`.
+- `OPENAI_SPEECH_MODEL`: optional speech generation.
 
-DocumentaciÃ³n: [Responses](https://developers.openai.com/api/docs/guides/text), [transcripciÃ³n](https://developers.openai.com/api/docs/guides/speech-to-text). Los adaptadores se prueban con respuestas controladas, sin llamadas facturables. No se ha verificado una sesiÃ³n con credenciales externas reales.
+Content is sent only after the corresponding action is selected. Transcribed text cannot assess pronunciation. Dialogue is turn-based, not a live call. Without an AI service, learners can record, listen back, or practice with another person.
 
-## Datos y compatibilidad
+### Accounts, cloud data, and local data
 
-La base local de invitado esta en `data/deutsch-lernen.sqlite`; `DATA_DIR` cambia el directorio. Tambien se conserva `data/backup-before-cloud-1794124894385.sqlite`. Los usuarios autenticados usan las tablas privadas `dl_*` de Supabase con RLS. Las rutas SQLite se bloquean en Vercel.
+Supabase Auth provides accounts. Authenticated profiles, preferences, study sessions, responses, exam results, saved words, flashcards, reviews, and private recordings use the `dl_*` tables and Supabase Storage under Row Level Security. The server identifies each user from the verified access token; clients do not choose an arbitrary `user_id`.
 
-Los textos se autoguardan en Supabase para usuarios autenticados y en SQLite local para invitados, con un borrador local de respaldo por sesiÃ³n. Los plazos no se reinician al recargar. Los conflictos de revisiÃ³n no sobrescriben silenciosamente los datos remotos. El tiempo registrado es tiempo transcurrido, no una mediciÃ³n de atenciÃ³n activa. La fecha diaria usa `America/Mexico_City`.
+Guest progress continues to use the local SQLite database at `data/deutsch-lernen.sqlite`; `DATA_DIR` changes its location. The preserved backup is `data/backup-before-cloud-1794124894385.sqlite`. Neither file is committed. Guest data is not a shared server-side store in Vercel. Importing guest data is explicit and idempotent; it is never done automatically.
 
-La aplicaciÃ³n mantiene un solo perfil por servidor y escucha en localhost. No aÃ±ade autenticaciÃ³n multiusuario. Las grabaciones permanecen en la base local: tenlo en cuenta al compartir o respaldar esa base.
+The Vercel API blocks shared SQLite study routes. On the web, learners must sign in to study and sync across devices. Temporary disconnections and stale revisions are handled without silently overwriting newer cloud data. Daily dates use `America/Mexico_City`; recorded study time is elapsed time, not a measure of active attention.
 
-## ValidaciÃ³n reproducible
+The Supabase Keep-Alive workflow is not configured yet. It requires a dedicated least-privilege PostgreSQL role and secrets in Vercel and GitHub. See [docs/supabase-keepalive.md](docs/supabase-keepalive.md). It cannot guarantee that a free Supabase project will avoid inactivity pauses.
+
+## Validation
 
 ```powershell
 npm run validate:content
@@ -110,16 +110,15 @@ npm run validate:bank
 npm test
 npm run test:ui
 npm run build
-npm audit --json
 ```
 
-Ultima ejecucion tras consolidar el proyecto en la raiz: **65 pruebas de servidor/contenido, 4 pruebas de interfaz y build correctos**. La exportacion SQLite se verifico en modo solo lectura y ambas bases devolvieron `integrity_check: ok`. La importacion real a Supabase y el Preview de Vercel siguen pendientes.
+On 8 November 2026, 66 server/content tests, four UI tests, and the production build passed. The Vercel Production page and health endpoint returned HTTP 200. An unauthenticated cloud-study request returned 401; a test account received HTTP 200 from the authenticated Production study API. Real Supabase test accounts A/B verified imports, idempotent retries, and user isolation. A Vercel Preview test created a study session with HTTP 201 and read it back with HTTP 200.
 
-Los MP3 tienen verificaciÃ³n de tamaÃ±o, duraciÃ³n y seÃ±al decodificada; el inventario estÃ¡ en `public/audio/manifest.json`. **QA manual pendiente:** revisiÃ³n editorial de correspondencia y ambigÃ¼edad, escucha humana, altavoces, permisos y grabaciÃ³n real de micrÃ³fono, inspecciÃ³n visual y desbordamientos en dispositivos fÃ­sicos. Las pruebas de componentes no sustituyen esas comprobaciones.
+Manual checks still needed: physical iOS/Android layout and microphone behavior, listening through real speakers, and independent linguistic review. Component tests do not replace those device checks. See [docs/verification.md](docs/verification.md) and [docs/cloud-deployment.md](docs/cloud-deployment.md) for details.
 
-Para regenerar los audios: `node scripts/audio-manifest.js`, instalar `edge-tts` y `mutagen` en Python y ejecutar `python scripts/generate_audio.py`. La generaciÃ³n requiere red; los MP3 incluidos se reproducen sin proveedor de IA ni voz instalada.
+Audio assets are listed in `public/audio/manifest.json`. Regenerate them with `node scripts/audio-manifest.js`; install `edge-tts` and `mutagen` for Python and run `python scripts/generate_audio.py`. Generation requires network access; the included MP3 files play without an AI provider or installed voice.
 
-## Referencias pÃºblicas
+## Public references
 
-- [InformaciÃ³n oficial para adultos](https://www.goethe.de/ins/de/de/prf/gzsd2.cfm).
-- Modelo pÃºblico: [Lesen](https://bfu.goethe.de/a2_mod_2MX5/lesen.php), [HÃ¶ren](https://bfu.goethe.de/a2_mod_2MX5/hoeren.php), [Schreiben](https://bfu.goethe.de/a2_mod_2MX5/schreiben.php), [Sprechen](https://bfu.goethe.de/a2_mod_2MX5/sprechen.php).
+- [Official Goethe-Zertifikat A2 information for adults](https://www.goethe.de/ins/de/de/prf/gzsd2.cfm)
+- Public model: [Lesen](https://bfu.goethe.de/a2_mod_2MX5/lesen.php), [Hören](https://bfu.goethe.de/a2_mod_2MX5/hoeren.php), [Schreiben](https://bfu.goethe.de/a2_mod_2MX5/schreiben.php), [Sprechen](https://bfu.goethe.de/a2_mod_2MX5/sprechen.php)

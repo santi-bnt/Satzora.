@@ -1,31 +1,33 @@
-# Keep-alive de Supabase
+# Supabase Keep-Alive
 
-El workflow `.github/workflows/supabase-keepalive.yml` ejecuta diariamente a las 12:23 UTC y se puede lanzar manualmente desde **Actions → Supabase keep-alive → Run workflow**. Envía un POST autenticado al endpoint de Vercel, que abre una conexión PostgreSQL con TLS y ejecuta únicamente `SELECT 1 AS ok`. Solo devuelve éxito si recibe el resultado esperado; no lee ni modifica datos de estudiantes. El workflow falla si falta configuración, falla la conexión o la respuesta es incorrecta. No se imprimen los errores internos, URL ni credenciales.
+The `.github/workflows/supabase-keepalive.yml` workflow is scheduled daily at 12:23 UTC and can also be started from **Actions → Supabase keep-alive → Run workflow**. It sends an authenticated POST to the Vercel endpoint, which opens a TLS-protected PostgreSQL connection and runs only `SELECT 1 AS ok`. Success is returned only when PostgreSQL responds with the expected result. It does not read or modify student data. The workflow fails on missing configuration, database failure, or an invalid response. Internal errors, URLs, and credentials are not printed.
 
-**Estado actual:** Satzora aún no tiene un despliegue funcional verificado; el build de Vercel conserva el bloqueo documentado en [cloud-deployment.md](cloud-deployment.md). El workflow y el endpoint no se pueden comprobar en producción hasta que el despliegue esté listo y las variables y el rol estén configurados. No eliminar el bloqueo únicamente para activar este mecanismo.
+**Current status:** Satzora is live at [satzora-green.vercel.app](https://satzora-green.vercel.app), but Keep-Alive is not configured or verified. `KEEPALIVE_DATABASE_URL` and `KEEPALIVE_TOKEN` are missing from Vercel; `KEEPALIVE_URL` and `KEEPALIVE_TOKEN` are not configured as GitHub Actions secrets. `satzora.vercel.app` is already in use by another Vercel project. Do not enable or manually run the workflow until the variables and dedicated role below are configured.
 
-## Configuración de base de datos
+## Database role
 
-1. Con una conexión administrativa, revisa `supabase/keepalive-role.sql` y crea el rol `satzora_keepalive`. Establece una contraseña aleatoria fuerte mediante `\password satzora_keepalive` en una sesión `psql` segura; no la incluyas en el archivo SQL, commits, capturas o mensajes. El rol tiene una transacción de solo lectura por defecto y no se le conceden tablas de estudiantes.
-2. PostgreSQL otorga permisos a `PUBLIC` que también heredan los roles sin `INHERIT`. **Audita los permisos `PUBLIC` existentes** del proyecto antes de utilizar este rol; este script no revoca permisos globales ni garantiza que otras funciones existentes no sean ejecutables. Restringe cualquier permiso adicional que no se necesite sin afectar a la aplicación.
-3. Obtén en Supabase la conexión de pooler compatible con el rol y usa el nombre de usuario de pooler correcto para el proyecto. La URL debe ser `postgresql://...`, sin parámetros `ssl*`: el endpoint exige verificación TLS. No se usa `service_role`.
+1. Review `supabase/keepalive-role.sql` using an administrative connection and create the `satzora_keepalive` role. Set a strong random password with `\password satzora_keepalive` in a secure `psql` session. Do not put the password in the SQL file, commits, screenshots, or messages. The role defaults to read-only transactions and receives no student-table access.
+2. PostgreSQL grants permissions to `PUBLIC`, which roles without `INHERIT` may still receive. Audit the project's existing `PUBLIC` permissions before using this role. The script does not revoke global privileges or guarantee that no unrelated functions are executable. Restrict any unneeded privilege without affecting the application.
+3. Get a Supabase pooler connection compatible with the role and use the correct pooler username for the project. The connection URL must use `postgresql://` and must not include `ssl*` query parameters; the endpoint enforces TLS verification. Do not use `service_role`.
 
-## Secretos
+## Secrets and environment variables
 
-En **Vercel → Project Settings → Environment Variables**, añade para Production:
+In **Vercel → Project Settings → Environment Variables**, add these for Production:
 
-- `KEEPALIVE_DATABASE_URL`: URL de PostgreSQL para el rol dedicado, con su contraseña. Solo servidor.
-- `KEEPALIVE_TOKEN`: cadena aleatoria distinta de al menos 32 caracteres.
+- `KEEPALIVE_DATABASE_URL`: the PostgreSQL connection URL for the dedicated role, including its password. Server-side only.
+- `KEEPALIVE_TOKEN`: a separate random token of at least 32 characters.
 
-En **GitHub → Settings → Secrets and variables → Actions**, añade:
+In **GitHub → Settings → Secrets and variables → Actions**, add:
 
-- `KEEPALIVE_URL`: URL HTTPS exacta del endpoint, por ejemplo `https://satzora.vercel.app/api/keepalive`, únicamente después de verificar el dominio.
-- `KEEPALIVE_TOKEN`: el mismo token que en Vercel.
+- `KEEPALIVE_URL`: `https://satzora-green.vercel.app/api/keepalive`.
+- `KEEPALIVE_TOKEN`: the same token configured in Vercel.
 
-No uses prefijos `VITE_` ni coloques esos valores en Git o en el navegador. Cambiar variables de Vercel requiere un nuevo despliegue. Activa las notificaciones de fallos de Actions en GitHub. El registro muestra únicamente éxito o un error genérico, y no sigue redirecciones que puedan filtrar el token.
+Do not use a `VITE_` prefix or place these values in Git or browser code. Changing Vercel variables requires a new deployment. Enable GitHub Actions failure notifications. The job logs only success or a generic error and does not follow redirects that could leak the token.
 
-## Comprobación y reanudación
+## Verify and resume a paused project
 
-Cuando exista el despliegue, configura los secretos, ejecuta el workflow manualmente y revisa que el job termine correctamente. También comprueba que una petición sin token recibe 401 y que una conexión de base de datos incorrecta hace fallar el job. Si falla, puede deberse a credenciales, conexión, Vercel o a un proyecto pausado: el error no demuestra por sí solo que esté pausado. Para comprobarlo, abre [Supabase Dashboard](https://supabase.com/dashboard), selecciona la organización y el proyecto; si aparece pausado, pulsa **Resume project**. Después repite la ejecución manual.
+After configuring the role and secrets, redeploy Vercel, manually run the GitHub Actions workflow, and confirm that it succeeds. Also verify that a request without a token returns 401 and that an invalid database connection causes the workflow to fail.
 
-Las ejecuciones programadas de GitHub pueden retrasarse y Supabase puede cambiar sus criterios; esto **no garantiza** evitar una pausa. Según [Supabase](https://supabase.com/docs/guides/platform/free-project-pausing), los proyectos de pago no están sujetos a la pausa automática por inactividad.
+A failed check can be caused by credentials, connectivity, Vercel, or a paused project; failure alone does not prove the project is paused. To check, open the [Supabase Dashboard](https://supabase.com/dashboard), select the organization and project, and look for a paused status. If it is paused, select **Resume project**, then run the workflow again.
+
+Scheduled GitHub jobs can be delayed, and Supabase may change its criteria. Keep-Alive **does not guarantee** that a free project will avoid inactivity pauses. According to [Supabase's free-project pausing guidance](https://supabase.com/docs/guides/platform/free-project-pausing), paid plans are not subject to automatic inactivity pausing.

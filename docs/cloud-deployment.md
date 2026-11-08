@@ -1,38 +1,34 @@
-# Satzora: nube y estado del despliegue
+# Deployment and cloud status
 
-## Estado actual — 8 de noviembre de 2026
+## Current status — 8 November 2026
 
-La aplicación está publicada en Production: **https://satzora-green.vercel.app**. `satzora.vercel.app` ya está en uso por otro proyecto, por lo que Vercel asignó el alias anterior. El deployment actual proviene de `main` (`28485f4`).
+Production is live at **https://satzora-green.vercel.app**. The requested `satzora.vercel.app` alias is already in use by another Vercel project. The latest deployment was built from GitHub `main` at commit `8a7b323`.
 
-El proyecto `santi-bnts-projects/satzora` tiene `VITE_SUPABASE_URL` y `VITE_SUPABASE_PUBLISHABLE_KEY` en Preview y Production. No se subieron claves de service role ni archivos `.env.local` o SQLite.
+The Vercel project `santi-bnts-projects/satzora` has `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` configured for Preview and Production. No service-role key, `.env.local`, or SQLite file was uploaded.
 
-Validaciones reales: Production responde HTTP 200 en la página y en `/api/health`; `/api/a2/cloud-study/base` devuelve 401 sin token. El Preview también respondió HTTP 200, la API rechazó peticiones anónimas y aceptó un JWT válido de la cuenta de prueba. A través del Preview se creó una sesión (201) y se leyó (200) desde Supabase. El endpoint de flashcards autenticado respondió 200. En Supabase real, A/B verificaron importación, reintentos idempotentes y aislamiento entre usuarios. No se usaron cuentas de estudiantes.
+Verified against Production: the page and `/api/health` returned HTTP 200; `/api/a2/cloud-study/base` returned 401 without a token; a test account received HTTP 200 from the authenticated study API. Verified against Preview: anonymous study requests were rejected, an authenticated test account could read flashcards, and a study session was created with HTTP 201 and read back with HTTP 200 from Supabase.
 
-Las rutas profundas `/api/a2/*` se reescriben a `api/router.js`, que restablece la URL de Express. El modo web requiere cuenta; SQLite sigue para invitados locales y su importación a cuenta es explícita. La copia SQLite original permanece intacta.
+Two real Supabase test accounts verified guest-data import, idempotent retries, session/flashcard persistence, and user isolation. No student accounts were used. See [verification.md](verification.md).
 
-Keep-Alive todavía no está operativo: faltan `KEEPALIVE_DATABASE_URL` y `KEEPALIVE_TOKEN` en Vercel y `KEEPALIVE_URL`/`KEEPALIVE_TOKEN` en GitHub. Antes hay que crear la credencial PostgreSQL de mínimo privilegio descrita en [supabase-keepalive.md](supabase-keepalive.md). No activar el workflow hasta configurar esos secretos.
-## Estado anterior (conservado como referencia)
+Nested `/api/a2/*` requests are rewritten to `api/router.js`, which restores the Express request path before routing. Authenticated web users store study data in Supabase. SQLite remains for local guests and the preserved backup; guest import is explicit and idempotent. Vercel does not use SQLite as shared user storage, so the web app requires sign-in.
 
-- La aplicación se consolidó en la raíz del repositorio local `WortWerk`; `package.json`, `vercel.json` y `api/` están en esa raíz. La base SQLite y su copia se conservaron en `data/`.
-- No se ha vinculado un proyecto de Vercel ni uno de Supabase; no existe una URL pública verificada. No hay herramientas conectadas de Vercel o Supabase en esta sesión.
-- El `vercel.json` de la raíz fija el preset **Other**, ejecuta `npm ci`, conserva el bloqueo de build y publica `dist/`. Configura Vercel con la raíz del repositorio como **Root Directory**; no se requiere una subcarpeta.
-- El esquema inicial y la función de revisión se ejecutaron manualmente desde SQL Editor en el proyecto Supabase. El editor muestra las ocho tablas y las ocho solicitudes anónimas devolvieron HTTP 401. **No se registraron como migraciones de Supabase CLI**: no ejecutar de nuevo los dos archivos iniciales sin reconciliar el historial, pues las tablas ya existen. Falta ejecutar la prueba de aislamiento con dos usuarios y conectar la aplicación.
-- Existe un panel inicial de cuenta conectado a Supabase Auth, con registro, acceso, recuperación y cierre de sesión. Sus llamadas se han probado con servicios simulados, no con una cuenta real. El panel advierte que el progreso sigue siendo local y todavía no se sincroniza. Vite busca la configuración local en `.env.local` de la raíz del repositorio.
+## Keep-Alive is not configured
 
-## Trabajo técnico imprescindible antes de quitar el bloqueo
+The app is live, but Supabase Keep-Alive is not active. Vercel does not yet have `KEEPALIVE_DATABASE_URL` or `KEEPALIVE_TOKEN`, and GitHub Actions does not have `KEEPALIVE_URL` and `KEEPALIVE_TOKEN`. Create the dedicated least-privilege PostgreSQL role first. Follow [supabase-keepalive.md](supabase-keepalive.md). Do not enable the workflow until those values are configured. Keep-Alive cannot guarantee that a free Supabase project will avoid inactivity pauses.
 
-1. Decidir si la web seguira requiriendo cuenta o si se construira un modo invitado con almacenamiento del navegador. El invitado local sigue disponible mediante SQLite.
-2. Probar exportacion/importacion contra Supabase con dos cuentas de prueba, incluidos conflictos, reintentos y grabaciones privadas.
-3. Probar el entrypoint Express en Vercel Preview, los redirects de Auth y las variables. Confirmar que el navegador no expone secretos.
-4. Ampliar las pruebas de desconexión y conflictos en dispositivos reales; la prueba con navegadores sin interfaz no sustituye una comprobación en Windows, Android y iPhone.
-5. Solo despues de validar todo, actualizar el gate de `scripts/verify-cloud-ready.js` y verificar Preview.
+## Local and deployment checks
 
-## Vinculación posterior
+The root of this repository is the Vercel project root. The project uses `vercel.json` to install with `npm ci`, check the public Supabase configuration, build with Vite, publish `dist/`, and route nested study API requests. Preview deployments remain protected by Vercel Authentication; Production is public.
 
-Cuando el código esté listo, conecta el repositorio GitHub con Vercel y deja la raíz del repositorio como **Root Directory**. La rama principal se configura como Production y las ramas/PR como Preview. En Supabase deben crearse proyectos o entornos separados para Preview y Production, aplicar las migraciones y configurar Site URL y Redirect URLs sin comodines más amplios de lo necesario. Seguir las instrucciones oficiales de [Vercel para monorepos](https://vercel.com/docs/monorepos) y [redirecciones de Supabase Auth](https://supabase.com/docs/guides/auth/redirect-urls).
+The latest local verification passed 66 server/content tests, four UI tests, and the production build. The public Production page and health endpoint were checked directly without the Vercel bypass mechanism.
 
-Las variables previstas son `VITE_SUPABASE_URL` y `VITE_SUPABASE_PUBLISHABLE_KEY` para el cliente, y `OPENAI_API_KEY`, `OPENAI_TEXT_MODEL`, `OPENAI_TRANSCRIBE_MODEL` y `OPENAI_SPEECH_MODEL` exclusivamente del lado servidor si se habilitan los servicios opcionales. El panel inicial consume las variables Supabase, pero su flujo real no se ha verificado. No enviar credenciales por chat ni incluir claves secretas o service-role en el navegador o Git.
+## Historical notes
 
-## Verificación pendiente en Preview y Production
+The earlier status and setup notes below were written before the November 8, 2026 cloud integration and deployment. Current status is documented above; do not follow historical statements that say Supabase or Vercel is unconfigured.
 
-Registro, confirmación de correo, recuperación, cierre y entrada; aislamiento cruzado con dos cuentas; importar sin duplicados; guardado y recuperación de una lección, un simulacro y una flashcard; reintentos y conflicto entre dispositivos; audio, grabaciones privadas, móvil y accesibilidad; auditoría del bundle y variables; URL HTTPS desde computadora y teléfono. Se requiere una instancia y dispositivos disponibles para ejecutar estas pruebas.
+- The project was consolidated into the repository root; SQLite and its backup remain in `data/` and are ignored by Git.
+- Existing Supabase tables and RLS policies were inspected. Applied migrations were reconciled without replaying the initial schema migrations.
+- Authenticated study and flashcard routes use the caller's verified JWT and Supabase RLS. Service-role credentials are not used for normal user operations.
+- Environment variables: `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` are public client configuration. Optional `OPENAI_API_KEY`, `OPENAI_TEXT_MODEL`, `OPENAI_TRANSCRIBE_MODEL`, and `OPENAI_SPEECH_MODEL` are server-side only.
+
+For official setup references, see [Vercel monorepo configuration](https://vercel.com/docs/monorepos) and [Supabase Auth redirect URLs](https://supabase.com/docs/guides/auth/redirect-urls).
