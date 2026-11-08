@@ -21,7 +21,30 @@ const rows=[
  ['bescheid-geben','','Bescheid geben','','hat Bescheid gegeben','avisar o informar','let someone know','Kommunikation und E-Mails','Bitte gib mir bis morgen Bescheid.','Ich habe meiner Chefin schon Bescheid gegeben.'],
  ['sich-freuen','','sich freuen','','hat sich gefreut','alegrarse o tener ganas','be pleased or look forward','Familie und Freunde','Ich freue mich auf deinen Besuch.','Sie hat sich über das Geschenk gefreut.']
 ];
-export const flashcards=rows.map(([id,article,lemma,plural,perfect,es,en,topic,first,second])=>({id:`fc-${id}`,article,lemma,plural,perfect,es,en,topic,examples:[first,second],alternatives:[]}));
+const difficulty={termin:1,verspaetung:2,fahrkarte:1,wohnung:1,rechnung:1,nachricht:1,einladung:1,pruefung:1,anrufen:2,verschieben:2,umsteigen:2,teilnehmen:2,ausfuellen:2,abholen:2,erforderlich:2,puenktlich:1,deshalb:2,trotzdem:2,'bescheid-geben':3,'sich-freuen':3};
+export const flashcards=rows.map(([id,article,lemma,plural,perfect,es,en,topic,first,second])=>({id:`fc-${id}`,article,lemma,plural,perfect,es,en,topic,difficulty:difficulty[id]||2,examples:[first,second],alternatives:[]}));
+const clozeBank={
+ 'fc-termin':['Können wir den _____ auf Freitag verschieben?','Termin'],
+ 'fc-verspaetung':['Wegen der _____ komme ich zehn Minuten später.','Verspätung'],
+ 'fc-fahrkarte':['Bitte zeigen Sie Ihre _____ im Zug.','Fahrkarte'],
+ 'fc-wohnung':['Wir suchen eine _____ mit zwei Zimmern.','Wohnung'],
+ 'fc-rechnung':['Könnten wir bitte die _____ bekommen?','Rechnung'],
+ 'fc-nachricht':['Vielen Dank für Ihre _____.','Nachricht'],
+ 'fc-einladung':['Danke für die _____ zu deiner Feier.','Einladung'],
+ 'fc-pruefung':['Meine _____ findet nächste Woche statt.','Prüfung'],
+ 'fc-anrufen':['Hast du deine Kollegin schon _____?','angerufen'],
+ 'fc-verschieben':['Wegen der Krankheit haben wir die Reise _____.','verschoben'],
+ 'fc-umsteigen':['In Köln müssen wir in den Bus _____.','umsteigen'],
+ 'fc-teilnehmen':['Möchtest du an dem Kochkurs _____?','teilnehmen'],
+ 'fc-ausfuellen':['Ich habe den Antrag gestern _____.','ausgefüllt'],
+ 'fc-abholen':['Hast du das Paket bei der Post _____?','abgeholt'],
+ 'fc-erforderlich':['Für die Bewerbung ist ein Lebenslauf _____.','erforderlich'],
+ 'fc-puenktlich':['Bitte kommen Sie _____ zum Termin.','pünktlich'],
+ 'fc-deshalb':['Der Bus fällt aus, _____ gehe ich zu Fuß.','deshalb'],
+ 'fc-trotzdem':['Es regnet, _____ machen wir einen Spaziergang.','trotzdem'],
+ 'fc-bescheid-geben':['Bitte gib mir bis morgen _____.','Bescheid'],
+ 'fc-sich-freuen':['Ich freue mich _____ deinen Besuch.','auf']
+};
 export function validateFlashcards(cards=flashcards){const errors=[],ids=new Set();for(const c of cards){if(ids.has(c.id))errors.push(`${c.id}: duplicate id`);ids.add(c.id);if(!c.id||!c.lemma||!c.es||!c.en||!c.topic||c.examples?.length<2||new Set(c.examples).size!==c.examples.length||c.examples.some(x=>!x.trim()))errors.push(`${c.id}: incomplete`);if(c.article&&!c.plural)errors.push(`${c.id}: missing plural`);}return errors;}
 // A transparent SM-2-derived schedule. Again = 10 minutes; later stages use days.
 export function schedule(previous,rating,now=Date.now()){
@@ -32,4 +55,11 @@ export function schedule(previous,rating,now=Date.now()){
  interval=Math.min(interval,3650);
  return {repetitions,interval,ease:Math.round(ease*100)/100,lapses,due:now+(rating==='again'?10*60*1000:interval*86400000),mastered:repetitions>=3&&interval>=21};
 }
-export function checkGerman(card,input){const normalize=x=>x.normalize('NFC').trim().replace(/\s+/g,' ').toLocaleLowerCase('de');const expected=[card.lemma,...(card.alternatives||[])];if(card.article)expected.push(...expected.map(x=>`${card.article} ${x}`));return expected.some(x=>normalize(x)===normalize(input));}
+export const flashcardModes=['classic','reverse','cloze','sentence'];
+export function normalizeGermanAnswer(value,{ignoreCase=true}={}){const text=String(value??'').normalize('NFC').trim().replace(/\s+/g,' ');return ignoreCase?text.toLocaleLowerCase('de'):text;}
+export function checkGerman(card,input,{requireArticle=false,variants=[]}={}){const normalize=x=>normalizeGermanAnswer(x);const expected=[card.lemma,...(card.alternatives||[]),...variants];if(card.article){if(requireArticle)return expected.some(x=>normalize(`${card.article} ${x}`)===normalize(input));expected.push(...expected.map(x=>`${card.article} ${x}`));}return expected.some(x=>normalize(x)===normalize(input));}
+const escapeRegExp=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+export function makeCloze(card){const authored=clozeBank[card.id];if(authored)return {sentence:authored[0],answer:authored[1],hint:card.topic};for(const sentence of card.examples||[]){const candidates=[card.lemma,...(card.alternatives||[]),...(card.forms?Object.values(card.forms).flatMap(x=>Array.isArray(x)?x:[x]):[])].filter(Boolean).sort((a,b)=>b.length-a.length);for(const target of candidates){const match=new RegExp(`(^|[^\\p{L}])(${escapeRegExp(target)})(?=$|[^\\p{L}])`,'iu').exec(sentence);if(match){const start=match.index+match[1].length;return {sentence:sentence.slice(0,start)+'_____'+sentence.slice(start+match[2].length),answer:match[2],hint:card.topic};}}}return null;}
+export function checkCloze(cloze,input){return !!cloze&&normalizeGermanAnswer(input)===normalizeGermanAnswer(cloze.answer);}
+export function checkPhraseAgainstModels(input,models=[]){const answer=normalizeGermanAnswer(input);return models.some(model=>normalizeGermanAnswer(model)===answer);}
+export function isVocabularyMastered(scheduleState,modeStats={}){return !!scheduleState?.mastered&&['reverse','cloze','sentence'].every(mode=>{const stat=modeStats[mode];return !!stat&&stat.attempts>=2&&stat.correct/stat.attempts>=.75;});}

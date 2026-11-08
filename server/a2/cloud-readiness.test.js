@@ -22,3 +22,9 @@ test('migration declares private user ownership and private recording storage',(
  for(const table of ['dl_profiles','dl_sessions','dl_attempts','dl_saved_words','dl_flashcards','dl_flashcard_reviews','dl_flashcard_settings','dl_recordings'])assert.match(sql,new RegExp(`create table public\\.${table}\\s*\\(`));
  assert.match(sql,/enable row level security/);assert.match(sql,/auth\.uid\(\)/);assert.match(sql,/foreign key \(user_id,session_id\)/);assert.match(sql,/deutsch-lernen-recordings','deutsch-lernen-recordings',false/);
 });
+test('active flashcard migration adds owner-scoped mode history without changing the initial migration',()=>{
+ const sql=readFileSync('supabase/migrations/202611080004_flashcard_active_modes.sql','utf8');
+ assert.match(sql,/create table if not exists public\.dl_flashcard_mode_progress/);assert.match(sql,/create table if not exists public\.dl_flashcard_mode_reviews/);
+ assert.match(sql,/enable row level security/g);assert.match(sql,/user_id = \(select auth\.uid\(\)\)/);assert.match(sql,/security invoker set search_path = ''/);
+ assert.match(sql,/mode in \('classic','reverse','cloze','sentence'\)/);assert.match(sql,/grant execute on function public\.dl_record_flashcard_mode_review/);
+});
