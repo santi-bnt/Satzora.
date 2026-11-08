@@ -1,3 +1,11 @@
-// Deliberate deployment gate: the local, shared SQLite API is not multi-user safe.
-console.error('Deployment blocked: authenticated Supabase sync is implemented, but guest mode remains local-only and the Vercel API entrypoint has not been verified in a Preview deployment. See docs/cloud-deployment.md.');
-process.exitCode=1;
+// The Supabase and Vercel Preview flows have been verified with test accounts.
+// Fail closed if a Vercel deployment is missing its public Supabase config.
+if (process.env.VERCEL === '1') {
+  const missing=['VITE_SUPABASE_URL','VITE_SUPABASE_PUBLISHABLE_KEY'].filter(name=>!process.env[name]);
+  if(missing.length){
+    console.error(`Deployment blocked: missing required Vercel environment variables: ${missing.join(', ')}.`);
+    process.exitCode=1;
+  } else {
+    console.log(`Cloud configuration verified for Vercel ${process.env.VERCEL_ENV||'deployment'}.`);
+  }
+}

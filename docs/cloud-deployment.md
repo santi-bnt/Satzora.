@@ -1,23 +1,18 @@
-# Satzora cloud y estado del despliegue
+# Satzora: nube y estado del despliegue
 
-## Estado actualizado
+## Estado actual — 8 de noviembre de 2026
 
-La aplicacion y la API Express viven en la raiz del repositorio. La funcion catch-all de Vercel esta en `../api/[...path].js`. En Vercel, las rutas heredadas con SQLite responden `401 sign_in_required`; las rutas autenticadas `/api/a2/cloud/*` y `/api/a2/cloud-study/*` verifican el JWT y aplican RLS.
+El código se consolidó en la raíz y está vinculado al proyecto Vercel `santi-bnts-projects/satzora`. Las variables públicas de Supabase están configuradas para Preview y Production. `.env.local` y los archivos SQLite siguen excluidos de Git.
 
-La restricción aparece al abrir la aplicación web: pide iniciar sesión para estudiar y recuperar progreso. El modo invitado sigue funcionando en el servidor local. Añadí exportación JSON local e importación explícita a una cuenta para sesiones, respuestas, resultados recalculados, palabras guardadas, estado e historial de flashcards, límites diarios y grabaciones de voz. La importación es idempotente; inserta solo filas nuevas, valida las grabaciones y las guarda en el bucket privado usando la sesión normal del usuario. El SQLite original permanece intacto.
+Se creó el Preview protegido `https://satzora-81mi8lucs-santi-bnts-projects.vercel.app`. El deployment está `READY`. La página respondió HTTP 200, `/api/health` respondió `{"status":"ok"}`, las solicitudes anónimas a estudio devolvieron 401, y una cuenta de prueba obtuvo HTTP 200 en el endpoint autenticado de flashcards. Una sesión de estudio de prueba se creó con HTTP 201 y se recuperó con HTTP 200 desde Supabase a través de la API Vercel.
 
-La función serverless y sus protecciones tienen pruebas locales automatizadas, pero la importación todavía requiere una comprobación contra Supabase y el endpoint no se ha probado bajo `vercel dev` ni en un Preview desplegado. Vercel CLI no está instalado en este entorno. Se mantiene el bloqueo del build de Vercel hasta probar la importación real y verificar Preview. No se ha desplegado ni se afirma que la URL pública esté operativa.
+Contra Supabase real, las cuentas de prueba A/B verificaron importación de sesión y flashcards, persistencia, reintentos idempotentes y aislamiento entre usuarios. No se usaron datos de estudiantes.
 
-## Comprobación real del 8 de noviembre de 2026
+La web requiere iniciar sesión en producción. El modo invitado continúa disponible localmente en SQLite y puede importarse mediante la acción explícita de exportación/importación; no se sincroniza como invitado en Vercel. La copia SQLite original permanece intacta.
 
-Se verificaron las ocho tablas privadas, RLS, sus políticas por propietario, la configuración de Storage y los permisos de sesión. Se guardaron respaldos PostgreSQL locales y se verificó su catálogo con `pg_restore --list`. Las migraciones `202611080001` a `202611080003` se reconciliaron sin volver a ejecutarlas. La `202611080004` se probó en PostgreSQL local y se aplicó mediante la CLI después de otro respaldo.
+El endpoint Keep-Alive no está configurado aún: Vercel no tiene `KEEPALIVE_TOKEN` ni `KEEPALIVE_DATABASE_URL`, y no se creó una credencial de mínimo privilegio. Por tanto, el workflow de GitHub no debe activarse hasta configurar ambas variables en Vercel y `KEEPALIVE_URL`/`KEEPALIVE_TOKEN` en GitHub.
 
-Con dos cuentas de prueba reales se verificaron el inicio de sesión, la persistencia de una palabra, un repaso y su fecha, el reintento idempotente y la separación frente a lectura, inserción, actualización y borrado desde otra cuenta. También se comprobó directamente la persistencia de una sesión y la detección de una revisión obsoleta. El código de peticiones del frontend recuperó la palabra y el repaso reales en una prueba con JSDOM. Las pruebas reales se ejecutan con los scripts `test-cloud-flashcards-live.mjs`, `test-cloud-sessions-live.mjs` y `test-cloud-frontend-live.mjs`; utilizan cuentas de prueba y no deben ejecutarse con cuentas de estudiantes.
-
-**Actualización:** al iniciar sesión, la interfaz utiliza Supabase para perfil, preferencias, sesiones, resultados, estadísticas, palabras, flashcards y grabaciones privadas. Una prueba con dos contextos de navegador independientes verificó la recuperación de una lección y un repaso, además de Lesen, Hören, Schreiben y grabación de Sprechen. Las pruebas RLS verificaron aislamiento con otra cuenta. El invitado local sigue usando SQLite. Los datos de prueba creados en Supabase permanecen en las cuentas de prueba.
-
-**No desplegar todavia.** El invitado local usa SQLite y no persiste en funciones serverless; la version web requiere iniciar sesion. La exportacion/importacion esta implementada, pero la importacion real aun debe probarse contra Supabase. La API tampoco se ha verificado en Preview; el build conserva el bloqueo deliberado.
-
+El deployment Preview sigue protegido por Vercel Authentication. No se cambió Production desde esta verificación.
 ## Estado anterior (conservado como referencia)
 
 - La aplicación se consolidó en la raíz del repositorio local `WortWerk`; `package.json`, `vercel.json` y `api/` están en esa raíz. La base SQLite y su copia se conservaron en `data/`.

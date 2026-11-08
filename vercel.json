@@ -3,5 +3,11 @@
   "framework": null,
   "installCommand": "npm ci",
   "buildCommand": "node scripts/verify-cloud-ready.js && npm run build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/api/a2/:path*",
+      "destination": "/api/router?__satzora_route=a2/:path*"
+    }
+  ]
 }

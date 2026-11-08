@@ -3,11 +3,19 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {spawnSync} from 'node:child_process';
 
-test('public deployment remains blocked until guest persistence and Vercel Preview validation are complete',()=>{
- const run=spawnSync(process.execPath,['scripts/verify-cloud-ready.js'],{encoding:'utf8'});
- assert.equal(run.status,1);assert.match(run.stderr,/guest mode remains local-only/);assert.match(run.stderr,/Vercel API entrypoint has not been verified in a Preview deployment/);
+test('Vercel deployment gate requires the public Supabase configuration',()=>{
+ const missing=spawnSync(process.execPath,['scripts/verify-cloud-ready.js'],{encoding:'utf8',env:{...process.env,VERCEL:'1',VERCEL_ENV:'production',VITE_SUPABASE_URL:'',VITE_SUPABASE_PUBLISHABLE_KEY:''}});
+ assert.equal(missing.status,1);assert.match(missing.stderr,/missing required Vercel environment variables/);
+ const configured=spawnSync(process.execPath,['scripts/verify-cloud-ready.js'],{encoding:'utf8',env:{...process.env,VERCEL:'1',VERCEL_ENV:'production',VITE_SUPABASE_URL:'https://satzora.test.supabase.co',VITE_SUPABASE_PUBLISHABLE_KEY:'publishable-test-key'}});
+ assert.equal(configured.status,0);assert.match(configured.stdout,/Cloud configuration verified for Vercel production/);
  const config=JSON.parse(readFileSync('vercel.json','utf8'));
  assert.match(config.buildCommand,/verify-cloud-ready/);
+ assert.deepEqual(config.rewrites,[{source:'/api/a2/:path*',destination:'/api/router?__satzora_route=a2/:path*'}]);
+ assert.match(readFileSync('api/router.js','utf8'),/req\.url=`\/api\/\$\{route\}/);
+});
+test('Vercel Preview deployment also requires configured Supabase variables',()=>{
+ const preview=spawnSync(process.execPath,['scripts/verify-cloud-ready.js'],{encoding:'utf8',env:{...process.env,VERCEL:'1',VERCEL_ENV:'preview'}});
+ assert.equal(preview.status,1);assert.match(preview.stderr,/missing required Vercel environment variables/);
 });
 test('migration declares private user ownership and private recording storage',()=>{
  const sql=readFileSync('supabase/migrations/202611080001_initial_private_data.sql','utf8');
