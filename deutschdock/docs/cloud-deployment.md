@@ -6,6 +6,7 @@
 
 - El proyecto está en `WortWerk/deutschdock`, dentro del repositorio local cuyo remoto es `santi-bnt/WortWerk`; el directorio de la aplicación aparece sin seguimiento en Git. No se ha verificado una conexión con el repositorio mencionado como `deutsch-lernen`.
 - No se ha vinculado un proyecto de Vercel ni uno de Supabase; no existe una URL pública verificada. No hay herramientas conectadas de Vercel o Supabase en esta sesión.
+- El registro de Vercel muestra un proyecto que intenta compilar Next.js desde la raíz. `vercel.json` en la raíz fuerza el preset **Other** y apunta a `deutschdock`; el archivo dentro de `deutschdock` también funciona si ese es el Root Directory. Ambos mantienen el bloqueo de despliegue hasta que la API multiusuario esté lista. Si existen overrides incompatibles en la configuración del proyecto, desactívalos y vuelve a desplegar el último commit.
 - La migración `supabase/migrations/202611080001_initial_private_data.sql` es una base propuesta, no aplicada ni conectada a la aplicación. Su RLS y la prueba `supabase/tests/private_data.test.sql` requieren una base Supabase de prueba; la prueba no se ha ejecutado aquí.
 
 ## Trabajo técnico imprescindible antes de quitar el bloqueo

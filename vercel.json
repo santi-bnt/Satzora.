@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm --prefix deutschdock ci",
+  "buildCommand": "cd deutschdock && node scripts/verify-cloud-ready.js && npm run build",
+  "outputDirectory": "deutschdock/dist"
+}
