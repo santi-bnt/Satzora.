@@ -1,10 +1,10 @@
-# Satzora Â· Goethe A2 Intensiv
+# Satzora · Goethe A2 Intensiv
 
-PreparaciÃ³n personal para el **Goethe-Zertifikat A2 para adultos**, ampliando la aplicaciÃ³n React + TypeScript + Vite / Express + SQLite existente. Interfaz espaÃ±ola e inglesa, sin itinerario introductorio obligatorio. Sin afiliaciÃ³n con el Goethe-Institut.
+Preparación intensiva para el **Goethe-Zertifikat A2 para adultos**. Satzora conserva el currículo A2, los simulacros, las cuatro habilidades, el diccionario y las flashcards. Es una herramienta independiente, sin afiliación con el Goethe-Institut.
 
-**Despliegue online pendiente:** las cuentas autenticadas usan Supabase; el invitado local usa SQLite. La importacion explicita a una cuenta esta implementada, pero aun requiere validacion real. En Vercel se requiere iniciar sesion porque SQLite no persiste entre funciones. El build conserva un bloqueo hasta completar las pruebas de Preview.
+**Aplicación pública:** https://satzora-green.vercel.app. Production y la API se verificaron con HTTP 200; el acceso anónimo a datos de estudio devuelve 401. Las cuentas autenticadas usan Supabase para sincronizar progreso. En Vercel se requiere iniciar sesión; el modo invitado SQLite funciona localmente y puede importarse de forma explícita.
 
-El workflow opcional de mantenimiento de Supabase, sus requisitos y limitaciones se describen en [Keep-alive de Supabase](docs/supabase-keepalive.md). AÃºn no estÃ¡ operativo en producciÃ³n mientras no exista el despliegue y no se configuren el rol y los secretos.
+El nombre solicitado `satzora.vercel.app` ya está en uso por otro proyecto; el enlace público asignado a Satzora es el anterior. El workflow de Supabase Keep-Alive está documentado en [Keep-alive de Supabase](docs/supabase-keepalive.md), pero aún requiere configurar las credenciales de mínimo privilegio y los secretos de GitHub/Vercel.
 
 ## Ejecutar
 

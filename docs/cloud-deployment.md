@@ -2,17 +2,15 @@
 
 ## Estado actual — 8 de noviembre de 2026
 
-El código se consolidó en la raíz y está vinculado al proyecto Vercel `santi-bnts-projects/satzora`. Las variables públicas de Supabase están configuradas para Preview y Production. `.env.local` y los archivos SQLite siguen excluidos de Git.
+La aplicación está publicada en Production: **https://satzora-green.vercel.app**. `satzora.vercel.app` ya está en uso por otro proyecto, por lo que Vercel asignó el alias anterior. El deployment actual proviene de `main` (`28485f4`).
 
-Se creó el Preview protegido `https://satzora-81mi8lucs-santi-bnts-projects.vercel.app`. El deployment está `READY`. La página respondió HTTP 200, `/api/health` respondió `{"status":"ok"}`, las solicitudes anónimas a estudio devolvieron 401, y una cuenta de prueba obtuvo HTTP 200 en el endpoint autenticado de flashcards. Una sesión de estudio de prueba se creó con HTTP 201 y se recuperó con HTTP 200 desde Supabase a través de la API Vercel.
+El proyecto `santi-bnts-projects/satzora` tiene `VITE_SUPABASE_URL` y `VITE_SUPABASE_PUBLISHABLE_KEY` en Preview y Production. No se subieron claves de service role ni archivos `.env.local` o SQLite.
 
-Contra Supabase real, las cuentas de prueba A/B verificaron importación de sesión y flashcards, persistencia, reintentos idempotentes y aislamiento entre usuarios. No se usaron datos de estudiantes.
+Validaciones reales: Production responde HTTP 200 en la página y en `/api/health`; `/api/a2/cloud-study/base` devuelve 401 sin token. El Preview también respondió HTTP 200, la API rechazó peticiones anónimas y aceptó un JWT válido de la cuenta de prueba. A través del Preview se creó una sesión (201) y se leyó (200) desde Supabase. El endpoint de flashcards autenticado respondió 200. En Supabase real, A/B verificaron importación, reintentos idempotentes y aislamiento entre usuarios. No se usaron cuentas de estudiantes.
 
-La web requiere iniciar sesión en producción. El modo invitado continúa disponible localmente en SQLite y puede importarse mediante la acción explícita de exportación/importación; no se sincroniza como invitado en Vercel. La copia SQLite original permanece intacta.
+Las rutas profundas `/api/a2/*` se reescriben a `api/router.js`, que restablece la URL de Express. El modo web requiere cuenta; SQLite sigue para invitados locales y su importación a cuenta es explícita. La copia SQLite original permanece intacta.
 
-El endpoint Keep-Alive no está configurado aún: Vercel no tiene `KEEPALIVE_TOKEN` ni `KEEPALIVE_DATABASE_URL`, y no se creó una credencial de mínimo privilegio. Por tanto, el workflow de GitHub no debe activarse hasta configurar ambas variables en Vercel y `KEEPALIVE_URL`/`KEEPALIVE_TOKEN` en GitHub.
-
-El deployment Preview sigue protegido por Vercel Authentication. No se cambió Production desde esta verificación.
+Keep-Alive todavía no está operativo: faltan `KEEPALIVE_DATABASE_URL` y `KEEPALIVE_TOKEN` en Vercel y `KEEPALIVE_URL`/`KEEPALIVE_TOKEN` en GitHub. Antes hay que crear la credencial PostgreSQL de mínimo privilegio descrita en [supabase-keepalive.md](supabase-keepalive.md). No activar el workflow hasta configurar esos secretos.
 ## Estado anterior (conservado como referencia)
 
 - La aplicación se consolidó en la raíz del repositorio local `WortWerk`; `package.json`, `vercel.json` y `api/` están en esa raíz. La base SQLite y su copia se conservaron en `data/`.
