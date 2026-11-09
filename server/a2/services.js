@@ -1,4 +1,12 @@
-export function capabilities(){return {feedback:!!(process.env.OPENAI_API_KEY&&process.env.OPENAI_TEXT_MODEL),transcription:!!process.env.OPENAI_API_KEY,conversation:!!(process.env.OPENAI_API_KEY&&process.env.OPENAI_TEXT_MODEL)};}
+function textProvider(){
+ const selected=process.env.A2_AI_PROVIDER;
+ if(selected==='gemini'&&process.env.GEMINI_API_KEY)return 'gemini';
+ if(selected==='openai'&&process.env.OPENAI_API_KEY&&process.env.OPENAI_TEXT_MODEL)return 'openai';
+ if(!selected&&process.env.GEMINI_API_KEY)return 'gemini';
+ if(!selected&&process.env.OPENAI_API_KEY&&process.env.OPENAI_TEXT_MODEL)return 'openai';
+ return null;
+}
+export function capabilities(){const provider=textProvider();return {feedback:!!provider,feedbackProvider:provider,transcription:!!process.env.OPENAI_API_KEY,conversation:!!provider};}
 
 async function request(route,body,multipart=false){
  if(!process.env.OPENAI_API_KEY)throw new Error('service_unconfigured');
@@ -8,9 +16,17 @@ async function request(route,body,multipart=false){
 }
 
 async function textResponse(instructions,input){
- if(!capabilities().feedback)throw new Error('service_unconfigured');
- const result=await request('responses',{model:process.env.OPENAI_TEXT_MODEL,instructions,input:JSON.stringify(input),max_output_tokens:2200,store:false});
- const text=(result.output||[]).flatMap(o=>o.content||[]).filter(c=>c.type==='output_text').map(c=>c.text).join('');
+ const provider=textProvider();if(!provider)throw new Error('service_unconfigured');
+ let text='';
+ if(provider==='gemini'){
+  const key=process.env.GEMINI_API_KEY,model=process.env.GEMINI_TEXT_MODEL||'gemini-2.5-flash-lite';
+  const response=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({systemInstruction:{parts:[{text:instructions}]},contents:[{role:'user',parts:[{text:JSON.stringify(input)}]}],generationConfig:{responseMimeType:'application/json',maxOutputTokens:2200,temperature:0.2}}),signal:AbortSignal.timeout(45000)});
+  if(!response.ok)throw new Error('service_failed');
+  const result=await response.json();text=(result.candidates||[]).flatMap(candidate=>candidate.content?.parts||[]).map(part=>part.text||'').join('');
+ }else{
+  const result=await request('responses',{model:process.env.OPENAI_TEXT_MODEL,instructions,input:JSON.stringify(input),max_output_tokens:2200,store:false});
+  text=(result.output||[]).flatMap(o=>o.content||[]).filter(c=>c.type==='output_text').map(c=>c.text).join('');
+ }
  if(!text)throw new Error('service_failed');
  return text;
 }

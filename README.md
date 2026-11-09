@@ -82,12 +82,17 @@ Closed-response grading tolerates punctuation, capitalization, and spacing. Alte
 
 ### Optional AI feedback and transcription
 
-Copy `.env.example` to `.env` and configure a server-side `OPENAI_API_KEY`. For writing feedback and dialogue, also configure an available `OPENAI_TEXT_MODEL`, then restart the server. Never put private keys in `VITE_` variables.
+Copy `.env.example` to `.env` and configure a text provider on the server. Gemini is supported for writing feedback and dialogue; the default model is `gemini-2.5-flash-lite`. Never put private keys in `VITE_` variables.
 
-- `OPENAI_API_KEY`: enables transcription and optional AI features.
-- `OPENAI_TEXT_MODEL`: writing feedback and turn-based dialogue.
+- `A2_AI_PROVIDER`: `gemini` or `openai` (if omitted, Gemini is preferred when its key exists).
+- `GEMINI_API_KEY`: server-only key from Google AI Studio.
+- `GEMINI_TEXT_MODEL`: defaults to `gemini-2.5-flash-lite`.
+- `OPENAI_API_KEY`: enables transcription; also required for OpenAI text feedback if selected.
+- `OPENAI_TEXT_MODEL`: writing feedback and turn-based dialogue when `A2_AI_PROVIDER=openai`.
 - `OPENAI_TRANSCRIBE_MODEL`: transcription model; the example uses `gpt-4o-mini-transcribe`.
 - `OPENAI_SPEECH_MODEL`: optional speech generation.
+
+**Gemini free-tier privacy:** Google lists Gemini 2.5 Flash-Lite with free-tier access subject to quotas and rate limits. Google states that content submitted through unpaid Gemini API services may be used to improve its products. Satzivo discloses this before the review request; students should avoid including personal or sensitive information. Free availability and limits may change. See [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) and [additional terms](https://ai.google.dev/gemini-api/terms).
 
 Content is sent only after the corresponding action is selected. Transcribed text cannot assess pronunciation. Dialogue is turn-based, not a live call. Without an AI service, learners can record, listen back, or practice with another person.
 
