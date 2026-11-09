@@ -2,7 +2,7 @@
 
 ## Current status — 8 November 2026
 
-Production is live at **https://satzora-green.vercel.app**. The requested `satzora.vercel.app` alias is already in use by another Vercel project. The latest deployment was built from GitHub `main` at commit `8a7b323`.
+Production is live at **https://satzivo.vercel.app**. The domain and deployment details are verified separately from workflow and database checks.
 
 The Vercel project `santi-bnts-projects/satzora` has `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` configured for Preview and Production. No service-role key, `.env.local`, or SQLite file was uploaded.
 
@@ -14,7 +14,7 @@ Nested `/api/a2/*` requests are rewritten to `api/router.js`, which restores the
 
 ## Keep-Alive is not configured
 
-The app is live, but Supabase Keep-Alive is not active. Vercel does not yet have `KEEPALIVE_DATABASE_URL` or `KEEPALIVE_TOKEN`, and GitHub Actions does not have `KEEPALIVE_URL` and `KEEPALIVE_TOKEN`. Create the dedicated least-privilege PostgreSQL role first. Follow [supabase-keepalive.md](supabase-keepalive.md). Do not enable the workflow until those values are configured. Keep-Alive cannot guarantee that a free Supabase project will avoid inactivity pauses.
+The daily GitHub Actions workflow exists but its latest run failed before requesting the endpoint. An unauthenticated production check returned `not_configured` (HTTP 503), so Vercel's `KEEPALIVE_DATABASE_URL` or `KEEPALIVE_TOKEN` is absent or invalid; the Actions log also indicates its URL or token secret is missing or invalid. No PostgreSQL query has been confirmed. Create/configure the dedicated least-privilege role and secrets as described in [supabase-keepalive.md](supabase-keepalive.md), then run the workflow manually. Keep-Alive cannot guarantee that a free Supabase project will avoid inactivity pauses.
 
 ## Local and deployment checks
 

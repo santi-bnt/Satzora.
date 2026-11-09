@@ -3,13 +3,16 @@ on:
   schedule:
     - cron: '23 12 * * *'
   workflow_dispatch:
-permissions: {}
+permissions:
+  contents: read
 jobs:
   keepalive:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
       - uses: actions/checkout@v4
+      - name: Test keep-alive configuration diagnostics
+        run: python3 -m unittest discover -s .github/scripts -p 'test_supabase_keepalive.py'
       - name: Check PostgreSQL through the maintenance endpoint
         env:
           KEEPALIVE_URL: ${{ secrets.KEEPALIVE_URL }}

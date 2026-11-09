@@ -2,7 +2,7 @@
 
 An intensive, independent preparation platform for the **Goethe-Zertifikat A2 for adults**. Satzora includes Lesen, Hören, Schreiben, Sprechen, an A2 curriculum, exam simulations, an interactive dictionary, and spaced-repetition flashcards. Satzora is not affiliated with the Goethe-Institut.
 
-**Public app:** [satzora-green.vercel.app](https://satzora-green.vercel.app). `satzora.vercel.app` is already in use by another project. Production was deployed from GitHub `main`; the page and `/api/health` return HTTP 200. Authenticated study data is stored in Supabase. Online study requires an account; SQLite guest mode remains local and can be explicitly imported into an account.
+**Public app:** [satzivo.vercel.app](https://satzivo.vercel.app). Production is deployed from GitHub `main`. Authenticated study data is stored in Supabase. Online study requires an account; SQLite guest mode remains local and can be explicitly imported into an account.
 
 ## Run locally
 
