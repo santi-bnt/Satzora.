@@ -3,12 +3,13 @@ import {Headphones,Play,RotateCcw} from 'lucide-react';
 import {German,request,useA2} from './context';
 import type {Clip,ExamDocument,ExamImage,OralCard,Run} from './types';
 
-export const ReadingDocument=memo(function ReadingDocument({document,storageKey}:{document:ExamDocument;storageKey:string}){
+export const ReadingDocument=memo(function ReadingDocument({document,storageKey,example}:{document:ExamDocument;storageKey:string;example?:{label:string;answer:string}}){
  const ref=useRef<HTMLDivElement>(null);
  useEffect(()=>{const element=ref.current;try{if(element)element.scrollTop=Number(localStorage.getItem(storageKey)||0);}catch{}return()=>{if(element)try{localStorage.setItem(storageKey,String(element.scrollTop));}catch{}};},[storageKey]);
  return <div className="exam-document" ref={ref} role="region" aria-label="Lesetext" tabIndex={0} onScroll={e=>{try{localStorage.setItem(storageKey,String(e.currentTarget.scrollTop));}catch{}}}>
  {document.title&&<h2><German text={document.title}/></h2>}
  {document.kind==='email'&&<dl className="email-envelope"><div><dt>Von</dt><dd>{document.from}</dd></div><div><dt>An</dt><dd>{document.to}</dd></div><div><dt>Betreff</dt><dd><German text={document.subject||''}/></dd></div></dl>}
+ {document.kind==='ads'&&example&&<p className="example-reference" lang="de"><strong>Beispiel {example.answer}:</strong> <German text={example.label}/> {example.answer}</p>}
  {document.paragraphs?.map((paragraph,i)=><p key={i}><German text={paragraph}/></p>)}
  {document.rows&&<dl className="directory-table">{document.rows.map((row,i)=><div key={i}><dt><German text={row.label}/></dt><dd><German text={row.detail}/></dd></div>)}</dl>}
  {document.ads&&<div className="adverts">{document.ads.map(ad=><article key={ad.id}><span className="advert-letter">{ad.id}</span><div><h3><German text={ad.title}/></h3><p><German text={ad.body}/></p></div></article>)}</div>}

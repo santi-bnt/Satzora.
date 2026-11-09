@@ -20,7 +20,8 @@ export function formatModels(models){return models.map((model,index)=>{
    if(i===2)part.document={kind:'email',from:index===2?'Lotte <lotte@example.test>':second?'Tarek <tarek@example.test>':'Mira <mira@example.test>',to:index===2?'Bea <bea@example.test>':second?'Emil <emil@example.test>':'Nora <nora@example.test>',subject:index===2?'Unser Wochenende am See':second?'Fotokurs am Sonntag – bitte Kamera bestätigen':'Unser Ausflug: neuer Treffpunkt',paragraphs:lines};
    if(i===3)part.document={kind:'ads',title:'Anzeigen',ads:lines.map(line=>({id:line[0],title:line.slice(4).split(':')[0],body:line.slice(4)}))};
   }
-  for(const q of part.questions){q.material={skill:'Lesen',partId:part.id,title:part.title,instruction:part.instruction,document:part.document};q.evidence=q.explanation;}
+  if(i===3){part.example={label:model.id==='modell-03'?'Eine Person sucht einen offenen Treff für Hobbyfotografen.':index===1?'Eine Person sucht eine kostenlose Laufgruppe.':'Eine Person sucht lockere Sprachpraxis.',answer:'a'};part.instruction='Ordnen Sie die Situationen den Anzeigen b bis f zu. Anzeige a ist das Beispiel und nicht mehr wählbar. Jede Anzeige nur einmal. Für eine Situation gibt es keine passende Anzeige: X.';}
+  for(const q of part.questions){q.material={skill:'Lesen',partId:part.id,title:part.title,instruction:part.instruction,document:part.document};q.evidence=q.evidence||q.explanation;q.contentVersion||=2;}
  }
  for(const [i,part] of model.sections[1].parts.entries()){
   part.id=`${model.id}-Hören-${i+1}`;part.images=part.pictures?.map(picture);

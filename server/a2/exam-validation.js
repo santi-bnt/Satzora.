@@ -15,7 +15,7 @@ export function validateModel(model){
    const expectedQuestions=['Lesen','Hören'].includes(skill)?5:1;
    if(p.questions.length!==expectedQuestions)errors.push(`${p.id}: question count`);
    if(skill==='Lesen'&&(!p.document||!p.text||p.text.length<150))errors.push(`${p.id}: missing reading document`);
-   if(skill==='Lesen'&&i===3&&(p.document.ads?.length!==6||p.questions.filter(q=>q.answers[0]==='X').length!==1))errors.push(`${p.id}: matching structure`);
+   if(skill==='Lesen'&&i===3&&(p.document.ads?.length!==6||p.questions.filter(q=>q.answers[0]==='X').length!==1||p.example?.answer!=='a'||p.questions.some(q=>q.options?.includes('a'))))errors.push(`${p.id}: matching structure/example must be excluded`);
    if(skill==='Hören'){
     if(p.plays!==[2,1,1,2][i]||p.clips.length!==[5,1,5,1][i])errors.push(`${p.id}: audio structure`);
     for(const c of p.clips){const src=`/audio/${c.id}.mp3`;if(!c.text||!c.questionIds?.length||!existsSync(asset(src))||statSync(asset(src)).size<1000)errors.push(`${p.id}: audio missing/empty ${c.id}`);}
@@ -23,6 +23,8 @@ export function validateModel(model){
    }
    for(const q of p.questions){
     if(!q.prompt||!q.id)errors.push(`${p.id}: missing question`);
+    if(skill==='Lesen'&&(!q.evidence||!q.contentVersion))errors.push(`${q.id}: missing evidence/version`);
+    if(skill==='Lesen'&&q.review&&(q.review.options.length!==q.options?.length||q.review.options.some((item,index)=>item.option!==q.options?.[index]||!item.explanation?.es||!item.explanation?.en)||q.review.options.filter(item=>item.correct).length!==1||q.review.options.find(item=>item.correct)?.option!==q.answers[0]))errors.push(`${q.id}: invalid option rationales`);
     if(q.type==='choice'&&(!q.options?.includes(q.answers[0])||new Set(q.options).size!==q.options.length))errors.push(`${q.id}: invalid choices`);
     if(['Lesen','Hören'].includes(skill)&&i!==3&&!(skill==='Hören'&&i===1)&&q.options?.length!==3)errors.push(`${q.id}: expected a/b/c`);
     if(skill==='Hören'&&i===3&&q.options?.join('/')!=='Ja/Nein')errors.push(`${q.id}: expected Ja/Nein`);
@@ -43,6 +45,6 @@ export function validateModel(model){
  return {id:model.id,available:errors.length===0,errors};
 }
 
-export function validateExams(){const models=examModels.map(validateModel);return {models,counts:{models:examModels.length,reading:examModels.length*20,listening:examModels.length*20,writing:examModels.length*2,speaking:examModels.length*3,audioFiles:new Set(examModels.flatMap(m=>m.sections.flatMap(s=>s.parts.flatMap(p=>(p.clips||[]).map(c=>c.id))))).size},valid:models.every(m=>m.available)};}
+export function validateExams(){const models=examModels.map(validateModel),reading=examModels.flatMap(m=>m.sections.find(s=>s.id==='Lesen').parts.flatMap(p=>p.questions)),withRationales=reading.filter(q=>q.review?.options?.length===q.options?.length).length;return {models,counts:{models:examModels.length,reading:reading.length,listening:examModels.length*20,writing:examModels.length*2,speaking:examModels.length*3,audioFiles:new Set(examModels.flatMap(m=>m.sections.flatMap(s=>s.parts.flatMap(p=>(p.clips||[]).map(c=>c.id))))).size,readingWithEvidence:reading.filter(q=>q.evidence).length,readingWithOptionRationales:withRationales,readingNeedsEditorialReview:reading.length-withRationales},valid:models.every(m=>m.available),qualityComplete:withRationales===reading.length};}
 
 if(process.argv[1]===fileURLToPath(import.meta.url)){const report=validateExams();mkdirSync('docs',{recursive:true});writeFileSync('docs/exam-validation.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));if(!report.valid)process.exitCode=1;}

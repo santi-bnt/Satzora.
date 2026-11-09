@@ -92,7 +92,7 @@ Copy `.env.example` to `.env` and configure a text provider on the server. Gemin
 - `OPENAI_TRANSCRIBE_MODEL`: transcription model; the example uses `gpt-4o-mini-transcribe`.
 - `OPENAI_SPEECH_MODEL`: optional speech generation.
 
-**Gemini free-tier privacy:** Google lists Gemini 2.5 Flash-Lite with free-tier access subject to quotas and rate limits. Google states that content submitted through unpaid Gemini API services may be used to improve its products. Satzivo discloses this before the review request; students should avoid including personal or sensitive information. Free availability and limits may change. See [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) and [additional terms](https://ai.google.dev/gemini-api/terms).
+**Gemini free-tier privacy:** Google lists Gemini 2.5 Flash-Lite with free-tier access subject to quotas and rate limits. Google states that content submitted through unpaid Gemini API services may be used to improve its products. satzivo discloses this before the review request; students should avoid including personal or sensitive information. Free availability and limits may change. See [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing) and [additional terms](https://ai.google.dev/gemini-api/terms).
 
 Content is sent only after the corresponding action is selected. Transcribed text cannot assess pronunciation. Dialogue is turn-based, not a live call. Without an AI service, learners can record, listen back, or practice with another person.
 

@@ -1,4 +1,4 @@
-# Satzivo A2 flashcard bank
+# satzivo A2 flashcard bank
 
 ## Verified inventory
 

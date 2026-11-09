@@ -22,7 +22,11 @@
     "listening": 60,
     "writing": 6,
     "speaking": 9,
-    "audioFiles": 36
+    "audioFiles": 36,
+    "readingWithEvidence": 60,
+    "readingWithOptionRationales": 5,
+    "readingNeedsEditorialReview": 55
   },
-  "valid": true
+  "valid": true,
+  "qualityComplete": false
 }

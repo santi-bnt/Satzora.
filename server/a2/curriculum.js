@@ -57,7 +57,7 @@ for(const lesson of curriculum){
  archivedExercises.push(...lesson.exercises.slice(0,5));lesson.exercises.splice(0,5,...replacements);
 }
 export const exerciseBank=curriculum.flatMap(l=>l.exercises);
-export function publicExercise({answers,model,models,explanation,evidence,focus,...exercise}) { if(exercise.oral){const {partner,partnerQuestions,...oral}=exercise.oral;return {...exercise,oral};}return exercise; }
+export function publicExercise({answers,model,models,explanation,evidence,review,focus,...exercise}) { if(exercise.oral){const {partner,partnerQuestions,...oral}=exercise.oral;return {...exercise,oral};}return exercise; }
 export function publicLesson(lesson){return {...lesson,exercises:lesson.exercises.map(publicExercise)};}
 export function evaluate(exercise,answer) {
   if(typeof answer!=='string'||answer.length>6000)throw new Error('invalid_answer');
