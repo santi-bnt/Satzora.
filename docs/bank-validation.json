@@ -39,8 +39,8 @@
     "speaking": 9,
     "audioFiles": 36,
     "readingWithEvidence": 60,
-    "readingWithOptionRationales": 5,
-    "readingNeedsEditorialReview": 55
+    "readingWithOptionRationales": 60,
+    "readingNeedsEditorialReview": 0
   },
   "errors": [],
   "automaticChecksCannotProveSemanticAccuracy": true
