@@ -15,6 +15,7 @@ globalThis.IS_REACT_ACT_ENVIRONMENT=true;
 const {render,screen,fireEvent,within,waitFor,cleanup}=await import('@testing-library/react');
 const {default:A2App}=await import('./A2App');
 const {Speech}=await import('./Speech');
+const {GrammarFeedback}=await import('./GrammarFeedback');
 const {ListeningPlayer}=await import('./ExamMaterials');
 const {AppContext}=await import('./context');
 const {translate}=await import('./i18n');
@@ -63,4 +64,11 @@ test('simulator component journey against real API: 4 reading parts, free writin
  fireEvent.ended(document.querySelector('audio')!);assert.equal((screen.getByRole('button',{name:'Play audio'}) as HTMLButtonElement).disabled,true);assert.equal(screen.queryByRole('button',{name:'Transcript'}),null);player.unmount();
  }finally{dom.window.HTMLMediaElement.prototype.play=originalPlay;dom.window.HTMLMediaElement.prototype.pause=originalPause;}
  }finally{cleanup();globalThis.fetch=originalFetch;Object.defineProperty(globalThis,'MediaRecorder',{value:undefined,configurable:true});if(child.exitCode===null)await new Promise<void>(resolve=>{child.once('exit',()=>resolve());child.kill();});await rm(directory,{recursive:true,force:true});dom.window.close();}
+});
+
+test('grammar feedback compares the student phrase, renders a real arrow, and hides the full solution until requested',()=>{
+ const context={locale:'es' as const,t:(key:Parameters<typeof translate>[0])=>translate(key,'es'),word:()=>{},dictionaryEnabled:true,capabilities:{feedback:false,feedbackProvider:null,transcription:false,conversation:false},refresh:async()=>{}};
+ const model='Die Fahrkarten liegen auf dem kleinen Tisch neben der Tür.';
+ const value={correct:false,model,evaluatedAnswer:'Die Fahrkarten liegen auf dem Tisch kleinen neben der Tür.',structure:'incorrect' as const,structureExplanation:{es:'Revisa el orden.',en:'Review the order.'},errors:[{type:'adjective-placement',severity:'grammar' as const,actual:'auf dem Tisch kleinen',expected:'auf dem kleinen Tisch',explanation:{es:'«kleinen» modifica «Tisch» y va antes. «Auf dem» indica ubicación en dativo masculino; el adjetivo termina en -en.',en:'“kleinen” modifies “Tisch” and goes before it. “Auf dem” marks masculine dative location; the adjective takes -en.'}}]};
+ try{render(<AppContext.Provider value={context}><GrammarFeedback value={value} locale="es" finished={false} onRetry={()=>{}} solutionVisible={false} onToggleSolution={()=>{}}/></AppContext.Provider>);assert.ok(screen.getByText('auf dem Tisch kleinen'));assert.ok(screen.getByText('auf dem kleinen Tisch'));assert.ok(screen.getByText('→'));assert.equal(screen.queryByText(model),null);assert.ok(screen.getByText(/va antes/));assert.ok(screen.getByRole('button',{name:'Ver solución'}));assert.ok(screen.getByRole('button',{name:'Intentar otra vez'}));assert.equal(document.body.textContent?.includes('\\u2192'),false);}finally{cleanup();}
 });
