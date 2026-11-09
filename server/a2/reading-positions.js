@@ -2,9 +2,9 @@
 // This is intentionally data-level (not randomized per request/session), so refreshes
 // and resumed attempts always show the same option text in the same position.
 export const readingAnswerPositions={
- 'modell-01':'ACBCABABCACBACB',
- 'modell-02':'BACBCABCACBACBA',
- 'modell-03':'CBACACBABCBACAB'
+ 'modell-01':'ABACABBCBBCAACA',
+ 'modell-02':'AACBBCCBCABBACB',
+ 'modell-03':'AACBACCBCABCACB'
 };
 
 export function readingPositionStats(model){
