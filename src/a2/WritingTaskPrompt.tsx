@@ -9,7 +9,8 @@ export function WritingTaskPrompt({exercise}:{exercise:Exercise}){
  if(!isStructuredGoetheWriting(exercise))return null;
  const isSms=exercise.writingType==='sms'||exercise.topic==='sms'||exercise.topic==='writing-sms';
  const format=exercise.formatInstruction||`Schreiben Sie eine ${isSms?'SMS':'E-Mail'}${exercise.recipient?` an ${exercise.recipient}`:''}.`;
- const length=exercise.wordCountInstruction|| (exercise.range?`Schreiben Sie ${exercise.range[0]}–${exercise.range[1]} Wörter.`:'');
+ const lengthInstruction=exercise.wordCountInstruction|| (exercise.range?`Schreiben Sie ${exercise.range[0]}–${exercise.range[1]} Wörter.`:'');
+ const length=lengthInstruction.replace(/\s*Schreiben Sie zu allen drei Punkten\.?/i,'').trim();
  return <section className="writing-task-prompt" aria-label={isSms?'Schreibaufgabe SMS':'Schreibaufgabe E-Mail'} lang="de">
   <p className="writing-situation"><German text={exercise.situation!}/></p>
   <p className="writing-format-instruction"><German text={format}/></p>
