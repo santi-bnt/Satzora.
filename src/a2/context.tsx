@@ -3,6 +3,7 @@ import type {AppContextType} from './types';
 import {getAuthClient} from '../cloud/auth';
 export const AppContext=createContext<AppContextType>(null!);
 export const useA2=()=>useContext(AppContext);
+export function sentenceAt(text:string,offset:number){const safe=Math.max(0,Math.min(text.length,offset));let start=safe,end=safe;while(start>0&&!/[.!?…\n\r]/.test(text[start-1]))start--;while(start<text.length&&/\s/.test(text[start]))start++;while(end<text.length&&!/[.!?…\n\r]/.test(text[end]))end++;if(end<text.length&&/[.!?…]/.test(text[end]))end++;const sentence=text.slice(start,end).trim();return sentence||text.trim();}
 const cloudRuns=new Map<string,number>();
 export const getRunRevision=(id:string)=>cloudRuns.get(id);
 const runQueues=new Map<string,Promise<unknown>>();
@@ -32,8 +33,8 @@ async function doRequest<T>(path:string,body?:unknown,method='POST'):Promise<T>{
  if(study&&data.id&&Number.isSafeInteger(data.revision))cloudRuns.set(data.id,data.revision);
  if(study&&id&&Number.isSafeInteger(data.revision))cloudRuns.set(id,data.revision);
  if(study&&path==='/a2/bootstrap')for(const run of data.runs)cloudRuns.set(run.id,Number(run.revision));
- if(path==='/a2/bootstrap'&&token&&!study){
-  const saved=await fetch('/api/a2/cloud/vocabulary',{headers:{Authorization:`Bearer ${token}`}});if(!saved.ok)throw new Error('service_failed');data.savedWords=(await saved.json()).savedWords;
+ if(path==='/a2/bootstrap'&&token&&env?.VITE_ENABLE_CLOUD_FLASHCARDS!=='false'){
+  const saved=await fetch('/api/a2/cloud/vocabulary',{headers:{Authorization:`Bearer ${token}`}});if(!saved.ok)throw new Error('service_failed');data.savedWords=[...new Set([...(data.savedWords||[]),...(await saved.json()).savedWords])];
  }
  return data;
 }
@@ -43,5 +44,5 @@ async function doUploadRecording(runId:string,exerciseId:string,blob:Blob,ticket
  const headers:Record<string,string>={'Content-Type':blob.type,'X-Recording-Ticket':ticket};if(token){headers.Authorization=`Bearer ${token}`;headers['X-Session-Revision']=String(cloudRuns.get(runId)??'');}
  const response=await fetch(`/api/a2/${study?'cloud-study/':''}runs/${runId}/recordings/${exerciseId}`,{method:'POST',headers,body:blob}),data=await response.json();if(!response.ok)throw new Error(data.error||'service_failed');if(study&&Number.isSafeInteger(data.revision))cloudRuns.set(runId,data.revision);return data;
 }
-export function German({text,className=''}:{text:string;className?:string}){const {word,dictionaryEnabled}=useA2();return <span className={`german-text ${className}`} lang="de">{text.split(/(\p{L}[\p{L}ßäöüÄÖÜ-]*)/u).map((part,i)=>/\p{L}/u.test(part)&&dictionaryEnabled?<button type="button" className="german-word" key={i} onClick={()=>word(part,text)}>{part}</button>:<span key={i}>{part}</span>)}</span>;}
+export function German({text,className=''}:{text:string;className?:string}){const {word,dictionaryEnabled}=useA2();let offset=0;return <span className={`german-text ${className}`} lang="de">{text.split(/(\p{L}[\p{L}ßäöüÄÖÜ-]*)/u).map((part,i)=>{const current=offset;offset+=part.length;return /\p{L}/u.test(part)&&dictionaryEnabled?<button type="button" className="german-word" key={i} onClick={()=>word(part,text,current)}>{part}</button>:<span key={i}>{part}</span>;})}</span>;}
 export function pronounce(text:string,onError:()=>void){if(!('speechSynthesis'in window)){onError();return;}const voices=window.speechSynthesis.getVoices();const voice=voices.find(v=>v.lang.startsWith('de'));if(!voice){onError();return;}window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.voice=voice;utterance.lang='de-DE';utterance.rate=.85;utterance.onerror=onError;window.speechSynthesis.speak(utterance);}

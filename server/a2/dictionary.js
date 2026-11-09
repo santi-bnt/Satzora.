@@ -15,6 +15,33 @@ rows.push(
  ['schön','bonito / hermoso','beautiful / nice','schöne schönen schöner schönere schönsten','Die Stadt ist im Frühling besonders schön.',''],
  ['besser','mejor','better','bessere besseren besserer besseres','Mit dem früheren Bus komme ich besser zur Arbeit.','']
 );
+// Offline additions prioritized from reports/dictionary-coverage.json; each
+// entry has a reviewed A2 gloss, explicit forms where relevant, and an example.
+rows.push(
+ ['liegen','estar situado / encontrarse','be located','liege liegst liegt lag gelegen','Die Praxis liegt neben der Apotheke.','','Verb'],
+ ['Person','persona','person','Personen','Zehn Personen warten am Empfang.','die'],
+ ['zehn','diez','ten','','Der Kurs beginnt um zehn Uhr.','','Zahl'],
+ ['dann','entonces','then','','Zuerst nehmen Sie die Linie vier, dann steigen Sie um.','','Adverb'],
+ ['Montag','lunes','Monday','Montage','Die Werkstatt ist am Montag geschlossen.','der'],
+ ['n\u00e4chste','siguiente / pr\u00f3ximo','next','n\u00e4chsten n\u00e4chster n\u00e4chstes n\u00e4chste','Der n\u00e4chste Bus f\u00e4hrt in zehn Minuten.','','Adjektiv'],
+ ['Sonntag','domingo','Sunday','Sonntage','Am Sonntag besuchen wir meine Schwester.','der'],
+ ['erkl\u00e4ren','explicar','explain','erkl\u00e4re erkl\u00e4rst erkl\u00e4rt erkl\u00e4rte erkl\u00e4rt','K\u00f6nnen Sie mir den Weg erkl\u00e4ren?','','Verb'],
+ ['statt','en lugar de','instead of','','Statt des Busses nehme ich heute die U-Bahn.','','Pr\u00e4position'],
+ ['Werkstatt','taller / taller mec\u00e1nico','workshop / garage','Werkst\u00e4tten','Das Fahrrad ist in der Werkstatt.','die'],
+ ['Donnerstag','jueves','Thursday','Donnerstage','Am Donnerstag habe ich einen Termin beim Zahnarzt.','der'],
+ ['Mitarbeiter','empleado / trabajador','employee','Mitarbeiter','Ein Mitarbeiter hilft Ihnen am Empfang.','der'],
+ ['Bescheid','aviso / informaci\u00f3n','notice / information','Bescheide','Geben Sie mir bitte bis morgen Bescheid.','der'],
+ ['Praxis','consultorio / consulta','medical practice','Praxen','Die Praxis ist heute bis 18 Uhr ge\u00f6ffnet.','die'],
+ ['Schwester','hermana','sister','Schwestern','Meine Schwester wohnt in Dresden.','die'],
+ ['alt','viejo / antiguo','old','alte alten alter altes \u00e4ltere \u00e4lteren','Das alte Fahrrad steht vor dem Haus.','','Adjektiv'],
+ ['danach','despu\u00e9s / despu\u00e9s de eso','afterwards','','Zuerst kaufen wir ein, danach fahren wir nach Hause.','','Adverb'],
+ ['halb','y media / medio','half / half past','','Der Zug f\u00e4hrt um halb acht ab.','','Adverb'],
+ ['Gruppe','grupo','group','Gruppen','Unsere Gruppe beginnt heute mit der Stadtf\u00fchrung.','die'],
+ ['hier','aqu\u00ed','here','','Sie k\u00f6nnen Ihr Fahrrad hier abstellen.','','Adverb'],
+ ['Mensch','persona / ser humano','person / human being','Menschen','Viele Menschen fahren mit dem Fahrrad zur Arbeit.','der'],
+ ['neun','nueve','nine','','Der Bus kommt um neun Uhr.','','Zahl'],
+ ['Reisepass','pasaporte','passport','Reisep\u00e4sse','Bitte bringen Sie Ihren Reisepass zur Anmeldung mit.','der']
+);
 const normalize=value=>String(value||'').normalize('NFC').trim().toLocaleLowerCase('de');
 const byLemma=new Map(rows.map(([lemma,es,en,forms,example,article='',wordType])=>[normalize(lemma),{id:`dict-${lemma.toLowerCase().replace(/\s/g,'-')}`,lemma,es,en,forms:forms.split(' ').filter(Boolean),example,article,plural:article?forms.split(' ').filter(Boolean).find(f=>normalize(f)!==normalize(lemma))||'':'',wordType:article?'Nomen':wordType||'Wort'}]));
 const visitor=byLemma.get(normalize('Besucher'));if(visitor){visitor.plural='Besucher';visitor.forms=[...new Set([...visitor.forms,'Besuchern'])];}
@@ -39,6 +66,7 @@ const ihrEntry=byLemma.get(normalize('ihr'));if(ihrEntry){ihrEntry.es='ella / el
 const verbLemmas=new Set(['sein','haben','werden','gehen','fahren','kommen','ankommen','abfahren','umsteigen','nehmen','geben','helfen','sprechen','schreiben','lesen','finden','wissen','können','müssen','dürfen','sollen','wollen','möchten','anrufen','absagen','vereinbaren','verschieben','teilnehmen','bestätigen','bezahlen','reservieren','bestellen','vergessen','verstehen','zurückrufen','ausfüllen','bringen','mitbringen','arbeiten','lernen','warten','brauchen','bleiben','treffen','sich freuen']);
 for(const lemma of verbLemmas){const entry=byLemma.get(normalize(lemma));if(entry)entry.wordType='Verb';}
 for(const [lemma,forms] of [['haben','habe habt hätte hätten'],['sein','bin seid wäre wären'],['werden','werde wirst werdet'],['nehmen','nehme nimmst nehmt'],['können','könnt könnten'],['müssen','müsst müsstet müssten'],['dürfen','dürft dürfte dürften'],['sollen','sollt sollten'],['wollen','wollt wollten'],['brauchen','brauche brauchst']]){const entry=byLemma.get(normalize(lemma));if(entry)entry.forms=[...new Set([...entry.forms,...forms.split(' ')])];}
+byLemma.set(normalize('Reparatur'),{id:'dict-reparatur',lemma:'Reparatur',es:'reparación / arreglo',en:'repair',forms:['Reparaturen'],example:'Die Reparatur kostet nichts.',exampleEs:'La reparación es gratuita.',exampleEn:'The repair is free.',article:'die',plural:'Reparaturen',wordType:'Nomen',source:{name:'Wiktionary alemán (WiktAPI)',url:'https://de.wiktionary.org/wiki/Reparatur',license:'CC BY-SA 4.0',licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/'}});
 for(const card of flashcards){
  if(card.kind!=='word'||!card.lemma||!card.es||!card.en||!card.examples?.[0])continue;
  const key=normalize(card.lemma),forms=[...(card.alternatives||[]),...(card.perfect||'').split(/\s+/).filter(f=>!['hat','ist','haben','sein'].includes(f.toLocaleLowerCase('de')))],prior=byLemma.get(key);

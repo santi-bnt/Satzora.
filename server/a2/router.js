@@ -10,6 +10,7 @@ import {registerExamActions} from './exam-actions.js';
 import {validateModel} from './exam-validation.js';
 import {dictionary,lookup} from './dictionary.js';
 import {lookupWithFallback} from './dictionary-fallback.js';
+import {isPersistableExternalEntry} from './external-dictionary-entry.js';
 import {registerFlashcards} from './flashcard-routes.js';
 import {capabilities,feedback,transcribe,conversation,localWritingFeedback,synthesize} from './services.js';
 const bank=new Map([...archivedExercises,...exerciseBank,...examExercises,...bankExercises].map(e=>[e.id,e]));
@@ -23,6 +24,7 @@ export function createA2Router(db,activity,day){
  CREATE TABLE IF NOT EXISTS a2_runs(id TEXT PRIMARY KEY,kind TEXT NOT NULL,ref TEXT,mode TEXT NOT NULL,duration INTEGER NOT NULL,focus TEXT NOT NULL,started INTEGER NOT NULL,deadline INTEGER NOT NULL,finished INTEGER,state TEXT NOT NULL,result TEXT);
  CREATE TABLE IF NOT EXISTS a2_attempts(run_id TEXT NOT NULL,exercise_id TEXT NOT NULL,lesson_id TEXT NOT NULL,topic TEXT NOT NULL,skill TEXT NOT NULL,answer TEXT NOT NULL,correct INTEGER,feedback TEXT NOT NULL,created INTEGER NOT NULL,PRIMARY KEY(run_id,exercise_id));
  CREATE TABLE IF NOT EXISTS a2_saved_words(word_id TEXT PRIMARY KEY,saved INTEGER NOT NULL);
+ CREATE TABLE IF NOT EXISTS a2_external_dictionary_cards(word_id TEXT PRIMARY KEY,entry TEXT NOT NULL,source_sentence TEXT NOT NULL DEFAULT '',saved INTEGER NOT NULL);
  CREATE TABLE IF NOT EXISTS a2_recordings(id TEXT PRIMARY KEY,run_id TEXT NOT NULL,exercise_id TEXT NOT NULL,mime TEXT NOT NULL,audio BLOB NOT NULL,transcript TEXT,created INTEGER NOT NULL);`);
  const router=express.Router();
  registerFlashcards(router,db,day);
@@ -40,7 +42,7 @@ export function createA2Router(db,activity,day){
  router.get('/lessons/:id',(req,res)=>{const lesson=curriculum.find(l=>l.id===req.params.id);if(!lesson)return res.status(404).json({error:'not_found'});res.json(publicLesson(lesson));});
  const dictionaryRequests=new Map();
  router.get('/dictionary',async(req,res)=>{const local=lookup(req.query.word);if(local)return res.json({entry:local,source:'local',status:'found'});const now=Date.now(),key=req.ip||req.socket.remoteAddress||'unknown',record=dictionaryRequests.get(key)||{start:now,count:0};if(now-record.start>60_000){record.start=now;record.count=0;}if(record.count>=30)return res.status(429).json({error:'dictionary_rate_limited',retryAfter:60});record.count++;dictionaryRequests.set(key,record);const locale=req.query.locale==='es'?'es':'en',result=await lookupWithFallback(req.query.word,{locale});res.set('Cache-Control',result.entry?'private, max-age=300':'no-store').json(result);});
- router.post('/vocabulary',(req,res)=>{if(!dictionary.some(w=>w.id===req.body?.id)||typeof (req.body?.sentence??'')!=='string'||(req.body?.sentence||'').length>1500)return res.status(400).json({error:'not_found'});db.prepare('INSERT OR IGNORE INTO a2_saved_words VALUES(?,?)').run(req.body.id,Date.now());if(req.body.sentence)db.prepare('INSERT OR IGNORE INTO fc_sources VALUES(?,?)').run(req.body.id,req.body.sentence);res.json({saved:true});});
+ router.post('/vocabulary',(req,res)=>{const {id,sentence='',entry}=req.body||{};if(typeof id!=='string'||id.length>200||typeof sentence!=='string'||sentence.length>1500)return res.status(400).json({error:'not_found'});const local=dictionary.find(w=>w.id===id);if(local){db.prepare('INSERT OR IGNORE INTO a2_saved_words VALUES(?,?)').run(id,Date.now());if(sentence)db.prepare('INSERT OR IGNORE INTO fc_sources VALUES(?,?)').run(id,sentence);return res.json({saved:true});}if(!isPersistableExternalEntry(entry)||entry.id!==id)return res.status(400).json({error:'not_found'});const now=Date.now();db.prepare('INSERT OR IGNORE INTO a2_saved_words VALUES(?,?)').run(id,now);db.prepare('INSERT INTO a2_external_dictionary_cards(word_id,entry,source_sentence,saved) VALUES(?,?,?,?) ON CONFLICT(word_id) DO UPDATE SET source_sentence=CASE WHEN excluded.source_sentence<>\'\' THEN excluded.source_sentence ELSE a2_external_dictionary_cards.source_sentence END').run(id,JSON.stringify(entry),sentence,now);res.json({saved:true});});
  router.post('/runs',(req,res)=>{let {kind,ref,mode='practice',minutes=15,focus='all',selection}=req.body||{};if(!['lesson','review','intensive','exam','errors','activity'].includes(kind)||!['practice','exam'].includes(mode)||!['all',...skills].includes(focus))return res.status(400).json({error:'invalid_run'});let ids=[],duration=minutes;
  if(kind==='activity'){
   if(mode!=='practice')return res.status(400).json({error:'invalid_run'});

@@ -1,105 +1,29 @@
 {
-  "generatedAt": "2026-11-09T06:41:39.044Z",
+  "generatedAt": "2026-11-09T21:46:17.641Z",
   "method": "Exact curated lemma/form lookup only. External Wiktionary fallback is not counted as verified coverage because each term has not been queried.",
-  "dictionaryEntries": 276,
+  "dictionaryEntries": 301,
   "uniqueWords": 1812,
   "occurrences": 36087,
-  "coveredUnique": 438,
+  "coveredUnique": 473,
   "coverage": {
     "uniqueWords": 1812,
     "occurrences": 36087,
-    "coveredUnique": 438,
-    "coveredOccurrences": 26406,
-    "coverageUniquePercent": 24.17,
-    "coverageOccurrencePercent": 73.17,
+    "coveredUnique": 473,
+    "coveredOccurrences": 27374,
+    "coverageUniquePercent": 26.1,
+    "coverageOccurrencePercent": 75.86,
     "missing": [
       {
         "word": "kontext",
         "occurrences": 161
       },
       {
-        "word": "liegt",
-        "occurrences": 39
-      },
-      {
-        "word": "personen",
-        "occurrences": 39
-      },
-      {
-        "word": "zehn",
-        "occurrences": 39
-      },
-      {
-        "word": "dann",
-        "occurrences": 38
-      },
-      {
         "word": "lange",
         "occurrences": 37
       },
       {
-        "word": "montag",
-        "occurrences": 37
-      },
-      {
-        "word": "nächste",
-        "occurrences": 37
-      },
-      {
-        "word": "sonntag",
-        "occurrences": 37
-      },
-      {
-        "word": "erklären",
-        "occurrences": 35
-      },
-      {
-        "word": "statt",
-        "occurrences": 35
-      },
-      {
-        "word": "werkstatt",
-        "occurrences": 35
-      },
-      {
-        "word": "donnerstag",
-        "occurrences": 34
-      },
-      {
-        "word": "mitarbeiter",
-        "occurrences": 34
-      },
-      {
         "word": "anderen",
         "occurrences": 33
-      },
-      {
-        "word": "bescheid",
-        "occurrences": 33
-      },
-      {
-        "word": "praxis",
-        "occurrences": 33
-      },
-      {
-        "word": "schwester",
-        "occurrences": 33
-      },
-      {
-        "word": "alte",
-        "occurrences": 32
-      },
-      {
-        "word": "danach",
-        "occurrences": 32
-      },
-      {
-        "word": "halb",
-        "occurrences": 32
-      },
-      {
-        "word": "gruppe",
-        "occurrences": 31
       },
       {
         "word": "sieben",
@@ -118,28 +42,8 @@
         "occurrences": 30
       },
       {
-        "word": "hier",
-        "occurrences": 30
-      },
-      {
-        "word": "menschen",
-        "occurrences": 30
-      },
-      {
-        "word": "neun",
-        "occurrences": 30
-      },
-      {
-        "word": "reisepass",
-        "occurrences": 30
-      },
-      {
         "word": "tür",
         "occurrences": 30
-      },
-      {
-        "word": "besucht",
-        "occurrences": 29
       },
       {
         "word": "frau",
@@ -147,10 +51,6 @@
       },
       {
         "word": "park",
-        "occurrences": 29
-      },
-      {
-        "word": "person",
         "occurrences": 29
       },
       {
@@ -166,10 +66,6 @@
         "occurrences": 28
       },
       {
-        "word": "nächsten",
-        "occurrences": 28
-      },
-      {
         "word": "sag",
         "occurrences": 28
       },
@@ -179,10 +75,6 @@
       },
       {
         "word": "benutzen",
-        "occurrences": 27
-      },
-      {
-        "word": "reparatur",
         "occurrences": 27
       },
       {
@@ -295,10 +187,6 @@
       },
       {
         "word": "enthalten",
-        "occurrences": 23
-      },
-      {
-        "word": "erklärt",
         "occurrences": 23
       },
       {
@@ -571,10 +459,6 @@
       },
       {
         "word": "juli",
-        "occurrences": 17
-      },
-      {
-        "word": "liegen",
         "occurrences": 17
       },
       {
@@ -1291,10 +1175,6 @@
       },
       {
         "word": "also",
-        "occurrences": 9
-      },
-      {
-        "word": "alter",
         "occurrences": 9
       },
       {
@@ -2022,10 +1902,6 @@
         "occurrences": 7
       },
       {
-        "word": "alten",
-        "occurrences": 7
-      },
-      {
         "word": "alternative",
         "occurrences": 7
       },
@@ -2087,10 +1963,6 @@
       },
       {
         "word": "erholen",
-        "occurrences": 7
-      },
-      {
-        "word": "erkläre",
         "occurrences": 7
       },
       {
@@ -3122,10 +2994,6 @@
         "occurrences": 3
       },
       {
-        "word": "reparaturen",
-        "occurrences": 3
-      },
-      {
         "word": "rückgabe",
         "occurrences": 3
       },
@@ -3638,10 +3506,6 @@
         "occurrences": 2
       },
       {
-        "word": "gruppen",
-        "occurrences": 2
-      },
-      {
         "word": "gruppenermäßigung",
         "occurrences": 2
       },
@@ -3903,10 +3767,6 @@
       },
       {
         "word": "nachfragen",
-        "occurrences": 2
-      },
-      {
-        "word": "nächstes",
         "occurrences": 2
       },
       {
@@ -5515,10 +5375,10 @@
     "Currículo · m01": {
       "uniqueWords": 267,
       "occurrences": 2971,
-      "coveredUnique": 170,
-      "coveredOccurrences": 2492,
-      "coverageUniquePercent": 63.67,
-      "coverageOccurrencePercent": 83.88,
+      "coveredUnique": 183,
+      "coveredOccurrences": 2570,
+      "coverageUniquePercent": 68.54,
+      "coverageOccurrencePercent": 86.5,
       "missing": [
         {
           "word": "kontext",
@@ -5537,19 +5397,7 @@
           "occurrences": 15
         },
         {
-          "word": "danach",
-          "occurrences": 9
-        },
-        {
           "word": "denn",
-          "occurrences": 9
-        },
-        {
-          "word": "nächste",
-          "occurrences": 9
-        },
-        {
-          "word": "neun",
           "occurrences": 9
         },
         {
@@ -5578,10 +5426,6 @@
         },
         {
           "word": "drucker",
-          "occurrences": 8
-        },
-        {
-          "word": "erklären",
           "occurrences": 8
         },
         {
@@ -5621,18 +5465,6 @@
           "occurrences": 8
         },
         {
-          "word": "menschen",
-          "occurrences": 8
-        },
-        {
-          "word": "montag",
-          "occurrences": 8
-        },
-        {
-          "word": "praxis",
-          "occurrences": 8
-        },
-        {
           "word": "rufen",
           "occurrences": 8
         },
@@ -5646,10 +5478,6 @@
         },
         {
           "word": "sprachkurs",
-          "occurrences": 8
-        },
-        {
-          "word": "statt",
           "occurrences": 8
         },
         {
@@ -5721,10 +5549,6 @@
           "occurrences": 7
         },
         {
-          "word": "werkstatt",
-          "occurrences": 7
-        },
-        {
           "word": "wieder",
           "occurrences": 7
         },
@@ -5746,10 +5570,6 @@
         },
         {
           "word": "befindet",
-          "occurrences": 1
-        },
-        {
-          "word": "besucht",
           "occurrences": 1
         },
         {
@@ -5778,10 +5598,6 @@
         },
         {
           "word": "gewohnheiten",
-          "occurrences": 1
-        },
-        {
-          "word": "gruppe",
           "occurrences": 1
         },
         {
@@ -5857,14 +5673,6 @@
           "occurrences": 1
         },
         {
-          "word": "schwester",
-          "occurrences": 1
-        },
-        {
-          "word": "sonntag",
-          "occurrences": 1
-        },
-        {
           "word": "stelle",
           "occurrences": 1
         },
@@ -5913,10 +5721,10 @@
     "Currículo · m02": {
       "uniqueWords": 295,
       "occurrences": 2760,
-      "coveredUnique": 157,
-      "coveredOccurrences": 2127,
-      "coverageUniquePercent": 53.22,
-      "coverageOccurrencePercent": 77.07,
+      "coveredUnique": 165,
+      "coveredOccurrences": 2185,
+      "coverageUniquePercent": 55.93,
+      "coverageOccurrencePercent": 79.17,
       "missing": [
         {
           "word": "kontext",
@@ -5925,14 +5733,6 @@
         {
           "word": "reise",
           "occurrences": 10
-        },
-        {
-          "word": "besucht",
-          "occurrences": 9
-        },
-        {
-          "word": "danach",
-          "occurrences": 9
         },
         {
           "word": "eingeschlafen",
@@ -6043,22 +5843,6 @@
           "occurrences": 8
         },
         {
-          "word": "personen",
-          "occurrences": 8
-        },
-        {
-          "word": "praxis",
-          "occurrences": 8
-        },
-        {
-          "word": "reparatur",
-          "occurrences": 8
-        },
-        {
-          "word": "schwester",
-          "occurrences": 8
-        },
-        {
           "word": "straßenbahn",
           "occurrences": 8
         },
@@ -6100,10 +5884,6 @@
         },
         {
           "word": "datei",
-          "occurrences": 7
-        },
-        {
-          "word": "erklärt",
           "occurrences": 7
         },
         {
@@ -6299,10 +6079,6 @@
           "occurrences": 1
         },
         {
-          "word": "erklären",
-          "occurrences": 1
-        },
-        {
           "word": "erlebnisse",
           "occurrences": 1
         },
@@ -6475,18 +6251,14 @@
     "Currículo · m03": {
       "uniqueWords": 275,
       "occurrences": 2825,
-      "coveredUnique": 152,
-      "coveredOccurrences": 2097,
-      "coverageUniquePercent": 55.27,
-      "coverageOccurrencePercent": 74.23,
+      "coveredUnique": 159,
+      "coveredOccurrences": 2153,
+      "coverageUniquePercent": 57.82,
+      "coverageOccurrencePercent": 76.21,
       "missing": [
         {
           "word": "gefällt",
           "occurrences": 17
-        },
-        {
-          "word": "erklärt",
-          "occurrences": 16
         },
         {
           "word": "helfe",
@@ -6518,10 +6290,6 @@
         },
         {
           "word": "ersatzschlüssel",
-          "occurrences": 9
-        },
-        {
-          "word": "mitarbeiter",
           "occurrences": 9
         },
         {
@@ -6562,10 +6330,6 @@
         },
         {
           "word": "drucker",
-          "occurrences": 8
-        },
-        {
-          "word": "erklären",
           "occurrences": 8
         },
         {
@@ -6641,10 +6405,6 @@
           "occurrences": 8
         },
         {
-          "word": "reisepass",
-          "occurrences": 8
-        },
-        {
           "word": "richtigen",
           "occurrences": 8
         },
@@ -6713,10 +6473,6 @@
           "occurrences": 7
         },
         {
-          "word": "besucht",
-          "occurrences": 7
-        },
-        {
           "word": "dort",
           "occurrences": 7
         },
@@ -6754,10 +6510,6 @@
         },
         {
           "word": "schnell",
-          "occurrences": 7
-        },
-        {
-          "word": "schwester",
           "occurrences": 7
         },
         {
@@ -6937,10 +6689,6 @@
           "occurrences": 1
         },
         {
-          "word": "nächste",
-          "occurrences": 1
-        },
-        {
           "word": "problem",
           "occurrences": 1
         },
@@ -6977,15 +6725,11 @@
     "Currículo · m04": {
       "uniqueWords": 245,
       "occurrences": 2701,
-      "coveredUnique": 139,
-      "coveredOccurrences": 2002,
-      "coverageUniquePercent": 56.73,
-      "coverageOccurrencePercent": 74.12,
+      "coveredUnique": 152,
+      "coveredOccurrences": 2082,
+      "coverageUniquePercent": 62.04,
+      "coverageOccurrencePercent": 77.08,
       "missing": [
-        {
-          "word": "liegt",
-          "occurrences": 19
-        },
         {
           "word": "hängt",
           "occurrences": 17
@@ -7047,10 +6791,6 @@
           "occurrences": 10
         },
         {
-          "word": "donnerstag",
-          "occurrences": 9
-        },
-        {
           "word": "fenster",
           "occurrences": 9
         },
@@ -7068,10 +6808,6 @@
         },
         {
           "word": "legen",
-          "occurrences": 9
-        },
-        {
-          "word": "liegen",
           "occurrences": 9
         },
         {
@@ -7131,15 +6867,7 @@
           "occurrences": 8
         },
         {
-          "word": "neun",
-          "occurrences": 8
-        },
-        {
           "word": "paket",
-          "occurrences": 8
-        },
-        {
-          "word": "praxis",
           "occurrences": 8
         },
         {
@@ -7156,10 +6884,6 @@
         },
         {
           "word": "spiegel",
-          "occurrences": 8
-        },
-        {
-          "word": "statt",
           "occurrences": 8
         },
         {
@@ -7192,14 +6916,6 @@
         },
         {
           "word": "gerade",
-          "occurrences": 7
-        },
-        {
-          "word": "halb",
-          "occurrences": 7
-        },
-        {
-          "word": "hier",
           "occurrences": 7
         },
         {
@@ -7279,10 +6995,6 @@
           "occurrences": 2
         },
         {
-          "word": "alten",
-          "occurrences": 1
-        },
-        {
           "word": "arzt",
           "occurrences": 1
         },
@@ -7304,10 +7016,6 @@
         },
         {
           "word": "buch",
-          "occurrences": 1
-        },
-        {
-          "word": "erklären",
           "occurrences": 1
         },
         {
@@ -7355,23 +7063,11 @@
           "occurrences": 1
         },
         {
-          "word": "nächsten",
-          "occurrences": 1
-        },
-        {
           "word": "parken",
           "occurrences": 1
         },
         {
           "word": "schule",
-          "occurrences": 1
-        },
-        {
-          "word": "schwester",
-          "occurrences": 1
-        },
-        {
-          "word": "sonntag",
           "occurrences": 1
         },
         {
@@ -7411,10 +7107,10 @@
     "Currículo · m05": {
       "uniqueWords": 294,
       "occurrences": 2718,
-      "coveredUnique": 184,
-      "coveredOccurrences": 2091,
-      "coverageUniquePercent": 62.59,
-      "coverageOccurrencePercent": 76.93,
+      "coveredUnique": 192,
+      "coveredOccurrences": 2147,
+      "coverageUniquePercent": 65.31,
+      "coverageOccurrencePercent": 78.99,
       "missing": [
         {
           "word": "kontext",
@@ -7473,14 +7169,6 @@
           "occurrences": 8
         },
         {
-          "word": "bescheid",
-          "occurrences": 8
-        },
-        {
-          "word": "dann",
-          "occurrences": 8
-        },
-        {
           "word": "dezember",
           "occurrences": 8
         },
@@ -7498,10 +7186,6 @@
         },
         {
           "word": "herbst",
-          "occurrences": 8
-        },
-        {
-          "word": "hier",
           "occurrences": 8
         },
         {
@@ -7537,19 +7221,11 @@
           "occurrences": 8
         },
         {
-          "word": "nächste",
-          "occurrences": 8
-        },
-        {
           "word": "pause",
           "occurrences": 8
         },
         {
           "word": "platz",
-          "occurrences": 8
-        },
-        {
-          "word": "reisepass",
           "occurrences": 8
         },
         {
@@ -7594,10 +7270,6 @@
         },
         {
           "word": "wasser",
-          "occurrences": 8
-        },
-        {
-          "word": "werkstatt",
           "occurrences": 8
         },
         {
@@ -7662,10 +7334,6 @@
         },
         {
           "word": "meer",
-          "occurrences": 7
-        },
-        {
-          "word": "montag",
           "occurrences": 7
         },
         {
@@ -7758,10 +7426,6 @@
         },
         {
           "word": "einmal",
-          "occurrences": 1
-        },
-        {
-          "word": "erklären",
           "occurrences": 1
         },
         {
@@ -7861,10 +7525,10 @@
     "Currículo · m06": {
       "uniqueWords": 284,
       "occurrences": 2872,
-      "coveredUnique": 144,
-      "coveredOccurrences": 2085,
-      "coverageUniquePercent": 50.7,
-      "coverageOccurrencePercent": 72.6,
+      "coveredUnique": 154,
+      "coveredOccurrences": 2171,
+      "coverageUniquePercent": 54.23,
+      "coverageOccurrencePercent": 75.59,
       "missing": [
         {
           "word": "angebot",
@@ -7877,14 +7541,6 @@
         {
           "word": "kontext",
           "occurrences": 17
-        },
-        {
-          "word": "alte",
-          "occurrences": 16
-        },
-        {
-          "word": "mitarbeiter",
-          "occurrences": 15
         },
         {
           "word": "arbeitsweg",
@@ -7943,19 +7599,11 @@
           "occurrences": 8
         },
         {
-          "word": "alter",
-          "occurrences": 8
-        },
-        {
           "word": "bäckerei",
           "occurrences": 8
         },
         {
           "word": "balkon",
-          "occurrences": 8
-        },
-        {
-          "word": "besucht",
           "occurrences": 8
         },
         {
@@ -7991,10 +7639,6 @@
           "occurrences": 8
         },
         {
-          "word": "hier",
-          "occurrences": 8
-        },
-        {
           "word": "hilfsbereit",
           "occurrences": 8
         },
@@ -8016,10 +7660,6 @@
         },
         {
           "word": "liebsten",
-          "occurrences": 8
-        },
-        {
-          "word": "montag",
           "occurrences": 8
         },
         {
@@ -8048,10 +7688,6 @@
         },
         {
           "word": "schnellzug",
-          "occurrences": 8
-        },
-        {
-          "word": "schwester",
           "occurrences": 8
         },
         {
@@ -8115,19 +7751,11 @@
           "occurrences": 7
         },
         {
-          "word": "liegt",
-          "occurrences": 7
-        },
-        {
           "word": "meistens",
           "occurrences": 7
         },
         {
           "word": "park",
-          "occurrences": 7
-        },
-        {
-          "word": "reisepass",
           "occurrences": 7
         },
         {
@@ -8363,10 +7991,6 @@
           "occurrences": 1
         },
         {
-          "word": "menschen",
-          "occurrences": 1
-        },
-        {
           "word": "mutter",
           "occurrences": 1
         },
@@ -8431,10 +8055,10 @@
     "Currículo · m07": {
       "uniqueWords": 271,
       "occurrences": 3003,
-      "coveredUnique": 167,
-      "coveredOccurrences": 2403,
-      "coverageUniquePercent": 61.62,
-      "coverageOccurrencePercent": 80.02,
+      "coveredUnique": 175,
+      "coveredOccurrences": 2468,
+      "coverageUniquePercent": 64.58,
+      "coverageOccurrencePercent": 82.18,
       "missing": [
         {
           "word": "anmelden",
@@ -8443,10 +8067,6 @@
         {
           "word": "kontext",
           "occurrences": 16
-        },
-        {
-          "word": "bescheid",
-          "occurrences": 15
         },
         {
           "word": "abendkurs",
@@ -8461,14 +8081,6 @@
           "occurrences": 9
         },
         {
-          "word": "danach",
-          "occurrences": 9
-        },
-        {
-          "word": "donnerstag",
-          "occurrences": 9
-        },
-        {
           "word": "e-mail",
           "occurrences": 9
         },
@@ -8478,10 +8090,6 @@
         },
         {
           "word": "informationen",
-          "occurrences": 9
-        },
-        {
-          "word": "nächste",
           "occurrences": 9
         },
         {
@@ -8597,10 +8205,6 @@
           "occurrences": 8
         },
         {
-          "word": "personen",
-          "occurrences": 8
-        },
-        {
           "word": "präsentation",
           "occurrences": 8
         },
@@ -8642,10 +8246,6 @@
         },
         {
           "word": "antwort",
-          "occurrences": 7
-        },
-        {
-          "word": "erkläre",
           "occurrences": 7
         },
         {
@@ -8694,10 +8294,6 @@
         },
         {
           "word": "weitere",
-          "occurrences": 7
-        },
-        {
-          "word": "zehn",
           "occurrences": 7
         },
         {
@@ -8817,10 +8413,6 @@
           "occurrences": 1
         },
         {
-          "word": "statt",
-          "occurrences": 1
-        },
-        {
           "word": "team",
           "occurrences": 1
         },
@@ -8857,10 +8449,10 @@
     "Currículo · m08": {
       "uniqueWords": 290,
       "occurrences": 2946,
-      "coveredUnique": 150,
-      "coveredOccurrences": 2166,
-      "coverageUniquePercent": 51.72,
-      "coverageOccurrencePercent": 73.52,
+      "coveredUnique": 156,
+      "coveredOccurrences": 2202,
+      "coverageUniquePercent": 53.79,
+      "coverageOccurrencePercent": 74.75,
       "missing": [
         {
           "word": "packung",
@@ -9111,15 +8703,7 @@
           "occurrences": 7
         },
         {
-          "word": "hier",
-          "occurrences": 7
-        },
-        {
           "word": "kassenzettel",
-          "occurrences": 7
-        },
-        {
-          "word": "liegt",
           "occurrences": 7
         },
         {
@@ -9128,10 +8712,6 @@
         },
         {
           "word": "möglich",
-          "occurrences": 7
-        },
-        {
-          "word": "nächsten",
           "occurrences": 7
         },
         {
@@ -9148,14 +8728,6 @@
         },
         {
           "word": "preis",
-          "occurrences": 7
-        },
-        {
-          "word": "reisepass",
-          "occurrences": 7
-        },
-        {
-          "word": "reparatur",
           "occurrences": 7
         },
         {
@@ -9295,10 +8867,6 @@
           "occurrences": 1
         },
         {
-          "word": "donnerstag",
-          "occurrences": 1
-        },
-        {
           "word": "einkaufen",
           "occurrences": 1
         },
@@ -9427,38 +8995,18 @@
     "Currículo · m09": {
       "uniqueWords": 589,
       "occurrences": 3743,
-      "coveredUnique": 240,
-      "coveredOccurrences": 2703,
-      "coverageUniquePercent": 40.75,
-      "coverageOccurrencePercent": 72.21,
+      "coveredUnique": 265,
+      "coveredOccurrences": 2885,
+      "coverageUniquePercent": 44.99,
+      "coverageOccurrencePercent": 77.08,
       "missing": [
-        {
-          "word": "zehn",
-          "occurrences": 17
-        },
         {
           "word": "kontext",
           "occurrences": 16
         },
         {
-          "word": "dann",
-          "occurrences": 15
-        },
-        {
           "word": "frühstück",
           "occurrences": 15
-        },
-        {
-          "word": "halb",
-          "occurrences": 15
-        },
-        {
-          "word": "alte",
-          "occurrences": 14
-        },
-        {
-          "word": "gruppe",
-          "occurrences": 14
         },
         {
           "word": "bea",
@@ -9473,10 +9021,6 @@
           "occurrences": 11
         },
         {
-          "word": "sonntag",
-          "occurrences": 11
-        },
-        {
           "word": "zwölf",
           "occurrences": 11
         },
@@ -9486,14 +9030,6 @@
         },
         {
           "word": "freiwillige",
-          "occurrences": 10
-        },
-        {
-          "word": "menschen",
-          "occurrences": 10
-        },
-        {
-          "word": "mitarbeiter",
           "occurrences": 10
         },
         {
@@ -9557,10 +9093,6 @@
           "occurrences": 8
         },
         {
-          "word": "erklären",
-          "occurrences": 8
-        },
-        {
           "word": "etwa",
           "occurrences": 8
         },
@@ -9597,23 +9129,11 @@
           "occurrences": 8
         },
         {
-          "word": "nächste",
-          "occurrences": 8
-        },
-        {
-          "word": "nächsten",
-          "occurrences": 8
-        },
-        {
           "word": "öffnet",
           "occurrences": 8
         },
         {
           "word": "preis",
-          "occurrences": 8
-        },
-        {
-          "word": "reparatur",
           "occurrences": 8
         },
         {
@@ -9641,10 +9161,6 @@
           "occurrences": 8
         },
         {
-          "word": "bescheid",
-          "occurrences": 7
-        },
-        {
           "word": "bestellten",
           "occurrences": 7
         },
@@ -9654,10 +9170,6 @@
         },
         {
           "word": "bücher",
-          "occurrences": 7
-        },
-        {
-          "word": "donnerstag",
           "occurrences": 7
         },
         {
@@ -9705,10 +9217,6 @@
           "occurrences": 7
         },
         {
-          "word": "werkstatt",
-          "occurrences": 7
-        },
-        {
           "word": "antworten",
           "occurrences": 6
         },
@@ -9729,10 +9237,6 @@
           "occurrences": 5
         },
         {
-          "word": "statt",
-          "occurrences": 5
-        },
-        {
           "word": "buslinie",
           "occurrences": 4
         },
@@ -9750,10 +9254,6 @@
         },
         {
           "word": "machen",
-          "occurrences": 4
-        },
-        {
-          "word": "personen",
           "occurrences": 4
         },
         {
@@ -9809,19 +9309,11 @@
           "occurrences": 3
         },
         {
-          "word": "person",
-          "occurrences": 3
-        },
-        {
           "word": "platz",
           "occurrences": 3
         },
         {
           "word": "reparaturkurse",
-          "occurrences": 3
-        },
-        {
-          "word": "schwester",
           "occurrences": 3
         },
         {
@@ -9893,10 +9385,6 @@
           "occurrences": 2
         },
         {
-          "word": "besucht",
-          "occurrences": 2
-        },
-        {
           "word": "bevor",
           "occurrences": 2
         },
@@ -9958,10 +9446,6 @@
         },
         {
           "word": "langen",
-          "occurrences": 2
-        },
-        {
-          "word": "liegt",
           "occurrences": 2
         },
         {
@@ -10066,10 +9550,6 @@
         },
         {
           "word": "allen",
-          "occurrences": 1
-        },
-        {
-          "word": "alter",
           "occurrences": 1
         },
         {
@@ -10501,10 +9981,6 @@
           "occurrences": 1
         },
         {
-          "word": "montag",
-          "occurrences": 1
-        },
-        {
           "word": "morgenrot",
           "occurrences": 1
         },
@@ -10514,14 +9990,6 @@
         },
         {
           "word": "nachbarschaft",
-          "occurrences": 1
-        },
-        {
-          "word": "nächstes",
-          "occurrences": 1
-        },
-        {
-          "word": "neun",
           "occurrences": 1
         },
         {
@@ -10833,10 +10301,10 @@
     "Currículo · m10": {
       "uniqueWords": 325,
       "occurrences": 3261,
-      "coveredUnique": 182,
-      "coveredOccurrences": 2478,
-      "coverageUniquePercent": 56,
-      "coverageOccurrencePercent": 75.99,
+      "coveredUnique": 192,
+      "coveredOccurrences": 2538,
+      "coverageUniquePercent": 59.08,
+      "coverageOccurrencePercent": 77.83,
       "missing": [
         {
           "word": "kontext",
@@ -10867,10 +10335,6 @@
           "occurrences": 9
         },
         {
-          "word": "halb",
-          "occurrences": 9
-        },
-        {
           "word": "hält",
           "occurrences": 9
         },
@@ -10884,10 +10348,6 @@
         },
         {
           "word": "oft",
-          "occurrences": 9
-        },
-        {
-          "word": "statt",
           "occurrences": 9
         },
         {
@@ -10916,10 +10376,6 @@
         },
         {
           "word": "da",
-          "occurrences": 8
-        },
-        {
-          "word": "dann",
           "occurrences": 8
         },
         {
@@ -10979,10 +10435,6 @@
           "occurrences": 8
         },
         {
-          "word": "liegen",
-          "occurrences": 8
-        },
-        {
           "word": "link",
           "occurrences": 8
         },
@@ -10992,14 +10444,6 @@
         },
         {
           "word": "müde",
-          "occurrences": 8
-        },
-        {
-          "word": "nächsten",
-          "occurrences": 8
-        },
-        {
-          "word": "neun",
           "occurrences": 8
         },
         {
@@ -11152,10 +10596,6 @@
         },
         {
           "word": "plätze",
-          "occurrences": 7
-        },
-        {
-          "word": "praxis",
           "occurrences": 7
         },
         {
@@ -11331,15 +10771,7 @@
           "occurrences": 1
         },
         {
-          "word": "montag",
-          "occurrences": 1
-        },
-        {
           "word": "museum",
-          "occurrences": 1
-        },
-        {
-          "word": "person",
           "occurrences": 1
         },
         {
@@ -11399,10 +10831,6 @@
           "occurrences": 1
         },
         {
-          "word": "zehn",
-          "occurrences": 1
-        },
-        {
           "word": "zurzeit",
           "occurrences": 1
         },
@@ -11415,10 +10843,10 @@
     "Lesen": {
       "uniqueWords": 839,
       "occurrences": 4216,
-      "coveredUnique": 250,
-      "coveredOccurrences": 2420,
-      "coverageUniquePercent": 29.8,
-      "coverageOccurrencePercent": 57.4,
+      "coveredUnique": 274,
+      "coveredOccurrences": 2558,
+      "coverageUniquePercent": 32.66,
+      "coverageOccurrencePercent": 60.67,
       "missing": [
         {
           "word": "anderer",
@@ -11430,14 +10858,6 @@
         },
         {
           "word": "bea",
-          "occurrences": 16
-        },
-        {
-          "word": "gruppe",
-          "occurrences": 16
-        },
-        {
-          "word": "sonntag",
           "occurrences": 16
         },
         {
@@ -11454,10 +10874,6 @@
         },
         {
           "word": "sucht",
-          "occurrences": 13
-        },
-        {
-          "word": "werkstatt",
           "occurrences": 13
         },
         {
@@ -11478,10 +10894,6 @@
         },
         {
           "word": "mittwoch",
-          "occurrences": 12
-        },
-        {
-          "word": "person",
           "occurrences": 12
         },
         {
@@ -11537,19 +10949,11 @@
           "occurrences": 8
         },
         {
-          "word": "menschen",
-          "occurrences": 8
-        },
-        {
           "word": "nora",
           "occurrences": 8
         },
         {
           "word": "öffnet",
-          "occurrences": 8
-        },
-        {
-          "word": "personen",
           "occurrences": 8
         },
         {
@@ -11562,10 +10966,6 @@
         },
         {
           "word": "andere",
-          "occurrences": 7
-        },
-        {
-          "word": "dann",
           "occurrences": 7
         },
         {
@@ -11603,14 +11003,6 @@
         {
           "word": "während",
           "occurrences": 7
-        },
-        {
-          "word": "zehn",
-          "occurrences": 7
-        },
-        {
-          "word": "alten",
-          "occurrences": 6
         },
         {
           "word": "antwort",
@@ -11674,10 +11066,6 @@
         },
         {
           "word": "machen",
-          "occurrences": 6
-        },
-        {
-          "word": "montag",
           "occurrences": 6
         },
         {
@@ -11901,15 +11289,7 @@
           "occurrences": 4
         },
         {
-          "word": "nächsten",
-          "occurrences": 4
-        },
-        {
           "word": "nähmaschinen",
-          "occurrences": 4
-        },
-        {
-          "word": "neun",
           "occurrences": 4
         },
         {
@@ -11937,19 +11317,11 @@
           "occurrences": 4
         },
         {
-          "word": "reparatur",
-          "occurrences": 4
-        },
-        {
           "word": "rezeption",
           "occurrences": 4
         },
         {
           "word": "sprachkurse",
-          "occurrences": 4
-        },
-        {
-          "word": "statt",
           "occurrences": 4
         },
         {
@@ -12189,10 +11561,6 @@
           "occurrences": 3
         },
         {
-          "word": "liegt",
-          "occurrences": 3
-        },
-        {
           "word": "lockere",
           "occurrences": 3
         },
@@ -12241,10 +11609,6 @@
           "occurrences": 3
         },
         {
-          "word": "reparaturen",
-          "occurrences": 3
-        },
-        {
           "word": "reparaturkurse",
           "occurrences": 3
         },
@@ -12254,10 +11618,6 @@
         },
         {
           "word": "schuhe",
-          "occurrences": 3
-        },
-        {
-          "word": "schwester",
           "occurrences": 3
         },
         {
@@ -12357,10 +11717,6 @@
           "occurrences": 2
         },
         {
-          "word": "alte",
-          "occurrences": 2
-        },
-        {
           "word": "angebote",
           "occurrences": 2
         },
@@ -12402,10 +11758,6 @@
         },
         {
           "word": "bespricht",
-          "occurrences": 2
-        },
-        {
-          "word": "besucht",
           "occurrences": 2
         },
         {
@@ -12473,10 +11825,6 @@
           "occurrences": 2
         },
         {
-          "word": "danach",
-          "occurrences": 2
-        },
-        {
           "word": "daten",
           "occurrences": 2
         },
@@ -12506,10 +11854,6 @@
         },
         {
           "word": "dienstags",
-          "occurrences": 2
-        },
-        {
-          "word": "donnerstag",
           "occurrences": 2
         },
         {
@@ -12670,10 +12014,6 @@
         },
         {
           "word": "grünfläche",
-          "occurrences": 2
-        },
-        {
-          "word": "gruppen",
           "occurrences": 2
         },
         {
@@ -12913,10 +12253,6 @@
           "occurrences": 2
         },
         {
-          "word": "nächste",
-          "occurrences": 2
-        },
-        {
           "word": "nord",
           "occurrences": 2
         },
@@ -12946,10 +12282,6 @@
         },
         {
           "word": "postgebäude",
-          "occurrences": 2
-        },
-        {
-          "word": "praxis",
           "occurrences": 2
         },
         {
@@ -13781,10 +13113,10 @@
     "Hören": {
       "uniqueWords": 209,
       "occurrences": 624,
-      "coveredUnique": 97,
-      "coveredOccurrences": 338,
-      "coverageUniquePercent": 46.41,
-      "coverageOccurrencePercent": 54.17,
+      "coveredUnique": 107,
+      "coveredOccurrences": 374,
+      "coverageUniquePercent": 51.2,
+      "coverageOccurrencePercent": 59.94,
       "missing": [
         {
           "word": "nein",
@@ -13803,24 +13135,12 @@
           "occurrences": 9
         },
         {
-          "word": "personen",
-          "occurrences": 9
-        },
-        {
           "word": "fünf",
           "occurrences": 7
         },
         {
           "word": "wählen",
           "occurrences": 7
-        },
-        {
-          "word": "donnerstag",
-          "occurrences": 6
-        },
-        {
-          "word": "montag",
-          "occurrences": 6
         },
         {
           "word": "texte",
@@ -13839,10 +13159,6 @@
           "occurrences": 5
         },
         {
-          "word": "person",
-          "occurrences": 5
-        },
-        {
           "word": "dienstag",
           "occurrences": 4
         },
@@ -13852,10 +13168,6 @@
         },
         {
           "word": "jeden",
-          "occurrences": 4
-        },
-        {
-          "word": "zehn",
           "occurrences": 4
         },
         {
@@ -13956,10 +13268,6 @@
         },
         {
           "word": "sonnig",
-          "occurrences": 2
-        },
-        {
-          "word": "sonntag",
           "occurrences": 2
         },
         {
@@ -14095,10 +13403,6 @@
           "occurrences": 1
         },
         {
-          "word": "liegt",
-          "occurrences": 1
-        },
-        {
           "word": "mag",
           "occurrences": 1
         },
@@ -14115,19 +13419,11 @@
           "occurrences": 1
         },
         {
-          "word": "menschen",
-          "occurrences": 1
-        },
-        {
           "word": "mitteilungen",
           "occurrences": 1
         },
         {
           "word": "nachbarin",
-          "occurrences": 1
-        },
-        {
-          "word": "nächstes",
           "occurrences": 1
         },
         {
@@ -14164,10 +13460,6 @@
         },
         {
           "word": "schließt",
-          "occurrences": 1
-        },
-        {
-          "word": "schwester",
           "occurrences": 1
         },
         {
@@ -14239,10 +13531,10 @@
     "Schreiben": {
       "uniqueWords": 194,
       "occurrences": 762,
-      "coveredUnique": 109,
-      "coveredOccurrences": 535,
-      "coverageUniquePercent": 56.19,
-      "coverageOccurrencePercent": 70.21,
+      "coveredUnique": 115,
+      "coveredOccurrences": 550,
+      "coverageUniquePercent": 59.28,
+      "coverageOccurrencePercent": 72.18,
       "missing": [
         {
           "word": "e-mail",
@@ -14259,10 +13551,6 @@
         {
           "word": "frau",
           "occurrences": 9
-        },
-        {
-          "word": "erklären",
-          "occurrences": 8
         },
         {
           "word": "entschuldigen",
@@ -14323,10 +13611,6 @@
         {
           "word": "wagner",
           "occurrences": 4
-        },
-        {
-          "word": "bescheid",
-          "occurrences": 3
         },
         {
           "word": "ersatztermin",
@@ -14493,10 +13777,6 @@
           "occurrences": 1
         },
         {
-          "word": "halb",
-          "occurrences": 1
-        },
-        {
           "word": "herrn",
           "occurrences": 1
         },
@@ -14541,15 +13821,7 @@
           "occurrences": 1
         },
         {
-          "word": "person",
-          "occurrences": 1
-        },
-        {
           "word": "roth",
-          "occurrences": 1
-        },
-        {
-          "word": "schwester",
           "occurrences": 1
         },
         {
@@ -14579,20 +13851,16 @@
         {
           "word": "welche",
           "occurrences": 1
-        },
-        {
-          "word": "zehn",
-          "occurrences": 1
         }
       ]
     },
     "Sprechen": {
       "uniqueWords": 203,
       "occurrences": 685,
-      "coveredUnique": 100,
-      "coveredOccurrences": 469,
-      "coverageUniquePercent": 49.26,
-      "coverageOccurrencePercent": 68.47,
+      "coveredUnique": 106,
+      "coveredOccurrences": 491,
+      "coverageUniquePercent": 52.22,
+      "coverageOccurrencePercent": 71.68,
       "missing": [
         {
           "word": "organisieren",
@@ -14603,15 +13871,7 @@
           "occurrences": 8
         },
         {
-          "word": "person",
-          "occurrences": 7
-        },
-        {
           "word": "partner",
-          "occurrences": 6
-        },
-        {
-          "word": "sonntag",
           "occurrences": 6
         },
         {
@@ -14640,10 +13900,6 @@
         },
         {
           "word": "antworten",
-          "occurrences": 3
-        },
-        {
-          "word": "danach",
           "occurrences": 3
         },
         {
@@ -14775,19 +14031,11 @@
           "occurrences": 2
         },
         {
-          "word": "menschen",
-          "occurrences": 2
-        },
-        {
           "word": "partners",
           "occurrences": 2
         },
         {
           "word": "pausen",
-          "occurrences": 2
-        },
-        {
-          "word": "personen",
           "occurrences": 2
         },
         {
@@ -14812,10 +14060,6 @@
         },
         {
           "word": "urlaub",
-          "occurrences": 2
-        },
-        {
-          "word": "zehn",
           "occurrences": 2
         },
         {

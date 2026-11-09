@@ -15,6 +15,7 @@
     "validate:exams": "node server/a2/exam-validation.js",
     "validate:bank": "node scripts/validate-bank.js",
     "audit:dictionary": "node scripts/audit-dictionary-coverage.js --write",
+    "test:dictionary-live": "node scripts/check-dictionary-sources-live.mjs",
     "audit:writing": "node scripts/audit-writing-format.js",
     "test:ui": "tsx --test src/a2/*.test.tsx"
   },

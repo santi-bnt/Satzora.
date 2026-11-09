@@ -20,11 +20,16 @@ test('Vercel Preview deployment also requires configured Supabase variables',()=
 test('migration declares private user ownership and private recording storage',()=>{
  const sql=readFileSync('supabase/migrations/202611080001_initial_private_data.sql','utf8');
  for(const table of ['dl_profiles','dl_sessions','dl_attempts','dl_saved_words','dl_flashcards','dl_flashcard_reviews','dl_flashcard_settings','dl_recordings'])assert.match(sql,new RegExp(`create table public\\.${table}\\s*\\(`));
- assert.match(sql,/enable row level security/);assert.match(sql,/auth\.uid\(\)/);assert.match(sql,/foreign key \(user_id,session_id\)/);assert.match(sql,/deutsch-lernen-recordings','deutsch-lernen-recordings',false/);
+ assert.match(sql,/enable row level security/);assert.ok(sql.includes('using ((select auth.uid()) = user_id)'));assert.match(sql,/foreign key \(user_id,session_id\)/);assert.match(sql,/deutsch-lernen-recordings','deutsch-lernen-recordings',false/);
 });
 test('active flashcard migration adds owner-scoped mode history without changing the initial migration',()=>{
  const sql=readFileSync('supabase/migrations/202611080004_flashcard_active_modes.sql','utf8');
  assert.match(sql,/create table if not exists public\.dl_flashcard_mode_progress/);assert.match(sql,/create table if not exists public\.dl_flashcard_mode_reviews/);
  assert.match(sql,/enable row level security/g);assert.match(sql,/user_id = \(select auth\.uid\(\)\)/);assert.match(sql,/security invoker set search_path = ''/);
  assert.match(sql,/mode in \('classic','reverse','cloze','sentence'\)/);assert.match(sql,/grant execute on function public\.dl_record_flashcard_mode_review/);
+});
+test('external dictionary-card migration is additive, owner-scoped and does not alter existing tables',()=>{
+ const sql=readFileSync('supabase/migrations/202611090001_dictionary_cards.sql','utf8');
+ assert.ok(sql.includes('using ((select auth.uid()) = user_id)'));assert.match(sql,/entry jsonb not null/);assert.match(sql,/source_sentence text not null default ''/);
+ for(const table of ['dl_saved_words','dl_flashcards','dl_flashcard_reviews'])assert.doesNotMatch(sql,new RegExp(`(?:alter|drop|truncate) table public\\.${table}`,'i'));
 });
