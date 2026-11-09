@@ -26,7 +26,7 @@
 | `npm run build` | TypeScript and Vite production build passed |
 | GitHub / Vercel | Commit `b795fa3` pushed to `main`; Vercel check succeeded; `https://satzivo.vercel.app` returned HTTP 200 |
 
-The 55 previously unreviewed questions received explicit rationales for every option. Eighteen question prompts were rewritten to ask about context, reasons, conditions, or consequences. The three models retain 20 reading items each. Automated validation checks completeness and answer-key consistency; it cannot independently prove semantic accuracy. The production homepage was reachable after deployment, but no authenticated reading or writing run was performed in a signed-in production browser during this change.
+The 55 previously unreviewed questions received explicit rationales for every option. Twenty question prompts were rewritten to ask about context, reasons, conditions, or consequences. The three models retain 20 reading items each. Automated validation checks completeness and answer-key consistency; it cannot independently prove semantic accuracy. The production homepage was reachable after deployment, but no authenticated reading or writing run was performed in a signed-in production browser during this change.
 
 The live integration checks used dedicated test accounts, not student accounts. No service-role key was used for ordinary reads or writes. Supabase user requests carried verified user access tokens and were subject to RLS.
 

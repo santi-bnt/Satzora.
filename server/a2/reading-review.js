@@ -22,6 +22,8 @@ const readingOverrides={
  'modell-03-Lesen-13':{prompt:'Was ist der Plan, falls Bea Lotte nicht am Bahnhof abholen kann?',options:['Lotte fährt mit dem Bus zum Hotel.','Lotte wartet bis zum Nachmittag am Bahnhof.','Lotte nimmt ein Taxi direkt zum See.'],answerIndex:0},
  'modell-03-Lesen-14':{prompt:'Wie kann Bea am Sonntagnachmittag ihre eigenen Pläne machen?',options:['Lotte besucht das Museum auch allein, wenn Bea nicht mitkommt.','Lotte fährt schon am Morgen mit Bea nach Hause.','Bea muss Lotte den ganzen Nachmittag begleiten.'],answerIndex:0},
  'modell-03-Lesen-15':{prompt:'Welche Information möchte Lotte bis Mittwoch von Bea bekommen?',options:['Ob Bea ein vegetarisches Frühstück möchte.','Ob Bea am Bahnhof um 9:20 ankommt.','Ob Bea ein Fahrrad oder einen Helm mitbringt.'],answerIndex:0}
+ , 'modell-03-Lesen-2':{prompt:'Welche Erfahrung brachte Salma auf die Idee für den Laden?',options:['Bei einem Umzug musste sie viele brauchbare Dinge wegwerfen.','In ihrer Ausbildung lernte sie den Verkauf von Lampen.','Im Krankenhaus suchte ihre Schwester gebrauchte Möbel.'],answerIndex:0}
+ , 'modell-03-Lesen-4':{prompt:'Warum kommen besonders viele Studierende am Mittwoch?',options:['Sie können auch nach einem langen Tag kommen, weil der Laden bis 20 Uhr geöffnet ist.','An diesem Tag sind alle Produkte billiger.','Salma bietet dann Reparaturkurse nur für Studierende an.'],answerIndex:0}
 };
 export const readingReviews={
  // Modell 01 · Teil 2: Stadthaus directory (service-to-floor matching)
@@ -786,6 +788,24 @@ Object.assign(readingReviews,{
   'Correct: Lotte asks about a vegetarian breakfast preference.',
   'Incorrect: Lotte’s arrival time is already stated; Bea need not confirm it.',
   'Incorrect: the helmet must be brought, but the hotel’s question is about breakfast.'
+ ]),
+ 'modell-03-Lesen-2':item('Damals musste sie viele gute Sachen wegwerfen, weil niemand sie rechtzeitig abholen konnte.',[
+  'Correcta: al mudarse no logró que recogieran a tiempo objetos que aún servían, y tuvo que tirarlos.',
+  'Incorrecta: su formación como vendedora ocurrió después; no fue la experiencia que originó la idea.',
+  'Incorrecta: el hospital es el lugar de trabajo de su hermana, pero el texto no vincula ese empleo con el proyecto.'
+ ],[
+  'Correct: during a move she could not arrange timely collection of useful items and had to discard them.',
+  'Incorrect: her sales training came later; it was not the experience that started the idea.',
+  'Incorrect: the hospital is her sister’s workplace, but the text does not connect it to the project.'
+ ]),
+ 'modell-03-Lesen-4':item('Besonders viele Studierende kommen am Mittwoch, wenn der Laden bis zwanzig Uhr geöffnet ist.',[
+  'Correcta: el horario hasta las ocho permite a estudiantes llegar más tarde, lo que explica la mayor afluencia.',
+  'Incorrecta: no se anuncian descuentos para los miércoles.',
+  'Incorrecta: los cursos de reparación se planean para el próximo año, no para cada miércoles.'
+ ],[
+  'Correct: opening until 8 p.m. lets students arrive later, explaining the higher attendance.',
+  'Incorrect: no Wednesday discounts are announced.',
+  'Incorrect: repair classes are planned for next year, not offered every Wednesday.'
  ])
 });
 
