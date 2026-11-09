@@ -1,11 +1,14 @@
 import {existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {examModels} from './exams.js';
+import {readingPositionStats} from './reading-positions.js';
 
 const asset=src=>fileURLToPath(new URL(`../../public${src}`,import.meta.url));
 
 export function validateModel(model){
  const errors=[];
+ const positionStats=readingPositionStats(model);
+ if(positionStats.total!==15||Object.values(positionStats.counts).some(count=>count!==5)||positionStats.longestRun>2)errors.push(`Lesen: unbalanced or predictable a/b/c answer positions (${positionStats.sequence}; ${JSON.stringify(positionStats.counts)}; max run ${positionStats.longestRun})`);
  for(const skill of ['Lesen','Hören','Schreiben','Sprechen']){
   const section=model.sections.find(s=>s.id===skill);
   if(!section){errors.push(`${skill}: missing`);continue;}
@@ -51,6 +54,6 @@ export function validateModel(model){
  return {id:model.id,available:errors.length===0,errors};
 }
 
-export function validateExams(){const models=examModels.map(validateModel),reading=examModels.flatMap(m=>m.sections.find(s=>s.id==='Lesen').parts.flatMap(p=>p.questions)),withRationales=reading.filter(q=>q.editorialReviewed&&q.review?.options?.length===q.options?.length&&q.review.options.filter(o=>o.correct).length===1&&q.review.options.every(o=>(o.explanation?.es?.length||0)>=28&&(o.explanation?.en?.length||0)>=28)).length;return {models,counts:{models:examModels.length,reading:reading.length,listening:examModels.length*20,writing:examModels.length*2,speaking:examModels.length*3,audioFiles:new Set(examModels.flatMap(m=>m.sections.flatMap(s=>s.parts.flatMap(p=>(p.clips||[]).map(c=>c.id))))).size,readingWithEvidence:reading.filter(q=>q.evidence).length,readingWithOptionRationales:withRationales,readingNeedsEditorialReview:reading.length-withRationales},valid:models.every(m=>m.available),qualityComplete:models.every(m=>m.available)&&withRationales===reading.length};}
+export function validateExams(){const models=examModels.map(validateModel),reading=examModels.flatMap(m=>m.sections.find(s=>s.id==='Lesen').parts.flatMap(p=>p.questions)),withRationales=reading.filter(q=>q.editorialReviewed&&q.review?.options?.length===q.options?.length&&q.review.options.filter(o=>o.correct).length===1&&q.review.options.every(o=>(o.explanation?.es?.length||0)>=28&&(o.explanation?.en?.length||0)>=28)).length,answerPositions=Object.fromEntries(examModels.map(model=>[model.id,readingPositionStats(model)]));return {models,counts:{models:examModels.length,reading:reading.length,listening:examModels.length*20,writing:examModels.length*2,speaking:examModels.length*3,audioFiles:new Set(examModels.flatMap(m=>m.sections.flatMap(s=>s.parts.flatMap(p=>(p.clips||[]).map(c=>c.id))))).size,readingWithEvidence:reading.filter(q=>q.evidence).length,readingWithOptionRationales:withRationales,readingNeedsEditorialReview:reading.length-withRationales},answerPositions,valid:models.every(m=>m.available),qualityComplete:models.every(m=>m.available)&&withRationales===reading.length};}
 
 if(process.argv[1]===fileURLToPath(import.meta.url)){const report=validateExams();mkdirSync('docs',{recursive:true});writeFileSync('docs/exam-validation.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));if(!report.valid)process.exitCode=1;}

@@ -27,6 +27,38 @@
     "readingWithOptionRationales": 60,
     "readingNeedsEditorialReview": 0
   },
+  "answerPositions": {
+    "modell-01": {
+      "sequence": "acbcababcacbacb",
+      "counts": {
+        "a": 5,
+        "b": 5,
+        "c": 5
+      },
+      "longestRun": 1,
+      "total": 15
+    },
+    "modell-02": {
+      "sequence": "bacbcabcacbacba",
+      "counts": {
+        "a": 5,
+        "b": 5,
+        "c": 5
+      },
+      "longestRun": 1,
+      "total": 15
+    },
+    "modell-03": {
+      "sequence": "cbacacbabcbacab",
+      "counts": {
+        "a": 5,
+        "b": 5,
+        "c": 5
+      },
+      "longestRun": 1,
+      "total": 15
+    }
+  },
   "valid": true,
   "qualityComplete": true
 }

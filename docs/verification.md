@@ -28,6 +28,12 @@
 
 The 55 previously unreviewed questions received explicit rationales for every option. Twenty question prompts were rewritten to ask about context, reasons, conditions, or consequences. The three models retain 20 reading items each. Automated validation checks completeness and answer-key consistency; it cannot independently prove semantic accuracy. The production homepage was reachable after deployment, but no authenticated reading or writing run was performed in a signed-in production browser during this change.
 
+## Lesen answer-position follow-up — 8 November 2026
+
+The 45 a/b/c items in the three exam models previously had these key distributions: Modell 01 10/4/1, Modell 02 12/2/1, and Modell 03 10/3/2 (A/B/C). Their choices now use stable, question-specific ordering with exactly 5/5/5 per model and no adjacent identical keys. Option text, keyed answer, and bilingual rationale stay aligned; no runtime shuffle is used. Option text is the persisted answer value, so existing saved answers and IDs remain valid. Changed option orders carry incremented `contentVersion` values.
+
+Verification: `npm test` 89/89, `npm run test:ui` 5/5, `npm run validate:exams` (all three models valid and balanced), and `npm run build` passed. The API persistence test restarted the local server and confirmed the resumed run returns the same option ordering. No authenticated production browser session was available for a full live exam run.
+
 The live integration checks used dedicated test accounts, not student accounts. No service-role key was used for ordinary reads or writes. Supabase user requests carried verified user access tokens and were subject to RLS.
 
 The curriculum validator reports 10 modules, 80 lessons, and 1,200 structurally valid activities. These activities are generated from 400 base contexts and are not 1,200 independent passages. The practice-bank inventory separately counts complete reading, listening, writing, and speaking materials in `docs/bank-validation.json`.

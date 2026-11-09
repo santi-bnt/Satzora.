@@ -1,6 +1,7 @@
 import {formatModels} from './exam-format.js';
 import {additionalModels} from './new-models.js';
 import {attachReadingReviews} from './reading-review.js';
+import {applyReadingAnswerPositions} from './reading-positions.js';
 const q=(id,prompt,options,answer,evidence,pictureOptions,review)=>({id,type:'choice',prompt,options,answers:[options[answer]],model:options[answer],evidence,review,explanation:{es:`La respuesta se apoya en esta información del texto: ${evidence}`,en:`The answer is supported by this information in the text: ${evidence}`},pictureOptions,skill:'Lesen',topic:'reading-detail',difficulty:2,tags:['A2','comprehension'],contentVersion:2});
 const readingReview=(options,answer,evidence,reasons)=>({evidence,options:options.map((option,index)=>({option,correct:index===answer,explanation:reasons[index]}))});
 const article1='Ein neuer Treffpunkt im Viertel\nSeit April gibt es in einem alten Postgebäude einen Nachbarschaftstreff. Die Leiterin, Frau Kern, hat früher in einer Buchhandlung gearbeitet. Sie wollte schon lange einen Ort schaffen, an dem Menschen gemeinsam lernen können. Das Gebäude gehört der Stadt; die Gruppe zahlt nur die Kosten für Strom und Wasser. Jeden Dienstag reparieren Freiwillige dort kaputte Fahrräder. Die Reparatur kostet nichts, aber neue Teile müssen die Besucher selbst bezahlen. Donnerstags gibt es einen Kochabend. Man muss sich bis Dienstag anmelden, weil die Küche klein ist. Für Kinder findet samstags ein Bastelkurs statt. Erwachsene dürfen helfen, müssen aber nicht dabei bleiben. Im Sommer möchte die Gruppe einen Garten hinter dem Haus eröffnen. Dafür sucht sie noch Menschen, die regelmäßig gießen können. Neue Besucher sind auch ohne Mitgliedschaft willkommen. Nur für die Kochabende und den Bastelkurs ist eine Reservierung nötig. Montags bleibt das Haus geschlossen, denn dann plant das Team die nächste Woche.';
@@ -73,6 +74,6 @@ function makeModel(id,second=false){
  for(const section of sections)for(const part of section.parts)for(const item of part.questions){item.id=`${id}-${section.id}-${item.id}`;item.skill=section.id;item.moduleId='exam';item.lessonId='exam';}
  return {id,title:second?'Modell 02 · Arbeit und Freizeit':'Modell 01 · Stadt und Alltag',sections};
 }
-export const examModels=attachReadingReviews(formatModels([makeModel('modell-01'),makeModel('modell-02',true),...additionalModels]));
+export const examModels=applyReadingAnswerPositions(attachReadingReviews(formatModels([makeModel('modell-01'),makeModel('modell-02',true),...additionalModels])));
 export const examExercises=examModels.flatMap(m=>m.sections.flatMap(s=>s.parts.flatMap(p=>p.questions)));
 export const examAudio=examModels.flatMap(m=>m.sections.flatMap(s=>s.parts.flatMap(p=>(p.clips||[]).map(c=>({...c,plays:p.plays})))));
