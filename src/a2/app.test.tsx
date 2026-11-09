@@ -37,6 +37,11 @@ test('real API component flow: bilingual navigation, dictionary, lesson autosave
  fireEvent.click(screen.getByRole('button',{name:'Dark'}));await waitFor(()=>assert.equal(document.documentElement.dataset.theme,'dark'));assert.equal(document.documentElement.lang,'en');
  view.unmount();view=render(<A2App/>);await screen.findByRole('heading',{name:'Hello!'});assert.equal(document.documentElement.dataset.theme,'dark');
  fireEvent.click(screen.getAllByRole('button',{name:'Goethe Exam Simulator'})[0]);await screen.findByRole('heading',{name:'Modell 01 · Stadt und Alltag'});assert.ok(screen.getByRole('button',{name:'Exam Mode · timed, no support'}));
+ fireEvent.click(screen.getAllByRole('button',{name:'Vocabulary'})[0]);
+ fireEvent.change(screen.getByRole('textbox',{name:'Look up a German word…'}),{target:{value:'Tisch,'}});fireEvent.click(screen.getByRole('button',{name:'Dictionary'}));
+ await screen.findByRole('heading',{name:'Tisch'});assert.ok(screen.getByText('mesa'));assert.ok(screen.getByText('table'));assert.ok(screen.getByText('der'));assert.ok(document.querySelector('.dictionary-forms')?.textContent?.includes('die Tische'));
+ fireEvent.click(screen.getByRole('button',{name:'Close'}));fireEvent.change(screen.getByRole('textbox',{name:'Look up a German word…'}),{target:{value:'hoffen'}});fireEvent.click(screen.getByRole('button',{name:'Dictionary'}));
+ await screen.findByRole('heading',{name:'hoffen'});assert.ok(screen.getByText('to hope'));assert.ok(screen.getByText('esperar'));
  view.unmount();
  }finally{cleanup();globalThis.fetch=originalFetch;if(child.exitCode===null)await new Promise<void>(resolve=>{child.once('exit',()=>resolve());child.kill();});await rm(directory,{recursive:true,force:true});dom.window.close();}
 });
