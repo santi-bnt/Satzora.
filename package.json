@@ -14,6 +14,8 @@
     "validate:content": "node server/a2/validate.js",
     "validate:exams": "node server/a2/exam-validation.js",
     "validate:bank": "node scripts/validate-bank.js",
+    "audit:dictionary": "node scripts/audit-dictionary-coverage.js --write",
+    "audit:writing": "node scripts/audit-writing-format.js",
     "test:ui": "tsx --test src/a2/*.test.tsx"
   },
   "dependencies": {

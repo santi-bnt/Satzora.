@@ -63,7 +63,8 @@ Authenticated review history and scheduling use Supabase. Local guest progress u
 - **A2 Intensiv** sessions of 15, 30, 45, or 60 minutes, for all skills or a selected skill/topic. The heuristic prioritizes weak topics, unseen questions, and recent objective results; it does not predict an exam outcome.
 - **Meine Fehler** groups objectively incorrect answers by topic and offers related practice. Free writing is not marked wrong merely because it differs from one model answer.
 - Statistics are based on persisted attempts. A completed activity means it was finished with answers submitted; mastery reflects reference answers in closed-response exercises.
-- Tap German words to open the curated dictionary. It resolves known inflections (for example, `gefahren → fahren`, `Terminen → Termin`), and offers definitions, examples, pronunciation, and saving. It is not a universal dictionary.
+- Tap German words to open the curated dictionary. Local lookups resolve validated inflections; unknown terms use a rate-limited, cached Wiktionary definition fallback where available. Fallback glosses are attributed and do not invent a Spanish translation. External entries are not yet persistable as personal flashcards. Run `npm run audit:dictionary` for measured offline coverage and the unresolved-term report; see [docs/dictionary-coverage.md](docs/dictionary-coverage.md).
+- Goethe Schreiben tasks use structured situation, format, three required points, and word-count fields in both the practice `RunView` and the exam `ExamView`. Guided curriculum writing prompts without three actual points remain unchanged. Run `npm run audit:writing` to check task inventory and structure.
 - Light/dark themes and the Spanish/English interface preference persist. German lesson titles, module names, and skill names remain in German.
 - Speaking practice supports recording through `MediaRecorder` where supported; HTTPS or localhost is required. Text entry remains available.
 

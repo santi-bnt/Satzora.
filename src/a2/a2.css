@@ -39,6 +39,20 @@ html[data-theme=dark] .a2-app .structure-warn{color:#F2C879!important}
 .a2-app .writing-task-points{margin:14px 0 10px}
 .a2-app .writing-task-points ul{list-style:disc}
 .a2-app .writing-task-points li{padding-left:3px}
+.a2-app .writing-task-prompt{position:sticky;top:8px;z-index:2;margin:8px 0 20px;padding:16px 19px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent,#75445F);border-radius:8px;box-shadow:0 5px 18px #241d2710;overflow-wrap:anywhere}
+.a2-app .writing-task-prompt p{margin:0 0 8px;line-height:1.65;color:var(--text)}
+.a2-app .writing-task-prompt .writing-format-instruction{font-size:13px;color:var(--secondary);font-weight:600}
+.a2-app .writing-task-prompt .writing-task-points{margin:12px 0}
+.a2-app .writing-task-prompt .writing-task-points h4{font-size:12px;margin:0 0 7px}
+.a2-app .writing-task-prompt .writing-task-points ul{padding-left:20px;margin:0}
+.a2-app .writing-task-prompt .writing-task-points li{padding:3px 0;line-height:1.55;font-size:13px}
+.a2-app .writing-task-prompt .writing-length-instruction{font-size:12px;font-weight:650;margin:7px 0 0}
+.a2-app .dictionary-source{font-size:11px;margin-top:16px}
+.a2-app .dictionary-source a{color:var(--accent);text-underline-offset:3px}
+.a2-app .dictionary-definitions{font-size:12px;color:var(--secondary);margin-top:14px}
+.a2-app .dictionary-definitions ul{padding-left:20px}
+.a2-app .dictionary-word-head p{font-size:11px;margin:0;color:var(--secondary)}
+@media(max-width:760px){.a2-app .writing-task-prompt{top:4px;max-height:34svh;overflow:auto;padding:12px 14px}.a2-app .writing-task-prompt .writing-task-points li{font-size:12px}.a2-app .writing-task-prompt .writing-situation{font-size:14px}}
 .a2-app .writing-length-instruction{margin:10px 0 16px;color:var(--text-secondary);font-size:13px;font-weight:600;line-height:1.7}
 .a2-app .writing-feedback-error{padding:14px 0;border-bottom:1px solid var(--border)}
 .a2-app .writing-feedback-error>strong{font-size:12px;color:var(--accent)}
@@ -54,3 +68,4 @@ html[data-theme=dark] .a2-app .writing-feedback-error ins{color:#88D2A0}
 .a2-app .dictionary-translation-alt,.a2-app .dictionary-forms{font-size:12px;margin:4px 0;color:var(--secondary)}
 
 .reading-rationale{margin-top:16px;padding-top:12px;border-top:1px solid var(--border)}.reading-rationale h4{margin:0 0 10px;font-size:12px}.reading-rationale blockquote{margin:8px 0 12px;padding:10px 12px;border-left:3px solid var(--accent);background:var(--surface-soft);font-size:12px;line-height:1.8}.reading-rationale>p{margin:8px 0;padding:9px 10px;border-radius:5px;font-size:11px;line-height:1.7}.rationale-correct{background:color-mix(in srgb,var(--success) 10%,transparent)}.rationale-distractor{background:var(--surface-soft)}
+.a2-app .a2-modal:has(.dictionary-actions){max-width:520px;padding:24px 27px}.a2-app .dictionary-source{font-size:10px;color:var(--secondary);margin-top:8px}.a2-app .dictionary-example{padding:10px 12px;border-left:2px solid var(--accent);background:var(--surface-soft);font-size:13px;line-height:1.7;overflow-wrap:anywhere}

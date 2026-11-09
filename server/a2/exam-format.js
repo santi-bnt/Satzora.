@@ -33,7 +33,7 @@ export function formatModels(models){return models.map((model,index)=>{
   for(const [j,clip] of part.clips.entries())clip.questionIds=part.clips.length===1?part.questions.map(q=>q.id):[part.questions[j].id];
  }
  for(const [i,part] of model.sections[2].parts.entries()){
-  part.id=`${model.id}-Schreiben-${i+1}`;const q=part.questions[0];q.points=q.points||writingPoints[second?1:0][i];q.register=i===0?'informal':'semi-formal';q.situation=q.situation||q.prompt.split(' Schreiben Sie')[0];q.formatInstruction=writingInstructions[0][Math.min(index,2)][i];q.wordCountInstruction=`Schreiben Sie ${q.range[0]}–${q.range[1]} Wörter. Schreiben Sie zu allen drei Punkten.`;
+  part.id=`${model.id}-Schreiben-${i+1}`;const q=part.questions[0];q.writingType=i===0?'sms':'email';q.points=q.points||writingPoints[second?1:0][i];q.register=i===0?'informal':'semi-formal';q.situation=q.situation||q.prompt.split(' Schreiben Sie')[0];q.formatInstruction=writingInstructions[0][Math.min(index,2)][i];q.wordCountInstruction=`Schreiben Sie ${q.range[0]}–${q.range[1]} Wörter. Schreiben Sie zu allen drei Punkten.`;
   q.material={skill:'Schreiben',partId:part.id,title:part.title,situation:q.situation,points:q.points,range:q.range};
  }
  const oral=model.sections[3].parts;

@@ -9,6 +9,7 @@ import {examScores,writingTaskPoints} from './exam-scoring.js';
 import {registerExamActions} from './exam-actions.js';
 import {validateModel} from './exam-validation.js';
 import {dictionary,lookup} from './dictionary.js';
+import {lookupWithFallback} from './dictionary-fallback.js';
 import {registerFlashcards} from './flashcard-routes.js';
 import {capabilities,feedback,transcribe,conversation,localWritingFeedback,synthesize} from './services.js';
 const bank=new Map([...archivedExercises,...exerciseBank,...examExercises,...bankExercises].map(e=>[e.id,e]));
@@ -37,7 +38,8 @@ export function createA2Router(db,activity,day){
  router.get('/bank',(_req,res)=>{const inventory=bankInventory(),history=db.prepare("SELECT ref,started FROM a2_runs WHERE kind='activity' ORDER BY started DESC").all(),attempts=db.prepare('SELECT exercise_id,correct FROM a2_attempts ORDER BY created').all(),latest=new Map(attempts.map(a=>[a.exercise_id,a.correct]));res.json({...inventory,items:practiceActivities.filter(a=>validateActivity(a).complete).map(a=>({id:a.id,skill:a.skill,teil:a.teil,topic:a.topic,title:a.title,questions:a.part.questions.length,seen:history.filter(h=>h.ref===a.id).length,lastAttempt:history.find(h=>h.ref===a.id)?.started||null,hasErrors:a.part.questions.some(q=>latest.get(q.id)===0)}))});});
  router.put('/preferences',(req,res)=>{const {locale,theme}=req.body||{};if(!['es','en'].includes(locale)||!['light','dark'].includes(theme))return res.status(400).json({error:'invalid_preferences'});db.prepare('UPDATE a2_preferences SET locale=?,theme=? WHERE id=1').run(locale,theme);res.json({locale,theme});});
  router.get('/lessons/:id',(req,res)=>{const lesson=curriculum.find(l=>l.id===req.params.id);if(!lesson)return res.status(404).json({error:'not_found'});res.json(publicLesson(lesson));});
- router.get('/dictionary',(req,res)=>res.json({entry:lookup(req.query.word)}));
+ const dictionaryRequests=new Map();
+ router.get('/dictionary',async(req,res)=>{const local=lookup(req.query.word);if(local)return res.json({entry:local,source:'local'});const now=Date.now(),key=req.ip||req.socket.remoteAddress||'unknown',record=dictionaryRequests.get(key)||{start:now,count:0};if(now-record.start>60_000){record.start=now;record.count=0;}if(record.count>=30)return res.status(429).json({error:'dictionary_rate_limited',retryAfter:60});record.count++;dictionaryRequests.set(key,record);const result=await lookupWithFallback(req.query.word);res.set('Cache-Control',result.entry?'private, max-age=300':'no-store').json(result);});
  router.post('/vocabulary',(req,res)=>{if(!dictionary.some(w=>w.id===req.body?.id)||typeof (req.body?.sentence??'')!=='string'||(req.body?.sentence||'').length>1500)return res.status(400).json({error:'not_found'});db.prepare('INSERT OR IGNORE INTO a2_saved_words VALUES(?,?)').run(req.body.id,Date.now());if(req.body.sentence)db.prepare('INSERT OR IGNORE INTO fc_sources VALUES(?,?)').run(req.body.id,req.body.sentence);res.json({saved:true});});
  router.post('/runs',(req,res)=>{let {kind,ref,mode='practice',minutes=15,focus='all',selection}=req.body||{};if(!['lesson','review','intensive','exam','errors','activity'].includes(kind)||!['practice','exam'].includes(mode)||!['all',...skills].includes(focus))return res.status(400).json({error:'invalid_run'});let ids=[],duration=minutes;
  if(kind==='activity'){
