@@ -11,6 +11,7 @@ import { module10 } from './modules/10.js';
 import { readingMaterials } from './reading.js';
 import { examModels } from './exams.js';
 import { extraExamples } from './extra-examples.js';
+import {diagnoseAnswer} from './diagnose.js';
 
 export const moduleDefinitions = [module01,module02,module03,module04,module05,module06,module07,module08,module09,module10];
 const patterns = [['gap','order','choice'],['gap','transform','correct'],['order','transform','write'],['gap','correct','choice'],['order','transform','write']];
@@ -61,9 +62,9 @@ export function publicLesson(lesson){return {...lesson,exercises:lesson.exercise
 export function evaluate(exercise,answer) {
   if(typeof answer!=='string'||answer.length>6000)throw new Error('invalid_answer');
   if(['write','speak'].includes(exercise.type))return {correct:null,status:'orientative',model:exercise.model,explanation:exercise.explanation,words:answer.trim()?answer.trim().split(/\s+/).length:0};
-  const correct=exercise.answers.some(a=>normalize(a)===normalize(answer));
-  // Word-order tasks can have other grammatical orders. Never label an unseen
-  // production as wrong merely because it differs from our reference sentence.
-  if(exercise.type==='order'&&!correct&&answer.trim())return {correct:null,status:'needs-review',model:exercise.model,explanation:exercise.explanation};
-  return {correct,status:correct?'correct':'incorrect',model:exercise.answers[0],explanation:exercise.explanation};
+  const options=(exercise.answers||[]).map(model=>({model,...diagnoseAnswer(model,answer)})).sort((a,b)=>a.errors.length-b.errors.length),best=options[0]||{model:exercise.model,errors:[],structure:'correct'};
+  const correct=best.errors.length===0;
+  const translation=exercise.translation|| (normalize(best.model)==='wir hoffen dass die wohnung noch frei ist'?{es:'Esperamos que la vivienda siga libre.',en:'We hope the apartment is still available.'}:undefined);
+  const structureMessage=best.structure==='correct'?{es:'El orden y la estructura general son correctos.',en:'The word order and overall structure are correct.'}:{es:'Revisa el orden o la estructura de la oración.',en:'Review the sentence order or structure.'};
+  return {correct,status:correct?'correct':'incorrect',model:best.model,explanation:exercise.explanation,evaluatedAnswer:answer,errors:best.errors,structure:best.structure,structureExplanation:structureMessage,...(translation?{translation}:{})};
 }

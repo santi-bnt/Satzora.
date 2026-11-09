@@ -1,11 +1,11 @@
 {
-  "name": "Satzivo · Goethe A2 Intensiv",
-  "short_name": "Satzivo",
+  "name": "satzivo · Goethe A2 Intensiv",
+  "short_name": "satzivo",
   "description": "Preparación independiente para el Goethe-Zertifikat A2 para adultos.",
   "lang": "es",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAF9F7",
-  "theme_color": "#C65A3D",
+  "background_color": "#F2ECEA",
+  "theme_color": "#75445F",
   "icons": [{"src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]
 }

@@ -1,46 +1,46 @@
 :root{
  color-scheme:light;
- --page-bg:#FAF9F7;
- --surface:#FFFFFF;
- --surface-soft:#F4F2EF;
- --surface-strong:#F0EEEB;
- --text:#25272C;
- --text-primary:#25272C;
- --secondary:#6B7078;
- --text-secondary:#6B7078;
- --border:#E6E2DE;
- --line:#E6E2DE;
- --input-bg:#FFFFFF;
- --accent:#C65A3D;
- --accent-hover:#AD4D34;
- --accent-ink:#AD4D34;
- --accent-pressed:#963F29;
- --accent-soft:#F8E7E0;
- --green:#C65A3D;
- --deep:#AD4D34;
- --lime:#F8E7E0;
+ --page-bg:#F2ECEA;
+ --surface:#FBF7F4;
+ --surface-soft:#F7F0ED;
+ --surface-strong:#E8DFDC;
+ --text:#2C2530;
+ --text-primary:#2C2530;
+ --secondary:#685F69;
+ --text-secondary:#685F69;
+ --border:#D9CFCC;
+ --line:#D9CFCC;
+ --input-bg:#FBF7F4;
+ --accent:#75445F;
+ --accent-hover:#62364D;
+ --accent-ink:#75445F;
+ --accent-pressed:#542B40;
+ --accent-soft:#F3E2DA;
+ --green:#75445F;
+ --deep:#62364D;
+ --lime:#FFAA87;
 }
 html[data-theme=dark]{
  color-scheme:dark;
- --page-bg:#121316;
- --surface:#202227;
- --surface-soft:#191B20;
- --surface-strong:#17191E;
- --text:#F6F4F2;
- --text-primary:#F6F4F2;
- --secondary:#AEB1B9;
- --text-secondary:#AEB1B9;
- --border:#383A41;
- --line:#383A41;
- --input-bg:#202227;
- --accent:#FFAB83;
- --accent-hover:#F59A70;
- --accent-ink:#FFAB83;
- --accent-pressed:#F59A70;
- --accent-soft:#342821;
- --green:#FFAB83;
- --deep:#FFAB83;
- --lime:#342821;
+ --page-bg:#1B171E;
+ --surface:#322834;
+ --surface-soft:#2B222E;
+ --surface-strong:#241D27;
+ --text:#F8F2F4;
+ --text-primary:#F8F2F4;
+ --secondary:#C8BBC7;
+ --text-secondary:#C8BBC7;
+ --border:#493D4B;
+ --line:#493D4B;
+ --input-bg:#322834;
+ --accent:#FFAA87;
+ --accent-hover:#FF9870;
+ --accent-ink:#FFAA87;
+ --accent-pressed:#F0845C;
+ --accent-soft:#49323E;
+ --green:#FFAA87;
+ --deep:#FFAA87;
+ --lime:#FFAA87;
 }
 html,body,#root{min-height:100%;background:var(--page-bg);color:var(--text-primary)}
 body{color:var(--text-primary)}
@@ -58,12 +58,17 @@ body{color:var(--text-primary)}
 .a2-app .tiny-dot{background:var(--accent)}
 .a2-app .little-note,.a2-app .practice-banner,.a2-app .course-banner,.a2-app .vocab-toolbar{background:var(--surface);border-color:var(--border)}
 .a2-app .little-note p,.a2-app .practice-banner p,.a2-app .course-banner p,.a2-app .page-heading p{color:var(--secondary)}
-.a2-app .hero,.a2-app .a2-hero{background:linear-gradient(135deg,#292b31,#202227);border:1px solid var(--border);color:var(--text-primary)}
-.a2-app .hero h2,.a2-app .a2-hero h2{color:#F6F4F2}
-.a2-app .hero p,.a2-app .a2-hero p,.a2-app .hero-tag{color:#D5D6DA}
+.a2-app .hero,.a2-app .a2-hero{background-color:#241D27;background-image:linear-gradient(90deg,rgba(36,29,39,.96) 0%,rgba(36,29,39,.84) 48%,rgba(36,29,39,.36) 100%),url("https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Brandenburg_Gate%2C_Berlin.jpg/1280px-Brandenburg_Gate%2C_Berlin.jpg");background-position:center 48%;background-size:cover;border:1px solid #493D4B;color:#F8F2F4}
+.a2-app .hero h2,.a2-app .a2-hero h2{color:#FFF9F7}
+.a2-app .hero p,.a2-app .a2-hero p,.a2-app .hero-tag{color:#F1E4E8}
+.a2-app .hero-credit{position:absolute;right:13px;bottom:10px;z-index:2;font-size:9px;color:#F1E4E8;text-shadow:0 1px 4px #1B171E}
+.a2-app .hero-credit a{color:#FFAA87!important;text-decoration:underline}
 .a2-app .hero-tag>span{background:var(--accent)}
-.a2-app .hero-book{color:var(--accent);opacity:.14}
+.a2-app .hero-book{color:#FFAA87;opacity:.16}
 .a2-app .button.primary,.a2-app button.primary{background:var(--accent-hover);color:#fff;border-color:var(--accent-hover)}
+.a2-app .button.lime,.a2-app button.lime{background:#75445F;color:#fff;border-color:#75445F}
+.a2-app .button.lime:hover:not(:disabled),.a2-app button.lime:hover:not(:disabled){background:#62364D;border-color:#62364D}
+html[data-theme=dark] .a2-app .button.lime,html[data-theme=dark] .a2-app button.lime{background:#FFAA87;color:#2C2530;border-color:#FFAA87}
 .a2-app .button.primary:hover:not(:disabled),.a2-app button.primary:hover:not(:disabled){background:var(--accent-pressed);border-color:var(--accent-pressed);color:#fff}
 html[data-theme=dark] .a2-app .button.primary,html[data-theme=dark] .a2-app button.primary{background:var(--accent);border-color:var(--accent);color:#25272C}
 html[data-theme=dark] .a2-app .button.primary:hover:not(:disabled),html[data-theme=dark] .a2-app button.primary:hover:not(:disabled){background:var(--accent-hover);border-color:var(--accent-hover);color:#25272C}
@@ -72,6 +77,11 @@ html[data-theme=dark] .a2-app .button.primary:hover:not(:disabled),html[data-the
 .a2-app button:focus-visible,.a2-app a:focus-visible,.a2-app input:focus-visible,.a2-app select:focus-visible,.a2-app textarea:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .a2-app .stat,.a2-app .goal-card,.a2-app .catalog-card,.a2-app .training-card,.a2-app .exam-part,.a2-app .exercise-panel,.a2-app .question-nav,.a2-app .bank-inventory,.a2-app .bank-filters,.a2-app .bank-list article,.a2-app .vocab-card,.a2-app .activity-card,.a2-app .exam-document,.a2-app .exam-image-bank figure,.a2-app .topic-speaking-card,.a2-app .planning-card,.a2-app .coach-feedback,.a2-app .fc-card-v2,.a2-app .fc-controls,.a2-app .fc-heading,.a2-app .fc-complete{background:var(--surface);border-color:var(--border);color:var(--text-primary)}
 .a2-app .stat-icon,.a2-app .practice-icon,.a2-app .course-icon,.a2-app .icon-button:hover,.a2-app .week-days>div>div,.a2-app .exam-part-navigation>button.selected,.a2-app .duration-buttons>button.selected,.a2-app .mode-buttons>button.selected,.a2-app .bank-skill-tabs button[aria-pressed=true]{background:var(--surface-soft);color:var(--accent);border-color:var(--border)}
+.a2-app .fc-page{--fc-primary:var(--accent);--fc-primary-hover:var(--accent-hover);--fc-ink:var(--text-primary);--fc-muted:var(--secondary);--fc-line:var(--border);--fc-bg:var(--surface-soft);color:var(--text-primary)}
+.a2-app .fc-heading,.a2-app .fc-controls,.a2-app .fc-card,.a2-app .fc-session,.a2-app .fc-complete,.a2-app .fc-preferences input,.a2-app .fc-filters select{background:var(--surface);border-color:var(--border);color:var(--text-primary)}
+.a2-app .fc-start{background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important}
+html[data-theme=dark] .a2-app .fc-start{color:#2C2530!important}
+.a2-app .fc-mode-picker button,.a2-app .fc-filters select,.a2-app .fc-preferences input{background:var(--surface);border-color:var(--border);color:var(--text-primary)}
 .a2-app .goal-ring{background:conic-gradient(var(--accent) var(--progress),var(--border) 0)}
 .a2-app .progress-track,.a2-app .bank-counts .progress-track{background:var(--border)}
 .a2-app .progress-track>span,.a2-app .chart-bar.current{background:var(--accent)}
@@ -113,8 +123,9 @@ html[data-theme=dark] .a2-app .little-note{background:var(--surface);border-colo
 html[data-theme=dark] .a2-app .outline{color:var(--text-primary);border-color:var(--border)}
 html[data-theme=dark] .a2-app .icon-button:hover{background:var(--surface-soft);color:var(--accent)}
 html[data-theme=dark] .a2-app .stat-icon,html[data-theme=dark] .a2-app .sound-button{background:var(--surface-soft);border-color:var(--border);color:var(--accent)}
-.loading-screen{--primary:#AD4D34;--primary-hover:#963F29;--page-bg:#FAF9F7;--card-bg:#FFFFFF;--neutral-border:#E6E2DE;--text-main:#25272C;--text-secondary:#6B7078;background:var(--page-bg);color:var(--text-primary)}
-html[data-theme=dark] .loading-screen{--primary:#FFAB83;--primary-hover:#F59A70;--page-bg:#121316;--card-bg:#202227;--neutral-border:#383A41;--text-main:#F6F4F2;--text-secondary:#AEB1B9;background:var(--page-bg);color:var(--text-primary)}
+.loading-screen{--primary:#75445F;--primary-hover:#62364D;--page-bg:#F2ECEA;--card-bg:#FBF7F4;--neutral-border:#D9CFCC;--text-main:#2C2530;--text-secondary:#685F69;background:var(--page-bg);color:var(--text-primary)}
+html[data-theme=dark] .loading-screen{--primary:#FFAA87;--primary-hover:#FF9870;--page-bg:#1B171E;--card-bg:#322834;--neutral-border:#493D4B;--text-main:#F8F2F4;--text-secondary:#C8BBC7;background:var(--page-bg);color:var(--text-primary)}
 .loading-screen p{color:var(--text-secondary)}.loading-screen .brand-mark{background:var(--accent-hover);color:#fff}.loading-screen h1>span{color:var(--accent-ink)}.loading-screen .activity-card{background:var(--surface);border-color:var(--border)}
 html[data-theme=dark] .loading-screen .brand-mark{background:var(--accent);color:#25272C}
-@media(max-width:760px){.a2-app .hero,.a2-app .a2-hero{background:linear-gradient(145deg,#292b31,#202227)}.a2-app .overlay{padding:12px}.a2-app .modal{max-height:calc(100dvh - 24px)}}
+@media(max-width:760px){.a2-app .hero,.a2-app .a2-hero{background-position:center;background-image:linear-gradient(90deg,rgba(36,29,39,.94),rgba(36,29,39,.68)),url("https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Brandenburg_Gate%2C_Berlin.jpg/960px-Brandenburg_Gate%2C_Berlin.jpg")}.a2-app .hero-credit{right:10px;bottom:7px;font-size:8px}.a2-app .overlay{padding:12px}.a2-app .modal{max-height:calc(100dvh - 24px)}}
+@media(prefers-reduced-motion:reduce){.a2-app *, .a2-app *::before,.a2-app *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}

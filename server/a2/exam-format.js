@@ -7,6 +7,9 @@ const writingPoints=[
  [['Entschuldigen Sie sich.','Nennen Sie den Grund.','Schlagen Sie eine neue Uhrzeit und einen Treffpunkt vor.'],['Bedanken Sie sich und sagen Sie zu.','Informieren Sie, dass Sie eine Begleitung mitbringen.','Fragen Sie, was Sie zu essen mitbringen können.']],
  [['Entschuldigen Sie sich.','Erklären Sie, warum Sie morgen nicht kommen können.','Schlagen Sie einen anderen Tag und einen Treffpunkt vor.'],['Bedanken Sie sich und sagen Sie zu.','Erklären Sie, dass Sie später kommen.','Fragen Sie nach dem genauen Treffpunkt.']]
 ];
+const writingInstructions=[
+ [['Schreiben Sie eine SMS an Ihren Freund.','Schreiben Sie eine E-Mail an Ihren Kollegen, Herrn Wagner.'],['Schreiben Sie eine SMS an Ihre Freundin.','Schreiben Sie eine E-Mail an Ihre Kursleiterin, Frau Neumann.'],['Schreiben Sie eine SMS an Ihren Freund.','Schreiben Sie eine E-Mail an Frau König.']]
+];
 export function formatModels(models){return models.map((model,index)=>{
  const second=index===1;
  for(const [i,part] of model.sections[0].parts.entries()){
@@ -29,7 +32,7 @@ export function formatModels(models){return models.map((model,index)=>{
   for(const [j,clip] of part.clips.entries())clip.questionIds=part.clips.length===1?part.questions.map(q=>q.id):[part.questions[j].id];
  }
  for(const [i,part] of model.sections[2].parts.entries()){
-  part.id=`${model.id}-Schreiben-${i+1}`;const q=part.questions[0];q.points=q.points||writingPoints[second?1:0][i];q.register=i===0?'informal':'semi-formal';q.situation=q.situation||q.prompt.split(' Schreiben Sie')[0];
+  part.id=`${model.id}-Schreiben-${i+1}`;const q=part.questions[0];q.points=q.points||writingPoints[second?1:0][i];q.register=i===0?'informal':'semi-formal';q.situation=q.situation||q.prompt.split(' Schreiben Sie')[0];q.formatInstruction=writingInstructions[0][Math.min(index,2)][i];q.wordCountInstruction=`Schreiben Sie ${q.range[0]}–${q.range[1]} Wörter. Schreiben Sie zu allen drei Punkten.`;
   q.material={skill:'Schreiben',partId:part.id,title:part.title,situation:q.situation,points:q.points,range:q.range};
  }
  const oral=model.sections[3].parts;
