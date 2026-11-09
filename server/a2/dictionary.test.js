@@ -18,6 +18,12 @@ test('dictionary normalizes case and punctuation and resolves validated inflecte
  assert.equal(lookup('Tisch, und Haus'),null);
 });
 
+test('dictionary recognizes frequent modal and present-tense forms without stripping arbitrary suffixes',()=>{
+ for(const [form,lemma] of [['könnten','können'],['nehme','nehmen'],['nimmst','nehmen'],['brauche','brauchen'],['wartest','warten'],['Besuchern','Besucher']])assert.equal(lookup(form)?.lemma,lemma,form);
+ assert.equal(lookup('Besucher')?.plural,'Besucher');
+ assert.equal(lookup('Trinkst'),null);
+});
+
 test('dictionary extends the curated entries with the validated vocabulary catalogue',()=>{
  const lemmas=new Set(dictionary.map(w=>w.lemma.toLocaleLowerCase('de')));
  const publishedWords=flashcards.filter(card=>card.kind==='word');
